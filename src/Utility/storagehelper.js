@@ -10,6 +10,6 @@ export function clearStorage(key) {
     if (key === 'all') {
         localStorage.clear();
     } else {
-        localStorage.clear(key);
+        localStorage.removeItem(key);
     }
 }
