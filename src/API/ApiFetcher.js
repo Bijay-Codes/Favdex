@@ -20,12 +20,13 @@ export async function fetchPokeApi(limit = GlobalData.apiLimit, retry, offset = 
                     }
                 )),
                 sprite: {
-                    shinySprite: data.sprites.front_shiny,
-                    frontSprite: data.sprites.front_default
+                    shinySprite: data.sprites.other["official-artwork"].front_shiny,
+                    frontSprite: data.sprites.other["official-artwork"].front_default,
                 }
             }
         });
-        return [cutDownData, offset + GlobalData.apiLimit,fetchData.count]
+        saveToStorage(fetchData.count,'pokedex-limit')
+        return [cutDownData, offset + GlobalData.apiLimit, fetchData.count]
     } catch (e) {
         retry--;
         if (retry > 0) {
