@@ -1,6 +1,7 @@
 import { useState, useRef, forwardRef } from "react";
 import { capitalize } from "./Utility/util-basic.js";
 import { useInitializer } from "./Components/Hooks/Initializer.jsx";
+import { typeStyles } from "../public/TypeStyle.js";
 export default function PokedexGrid() {
     const unloadedRef = useRef();
     const offset = useRef();
@@ -8,7 +9,7 @@ export default function PokedexGrid() {
     const [isComplete, setComplete] = useState(false);
     useInitializer(unloadedRef, setPokemon, offset, setComplete);
     return (
-        <div className="bg-black text-white">
+        <div className="bg-black text-white p-4">
             <div className="grid grid-cols-5 gap-2 m-2 p-2">
                 {
                     pokedex.map((poke, i) => {
@@ -24,12 +25,12 @@ export default function PokedexGrid() {
 
 function RenderPokemon({ pokemon }) {
     return (
-        <div className="bg-green-500 flex flex-col justify-center items-center rounded-lg aspect-square p-4">
+        <div className="mask-r-from-60% flex flex-col justify-center items-center rounded-lg aspect-square p-4">
             <span>{'#' + pokemon.id}</span>
             <img loading="lazy" className="aspect-square" src={pokemon.sprite.frontSprite || pokemon.sprite.shinySprite} alt={pokemon.name+'.png'} />
-            <div>{capitalize(pokemon.name)}</div>
+            <div className="whitespace-nowrap">{capitalize(pokemon.name)}</div>
             {
-                pokemon.types.map(type => <span className="bg-indigo-400 border-2 border-sky-100 px-1 py-0.4 rounded-lg" key={type}>{capitalize(type)}</span>)
+                pokemon.types.map(type => <span className={`${typeStyles[type]} px-2 rounded-2xl mask-b-from-80% border-t-2`} key={type}>{capitalize(type)}</span>)
             }
         </div>
     )

@@ -1,7 +1,7 @@
 import { fetchPokeApi } from "../../API/ApiFetcher.js";
 import { GlobalData } from "../../Utility/GlobalData.js";
-import { saveToStorage,getItem } from "../../Utility/storagehelper.js";
-import { useRef,useEffect } from "react";
+import { saveToStorage, getItem } from "../../Utility/storagehelper.js";
+import { useRef, useEffect } from "react";
 export function useInitializer(ref, setFunct, offset, setFunct2) {
     const isFetching = useRef(false);
     const totalPokemonEntry = useRef(0);
@@ -42,6 +42,6 @@ export function useInitializer(ref, setFunct, offset, setFunct2) {
                 })
             }
         })
-        if(ref.current) observer.observe(ref.current);
+        if (ref.current) observer.observe(ref.current);
     }, [])
 }
