@@ -35,7 +35,8 @@ Side Discoveries{
    2. When we need to conditionally render a component in a return block of other component/functions we need to either   use the ternary operators or do condition && <Component> this runs because if the first condition is false then react skips the component function.(cant use if else because they are logical entries while the return block of expects something that returns a expression)
 
    3. Learnt to kind of read the network tab in the devtools what i learnt was-
-     a. The numbers shown at the network tab in status section means something like a 200 means all went well and the response came/resolved and 404 means something went wrong and the error happened such as internet issue, no data, api limits crossed etc.
+
+    a. The numbers shown at the network tab in status section means something like a 200 means all went well and the response came/resolved and 404 means something went wrong and the error happened such as internet issue, no data, api limits crossed etc.
 
      b. The Transferred section shows if the data was locally present and got cached/reused by the browser or it was fetched to a site if it did get fetched how much internet is passed to it.
 
@@ -51,3 +52,23 @@ Side Discoveries{
 
 I plan to use CSS for the layout and some weird animations of the elements while keeping the color and simple designing to be done using tailwind.
 Im still not used to see a wall of text in my div as its classname... Looks ugly on my side but atleast looks good on the browser.
+
+Day 3 log---
+Difficult day today. So many assignments to complete... I guess i will manage it somehow.
+
+
+1. Components cant be called/used to render on an event listner like onclick... it can just be called in a return block of jsx function. What i meant to say is if we wanted to add a event listener which hears a click and if it gets clicked we call a component? no we cant do that. Same logic as why we cant use if else satements.
+
+2. Thers a inbuilt function called stopPropagation that can stop the onclick event from running completely by stopping it from going to browser just like a bouncer. I used it in the modal of the pokemon details... more data for modal is going to be added at some point but i am currently focussing on creating a basic pokedex and then i will add features on top like an icing.
+
+3. Used a Element called Dialog which is such a good addition to help us Make a modal/popup screen it comes with inbuilt functions to close and open it, no logic required to open/close it and also we can edit its mode like if we only want some styles to apply when the modal is visible we can do so by modal:open pseudo class. it also comes with other pseudo class we can style like backdrop. It can be used to make a glassmorphism effect... so cool.
+
+Side Discoveries{
+ 1. Transfrom property of css only applies to block level elements not inline.
+
+ 2. New reason to Hate tailwind- Apparenly we cant add linear gradient just by adding one block of text... we need two, or probably more adding to that MASSIVE wall of text. Ah well im in no position to complain about that since the app.jsx (RenderPokemon) is doing too much logical work right now and looks like a logic function rather than a component. I guess i have to start cleaning up this isnt my room... wait it does looks like one when i see it closely...
+
+ 3. Apparently my whole institute is trying to stop me from coding i suppose... so many stuff to write and it keeps piling up.😔
+
+ 4. Im confused as to when to use CSS and when to use Tailwing maybe i ought to make a rule or mental modal which specific conditions need CSS and which need Tailwind. Used conditional class adding in the elements today... kind of neat we dont need to use js to mutate the DOM classes via classlist or addClasslist etc.
+}

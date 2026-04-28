@@ -1,6 +1,6 @@
 import { GlobalData } from "../Utility/GlobalData";
 import { saveToStorage, getItem } from "../Utility/storagehelper";
-export async function fetchPokeApi(limit = GlobalData.apiLimit, retry, offset = 0) {
+export async function fetchPokeApi(limit = GlobalData.apiLimit, retry = 3, offset = 0) {
     const apiUrl = GlobalData.apiUrl;
     try {
         const rawData = await fetch(apiUrl + '?limit=' + limit + '&offset=' + offset);
@@ -20,12 +20,23 @@ export async function fetchPokeApi(limit = GlobalData.apiLimit, retry, offset = 
                     }
                 )),
                 sprite: {
-                    shinySprite: data.sprites.other["official-artwork"].front_shiny,
-                    frontSprite: data.sprites.other["official-artwork"].front_default,
-                }
+                    shinySprite: data.sprites.other["official-artwork"].front_shiny ||
+                        data.sprites.other["home"].front_shiny ||
+                        data.sprites.front_shiny ||
+                        null,
+
+                    frontSprite: data.sprites.other["official-artwork"].front_default ||
+                        data.sprites.other["home"].front_default ||
+                        data.sprites.front_default ||
+                        null,
+                },
+                height: data.height,
+                weight: data.weight,
+                cry: data.cries.latest,
+                habitatUrl: data.species.url
             }
         });
-        saveToStorage(fetchData.count,'pokedex-limit')
+        saveToStorage(fetchData.count, 'pokedex-limit')
         return [cutDownData, offset + GlobalData.apiLimit, fetchData.count]
     } catch (e) {
         retry--;
@@ -38,3 +49,4 @@ export async function fetchPokeApi(limit = GlobalData.apiLimit, retry, offset = 
         }
     }
 }
+

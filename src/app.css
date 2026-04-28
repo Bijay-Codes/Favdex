@@ -1,0 +1,65 @@
+@import 'tailwindcss';
+
+.pokedex-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+.pokemon {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    background: hsl(220, 9%, 46%);
+
+    &:hover {
+        background: linear-gradient(to right bottom, hsl(220, 9%, 46%), hsl(215, 14%, 19%));
+    }
+}
+
+
+
+
+#pokemon-details:open {
+    background-color: transparent;
+    display: flex;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+    overflow-y: auto;
+    width: 80%;
+
+    &::backdrop {
+        backdrop-filter: blur(1em);
+    }
+}
+
+@keyframes silhouettePulse {
+    0% {
+        filter: brightness(1.5) saturate(2);
+        transform: rotateX(20deg);
+    }
+
+    50% {
+        filter: brightness(0.5) saturate(1);
+        transform: rotateX(5deg);
+
+    }
+
+    100% {
+        filter: brightness(1.1) saturate(2);
+        transform: rotateX(20deg);
+    }
+}
+
+
+.unloaded {
+    animation: silhouettePulse 1.5s ease-in-out infinite;
+}
+
+@media (max-width:500px) {
+    .pokedex-grid {
+        grid-template-columns: 1;
+    }
+}
