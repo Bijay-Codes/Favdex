@@ -4,11 +4,13 @@ import { GlobalData } from '../Utility/GlobalData.js';
 import { PokeContext } from './Hooks/PokedexContext.jsx';
 export function RenderSearchbar() {
     const [text, setText] = useState('');
-    const { pokedex, setData, type, setType } = useContext(PokeContext);
+    const { pokedex, setData, setType } = useContext(PokeContext);
 
     return (<div>
-        <input className='bg-blue-500 text-amber-200 rounded-2xl w-1/4' type="search" value={text} onChange={(e) => setText(e.target.value)} />
-        <button onClick={() => handleSearch(text, setText, pokedex, setData, setType)}>
+        <input className='bg-blue-500 text-amber-200 rounded-lg w-1/1.5'
+            type="search"
+            value={text} onChange={(e) => setText(e.target.value)} />
+        <button className='bg-gray-400 rounded-lg hover:bg-gray-300 px-4 hover:text-gray-700' onClick={() => handleSearch(text, setText, pokedex, setData, setType)}>
             Search
         </button>
     </div>

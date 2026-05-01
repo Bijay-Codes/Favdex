@@ -3,7 +3,8 @@ import { capitalize } from "../Utility/util-basic";
 export function RenderPokemon({ pokemon, setData, modalview = false }) {
     const [isShiny, setShiny] = useState(false);
     const mewUrl = "./mew.png";
-    const isUnloaded = isShiny ?
+    const [animating,setAnimating] = useState(false);
+    let isUnloaded = isShiny ?
         !pokemon.sprite.shinySprite :
         !pokemon.sprite.frontSprite;
     return (
@@ -12,13 +13,13 @@ export function RenderPokemon({ pokemon, setData, modalview = false }) {
             <span>{'#' + pokemon.id}</span>
             <img loading="lazy"
                 onClick={() => { setShiny(!isShiny) }}
-                className={`aspect-square ${isUnloaded ? 'unloaded' : ''}`}
+                className={`aspect-square ${animating ? 'unloaded' : ''}`}
                 src={isShiny ?
                     pokemon.sprite.shinySprite ||
                     mewUrl :
                     pokemon.sprite.frontSprite ||
                     mewUrl}
-                onError={(e) => { e.target.src = mewUrl }} />
+                onError={(e) => { e.target.src = mewUrl; setAnimating(true) }} />
             <div className="whitespace-nowrap">
                 {capitalize(pokemon.name)}
             </div>

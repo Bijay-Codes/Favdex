@@ -16,6 +16,13 @@
         background: linear-gradient(to right bottom, hsl(220, 9%, 46%), hsl(215, 14%, 19%));
     }
 }
+.filter-strip{
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 0.2em;
+}
+
 
 
 
@@ -61,6 +68,6 @@
 
 @media (max-width:500px) {
     .pokedex-grid {
-        grid-template-columns: 1;
+        grid-template-columns: repeat(1, 1fr);
     }
 }

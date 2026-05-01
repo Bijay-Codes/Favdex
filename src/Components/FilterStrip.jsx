@@ -3,12 +3,12 @@ import { capitalize } from '../Utility/util-basic.js'
 import { PokeContext } from "./Hooks/PokedexContext.jsx";
 export function RenderFilterStrip({ array }) {
     const { type, setType } = useContext(PokeContext);
-    return (<div className="flex flex-wrap">
+    return (<div className="filter-strip rounded-bl-2xl rounded-b-lg">
         {array.map(data => {
             let isFilter = data === type;
             return <span
                 key={data}
-                className={`${isFilter ? 'bg-blue-400' : ' bg-blue-800'} filter px-2 m-2`}
+                className={`${isFilter ? 'bg-blue-400' : ' bg-blue-800'} rounded-2xl filter px-2 m-2`}
                 onClick={() => {
                     if (type !== data) {
                         setType(data);
