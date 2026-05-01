@@ -35,6 +35,10 @@
     }
 }
 
+.unloaded {
+    animation: silhouettePulse 1.5s ease-in-out infinite;
+}
+
 @keyframes silhouettePulse {
     0% {
         filter: brightness(1.5) saturate(2);
@@ -54,9 +58,6 @@
 }
 
 
-.unloaded {
-    animation: silhouettePulse 1.5s ease-in-out infinite;
-}
 
 @media (max-width:500px) {
     .pokedex-grid {

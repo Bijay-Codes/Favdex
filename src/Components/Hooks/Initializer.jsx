@@ -6,6 +6,7 @@ export function useInitializer(ref, setFunct, offset, setFunct2) {
     const isFetching = useRef(false);
     const totalPokemonEntry = useRef(0);
     useEffect(() => {
+        isFetching.current = true;
         const prevData = getItem('pokedex-scroll');
         if (!prevData) {
             fetchPokeApi(GlobalData.apiLimit, 3, 0).then((data) => {
@@ -13,12 +14,14 @@ export function useInitializer(ref, setFunct, offset, setFunct2) {
                     setFunct(data[0]);
                     offset.current = data[1];
                     totalPokemonEntry.current = data[2];
+                    isFetching.current = false;
                 }
             });
         } else {
             setFunct(prevData);
             offset.current = prevData.length;
             totalPokemonEntry.current = getItem('pokedex-limit');
+            isFetching.current = false;
         }
     }, []);
     useEffect(() => {
@@ -43,5 +46,6 @@ export function useInitializer(ref, setFunct, offset, setFunct2) {
             }
         })
         if (ref.current) observer.observe(ref.current);
-    }, [])
+        return () => observer.disconnect();
+    }, [ref.current])
 }

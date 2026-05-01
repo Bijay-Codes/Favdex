@@ -72,3 +72,22 @@ Side Discoveries{
 
  4. Im confused as to when to use CSS and when to use Tailwing maybe i ought to make a rule or mental modal which specific conditions need CSS and which need Tailwind. Used conditional class adding in the elements today... kind of neat we dont need to use js to mutate the DOM classes via classlist or addClasslist etc.
 }
+
+Day 4 log---
+
+1. Its important to separate everything which gets looped to render if we dont do that react will yell at us and its fair as well since if we delete or resort the list react will get confused what element was who so its important to give everything a unique id.
+
+2. When we are working with a element that is a event listener or intersection observer in my case and we are to add/remove the element again and again on a toggle it but either the function applying the listener only runs once or even if it runs twice if it doesnt clear its previous listener the listener will stack or it will still be listening from the previous element even when its gone. So we handle it by disconnecting/removing the listener at start and adding it to the newest element at the end.
+
+3. React useEffect... so apparently the if we return a cleanup function in react useEffects the function isnt actually called at the same time.... react remembers the function and runs it when the dependency of the effect or the element its monitoring is dead like my hands from all this typing.
+
+4. When we want to check if a data we are fetching from an API was successful we can check it by response.ok this returns either true or false. Happens by tracking if the resolve of the promise was called or not?
+
+Side Discoveries{
+ 1. An empty array is also considered a truthy value if we want to check if the array is empty we use array.length method.
+
+ 2. if we try to use .toLowercase on a semi number like '21' it doesnt have any affect.
+
+ 3. Trim method only removes the empty space at the start and end of an input the ones in the middle are ignored.
+
+}
