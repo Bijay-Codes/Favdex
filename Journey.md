@@ -91,3 +91,10 @@ Side Discoveries{
  3. Trim method only removes the empty space at the start and end of an input the ones in the middle are ignored.
 
 }
+
+Many Days Log---
+Hmmm Pretty frustrating to realize i forgot to commit the codes daily because i was so focused on my own assignments and finishing the features one after another, Even if i was coding Everyday i got so hell bent on finishing the things that i forgot to savepoint my own project... i guess i will make a habit of commiting after small ugly wins rather than waiting to finish the elegant bug free edition of the big plan.
+
+1. First lesson... pokemon data can be confusing sometimes... i witnessed it when i was trying to map out my tag system and it kept firing on pokemon that made no sense at all, thats when i realised if we are getting to a conclusion using data manupulation there are bound to be misfires, Found a better approach that is a hybrid of hardcoding and dynamic generation i acheive this by handling the edge case pokemons using a filter like if the grass type tag came across the breloom which does not fit the current tag name we can either skip it or check if the selected pokemon is breloom if it is we give it a subtag of the tag (subtags system coming soon so looking forward to it).
+
+2. 

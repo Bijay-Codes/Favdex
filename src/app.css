@@ -1,72 +1,19 @@
 @import 'tailwindcss';
 
-.pokedex-grid {
+* {
+    outline: 1px solid red;
+}
+
+.header-grid {
+    width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-}
-
-.pokemon {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
+    grid-template-areas: 'search berry'
+        'filter filter';
+    grid-template-columns: 1fr auto;
     align-items: center;
-    background: hsl(220, 9%, 46%);
-
-    &:hover {
-        background: linear-gradient(to right bottom, hsl(220, 9%, 46%), hsl(215, 14%, 19%));
-    }
+    gap: 0;
 }
-.filter-strip{
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    padding: 0.2em;
-}
-
-
-
-
-
-#pokemon-details:open {
-    background-color: transparent;
-    display: flex;
-    margin: auto;
-    align-items: center;
-    justify-content: center;
-    height: fit-content;
-    overflow-y: auto;
-
-    &::backdrop {
-        backdrop-filter: blur(1em);
-    }
-}
-
-.unloaded {
-    animation: silhouettePulse 1.5s ease-in-out infinite;
-}
-
-@keyframes silhouettePulse {
-    0% {
-        filter: brightness(1.5) saturate(2);
-        transform: rotateX(20deg);
-    }
-
-    50% {
-        filter: brightness(0.5) saturate(1);
-        transform: rotateX(5deg);
-
-    }
-
-    100% {
-        filter: brightness(1.1) saturate(2);
-        transform: rotateX(20deg);
-    }
-}
-
-
-
-@media (max-width:500px) {
-    .pokedex-grid {
-        grid-template-columns: repeat(1, 1fr);
-    }
+.filter{
+    min-width: 100%;
+    grid-area: filter;
 }

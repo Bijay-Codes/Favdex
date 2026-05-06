@@ -155,8 +155,9 @@ function checkMilestones(poke, updated, added) {
 
 export function RenderBerry({ count }) {
     return (
-        <div className="image">
-            <img className="aspect-square max-w-1/12" src="./sitrus-berry.png" />
+        <div className="berry-strip flex items-center grid-area-[berry] pr-0.5">
+            <img className="aspect-square"
+            src="./sitrus-berry.png" />
             <span>{count}</span>
         </div>
     )

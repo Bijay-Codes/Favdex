@@ -18,10 +18,10 @@ export default function PokedexGrid() {
         console.log(pokedex);
     }, [pokedex]);
     return (
-        <div className="pokedex-body bg-black text-white p-4">
+        <div>
             <RenderHeader />
             <RenderModal data={modalData} setData={setData} />
-            <div className="pokedex-grid gap-2 m-2 p-2">
+            <main className="pokedex-grid w-full grid grid-cols-[repeat(auto-fill,minmax(150px,1fr))] gap-4 p-2">
                 {filterData.length > 0 &&
                     filterData.map((poke) => {
                         return <RenderPokemon key={poke.id} pokemon={poke} setData={setData} />
@@ -30,7 +30,7 @@ export default function PokedexGrid() {
                 {
                     !type && !isComplete && <RenderBlank ref={unloadedRef} />
                 }
-            </div>
+            </main>
         </div>
     )
 }

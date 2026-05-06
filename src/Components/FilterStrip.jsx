@@ -3,12 +3,12 @@ import { capitalize } from '../Utility/util-basic.js'
 import { PokeContext } from "./Hooks/PokedexContext.jsx";
 export function RenderFilterStrip({ array }) {
     const { type, setType } = useContext(PokeContext);
-    return (<div className="filter-strip rounded-bl-2xl rounded-b-lg">
+    return (<div
+        className="filter flex flex-nowrap justify-strech overflow-auto gap-2">
         {array.map(data => {
             let isFilter = data === type;
             return <span
                 key={data}
-                className={`${isFilter ? 'bg-blue-400' : ' bg-blue-800'} rounded-2xl filter px-2 m-2`}
                 onClick={() => {
                     if (type !== data) {
                         setType(data);
@@ -24,7 +24,7 @@ export function RenderFilterStrip({ array }) {
 }
 
 export function filterByType(list, type) {
-    if(!type) return list;
+    if (!type) return list;
     return list.filter(data => {
         return data.types[0] === type || data.types[1] === type;
     })

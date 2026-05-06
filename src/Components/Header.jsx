@@ -8,7 +8,7 @@ export function RenderHeader() {
     const { favdexKey } = GlobalData.favdex
     const berries = getItem(favdexKey)?.berries ?? favdexStorage.berries;
     return (
-        <header className="grid">
+        <header className="header-grid">
             <RenderSearchbar />
             <RenderBerry count={berries} />
             <RenderFilterStrip array={GlobalData.types} />

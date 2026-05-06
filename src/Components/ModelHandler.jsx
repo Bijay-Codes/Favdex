@@ -36,12 +36,10 @@ export function RenderModal({ data, setData }) {
 
     return (
         <dialog id="pokemon-details"
-            className="w-1/1.5"
             ref={modalRef}
             onClick={closeModal}
             onCancel={closeModal}>
-            <div onClick={(e) => e.stopPropagation()}
-                className="bg-gray-500">
+            <div onClick={(e) => e.stopPropagation()}>
                 <button onClick={closeModal}>Close</button>
                 {data ? <RenderPokemon pokemon={data[0]} modalview={true} /> : ''}
                 {data ? <RenderDetails pokemon={data[0]} ability={ability} /> : ''}
@@ -57,7 +55,7 @@ function RenderDetails({ pokemon, ability }) {
             <span>BMI:{(pokemon.weight / (pokemon.height ** 2)).toFixed(2)}</span>
             <span>Weight: {pokemon.weight} Kg</span>
             <span>Height: {pokemon.height} Metres</span>
-            <div className="flex flex-col gap-1">
+            <div>
                 <span>Gender-Rate: {checkGender(pokemon.gender_rate)}</span>
                 <span>Nature: {checkSocial(pokemon.base_happiness)}</span>
                 <span>Personality: {checkBehavior(pokemon.capture_rate)}</span>
@@ -66,7 +64,7 @@ function RenderDetails({ pokemon, ability }) {
             <div>
                 {ability.map(a => {
                     return <div key={a.name}>
-                        <span className="m-2">{capitalize(a.name)}</span>
+                        <span>{capitalize(a.name)}</span>
                         <span>Hidden-{capitalize(a.is_hidden)}</span>
                         <div>{a.text}</div>
                     </div>
