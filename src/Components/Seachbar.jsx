@@ -7,10 +7,14 @@ export function RenderSearchbar() {
     const { pokedex, setData, setType } = useContext(PokeContext);
 
     return (<div>
-        <input className='bg-blue-500 text-amber-200 rounded-lg w-1/1.5'
+        <input
+            className='bg-blue-300 text-blue-900 rounded-lg w-1/1.5 px-4 py-1'
+            placeholder='Search'
             type="search"
             value={text} onChange={(e) => setText(e.target.value)} />
-        <button className='bg-gray-400 rounded-lg hover:bg-gray-300 px-4 hover:text-gray-700' onClick={() => handleSearch(text, setText, pokedex, setData, setType)}>
+        <button
+            className='py-1 bg-gray-400 rounded-lg hover:bg-gray-300 px-4 hover:text-gray-700'
+            onClick={() => handleSearch(text, setText, pokedex, setData, setType)}>
             Search
         </button>
     </div>

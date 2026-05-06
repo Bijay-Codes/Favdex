@@ -1,19 +1,21 @@
 import { forwardRef, useState } from "react";
 import { capitalize } from "../Utility/util-basic";
+import { analyzeNature } from "../PokemonTags/PokeNature";
 export function RenderPokemon({ pokemon, setData, modalview = false }) {
     const [isShiny, setShiny] = useState(false);
     const mewUrl = "./mew.png";
-    const [animating,setAnimating] = useState(false);
-    let isUnloaded = isShiny ?
-        !pokemon.sprite.shinySprite :
-        !pokemon.sprite.frontSprite;
+    const [animating, setAnimating] = useState(false);
+
     return (
         <div onClick={() => { if (!modalview) setData([pokemon]) }}
-            className={`rounded-lg aspect-square p-4 card-loading ${!modalview ? 'pokemon' : ''}`}>
+            className={`rounded-lg p-4 card-loading flex justify-center items-center flex-col ${!modalview ? 'pokemon' : ''}`}>
             <span>{'#' + pokemon.id}</span>
             <img loading="lazy"
-                onClick={() => { setShiny(!isShiny) }}
-                className={`aspect-square ${animating ? 'unloaded' : ''}`}
+                onClick={() => {
+                    playCry(pokemon.cry)
+                    modalview ? setShiny(!isShiny) : '';
+                }}
+                className={`aspect-square ${modalview ? 'max-w-1/3' : ''}min-w-1/1 max-w-1/1 cursor-pointer ${animating ? 'unloaded' : ''}`}
                 src={isShiny ?
                     pokemon.sprite.shinySprite ||
                     mewUrl :
@@ -33,6 +35,7 @@ export function RenderPokemon({ pokemon, setData, modalview = false }) {
                     })
                 }
             </div>
+            {analyzeNature(pokemon)}
         </div>
     )
 }
@@ -47,3 +50,9 @@ export const RenderBlank = forwardRef((props, ref) => {
         </>
     )
 })
+
+
+function playCry(url) {
+    const audio = new Audio(url);
+    audio.play()
+}

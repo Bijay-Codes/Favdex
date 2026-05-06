@@ -35,7 +35,6 @@
     justify-content: center;
     height: fit-content;
     overflow-y: auto;
-    width: 80%;
 
     &::backdrop {
         backdrop-filter: blur(1em);
