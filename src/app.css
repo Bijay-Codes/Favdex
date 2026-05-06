@@ -1,19 +1,36 @@
 @import 'tailwindcss';
 
-* {
-    outline: 1px solid red;
-}
-
 .header-grid {
     width: 100%;
     display: grid;
-    grid-template-areas: 'search berry'
-        'filter filter';
-    grid-template-columns: 1fr auto;
+    grid-template-areas: 
+        "search berry"
+        "filter filter";
+    grid-template-columns: 1fr auto; 
     align-items: center;
-    gap: 0;
+    gap: 8px;
+    padding: 8px;
 }
-.filter{
-    min-width: 100%;
+
+.search-strip {
+    grid-area: search;
+    display: flex;
+    align-items: center;
+    min-width: 0;
+}
+
+.berry-strip {
+    grid-area: berry;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    white-space: nowrap;
+}
+
+.filter-strip {
     grid-area: filter;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    width: 100%;
 }

@@ -155,15 +155,12 @@ function checkMilestones(poke, updated, added) {
 
 export function RenderBerry({ count }) {
     return (
-        <div className="berry-strip flex items-center grid-area-[berry] pr-0.5">
-            <img className="aspect-square"
-            src="./sitrus-berry.png" />
-            <span>{count}</span>
+        <div className="berry-strip pr-1">
+            <img className="w-6 h-6" src="./sitrus-berry.png" alt="berry" />
+            <span className="ml-1">{count}</span>
         </div>
-    )
-}
-
-export function RenderFavdexElem({ pokemon, progress }) {
+    );
+}export function RenderFavdexElem({ pokemon, progress }) {
     if (!pokemon) return;
     let poke = progress.find(data => data.id === pokemon.id);
     if (!poke) return

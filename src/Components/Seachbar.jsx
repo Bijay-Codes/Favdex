@@ -6,21 +6,23 @@ export function RenderSearchbar() {
     const [text, setText] = useState('');
     const { pokedex, setData, setType } = useContext(PokeContext);
 
-    return (<div className=' search-strip flex items-center grid-area-[search]'>
-        <input
-            className='flex-1 accent-blue-400 bg-blue-600'      
-            placeholder='Search'
-            type="search"
-            value={text} onChange={(e) => setText(e.target.value)} />
-        <button
-        className='bg-blue-300 '
-            onClick={() => handleSearch(text, setText, pokedex, setData, setType)}>
-            Search
-        </button>
-    </div>
+    return (
+        <div className='search-strip'>
+            <input
+                className='flex-1 min-w-0 accent-blue-400 bg-blue-600 px-1 py-1'
+                placeholder='Search'
+                type="search"
+                value={text} 
+                onChange={(e) => setText(e.target.value)} 
+            />
+            <button
+                className='bg-blue-300 px-1 py-1.5 whitespace-nowrap'
+                onClick={() => handleSearch(text, setText, pokedex, setData, setType)}>
+                Search
+            </button>
+        </div>
     )
 }
-
 function cleanInput(inp) {
     if (!inp) return;
     const cleanInp = inp.trim().toLowerCase();

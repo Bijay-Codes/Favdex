@@ -4,7 +4,7 @@ import { PokeContext } from "./Hooks/PokedexContext.jsx";
 export function RenderFilterStrip({ array }) {
     const { type, setType } = useContext(PokeContext);
     return (<div
-        className="filter flex flex-nowrap justify-strech overflow-auto gap-2">
+        className="filter-strip flex flex-nowrap justify-strech gap-4 overflow-x-auto w-full">
         {array.map(data => {
             let isFilter = data === type;
             return <span
