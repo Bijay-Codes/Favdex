@@ -21,7 +21,9 @@ export function RenderFeedingStrip({ data }) {
     return (
         <>
             <RenderFavdexElem pokemon={pokemon} progress={prog} />
-            <button onClick={() => {
+            <button 
+            className="bg-(--bg-surface) px-3 rounded hover:bg-(--primary-variant) transition-all 3s active:translate(0)"
+            onClick={() => {
                 const updatedProg = feedBerry(pokemon, berry, setBerry);
                 setProg([...updatedProg])
             }}>Feed({berry})</button>
@@ -160,24 +162,24 @@ export function RenderBerry({ count }) {
             <span className="ml-1">{count}</span>
         </div>
     );
-}export function RenderFavdexElem({ pokemon, progress }) {
+} export function RenderFavdexElem({ pokemon, progress }) {
     if (!pokemon) return;
     let poke = progress.find(data => data.id === pokemon.id);
     if (!poke) return
     let percent = poke.freindship <= 100 ? poke.freindship : 100
     return (
         <>
-            <div className={`w-1/2 bg-white outline-2 outline-blue-700`}>
-                <div className={`h-2 ${percent < 25 ? 'bg-red-300'
+            <div className={`h-5 w-1/2 bg-white outline-2 outline-blue-700`}>
+                <div className={`${percent < 25 ? 'bg-red-300'
                     : percent < 50 ? 'bg-yellow-300'
                         : percent < 75 ? 'bg-green-300'
                             : percent < 90 ? 'bg-green-500'
                                 : percent <= 100 ? 'bg-green-600'
-                                    : 'bg-gray-700'}`}
+                                    : 'bg-gray-700'} h-full`}
                     style={{ width: `${percent}%` }}>
+                    <span>{poke.freindship <= 100 ? percent + '%' : poke.freindship + ' pts'}</span>
                 </div>
             </div>
-            <span>{poke.freindship <= 100 ? percent + '%' : poke.freindship + ' pts'}</span>
         </>
     )
 }

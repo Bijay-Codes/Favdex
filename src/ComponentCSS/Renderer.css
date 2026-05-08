@@ -1,0 +1,59 @@
+@import url('tailwindcss');
+
+:root {
+    --animaton-dur: 2s;
+}
+
+
+@keyframes shinyToNormal {
+    from {
+        filter: hue-rotate(0deg) saturate(1.4) brightness(0.9);
+        transform: rotateX(0deg);
+    }
+
+    to {
+        filter: hue-rotate(-60deg) saturate(2) brightness(1);
+        transform: rotateX(15deg);
+    }
+}
+
+.img-container {
+    overflow: hidden;
+}
+
+@keyframes shinyGlow {
+    0% {
+        filter: drop-shadow(0 0 5px pink);
+    }
+
+    100% {
+        filter: drop-shadow(0 0 20px #8AD3FF) brightness(1.2);
+    }
+}
+
+.img-mew {
+    filter: blur(1rem);
+    animation: shinyToNormal var(--animaton-dur) alternate infinite linear;
+}
+
+.pokemons {
+    background: linear-gradient(to left, var(--secondary), var(--primary));
+    &.pokemons:hover {
+        background: linear-gradient(to right, var(--primary),var(--border));
+    }
+}
+
+.cards {
+    background: var(--primary-variant);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border);
+    border-radius: 2rem;
+    padding: 1rem;
+    transition: all 0.3s ease;
+}
+
+.cards:hover {
+    transform: translateY(-5px);
+    border-color: var(--bg-surface);
+    box-shadow: 0 10px 20px var(--shadow-glow);
+}

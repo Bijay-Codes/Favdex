@@ -6,6 +6,9 @@ export function useInitializer(ref, setFunct, offset, setFunct2) {
     const isFetching = useRef(false);
     const totalPokemonEntry = useRef(0);
     useEffect(() => {
+        // Inside the first useEffect
+        console.log("DEBUG: Initial useEffect Fetching");
+
         isFetching.current = true;
         const prevData = getItem('pokedex-scroll');
         if (!prevData) {
@@ -14,14 +17,19 @@ export function useInitializer(ref, setFunct, offset, setFunct2) {
                     setFunct(data[0]);
                     offset.current = data[1];
                     totalPokemonEntry.current = data[2];
-                    isFetching.current = false;
+
+                    setTimeout(() => {
+                        isFetching.current = false;
+                    }, 100);
                 }
             });
         } else {
             setFunct(prevData);
             offset.current = prevData.length;
             totalPokemonEntry.current = getItem('pokedex-limit');
-            isFetching.current = false;
+            setTimeout(() => {
+                isFetching.current = false;
+            }, 100);
         }
     }, []);
     useEffect(() => {

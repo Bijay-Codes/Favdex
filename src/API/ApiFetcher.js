@@ -50,13 +50,11 @@ function formating(data) {
         sprite: {
             shinySprite: data.sprites.other["official-artwork"].front_shiny ||
                 data.sprites.other["home"].front_shiny ||
-                data.sprites.front_shiny ||
-                null,
+                data.sprites.front_shiny,
 
             frontSprite: data.sprites.other["official-artwork"].front_default ||
-                data.sprites.other["home"].front_default ||
-                data.sprites.front_default ||
-                null,
+                data.sprites.other["home"].front_default||
+                data.sprites.front_default,
         },
         height: (data.height * 0.328).toFixed(2),
         weight: (data.weight / 10).toFixed(2),

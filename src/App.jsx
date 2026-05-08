@@ -6,6 +6,7 @@ import { PokeContext } from "./Components/Hooks/PokedexContext.jsx";
 import { RenderHeader } from "./Components/Header.jsx";
 import { filterByType } from "./Components/FilterStrip.jsx";
 import './app.css';
+import './ComponentCSS/Renderer.css'
 import './ComponentCSS/TypesCss.css';
 export default function PokedexGrid() {
     const unloadedRef = useRef();
@@ -19,9 +20,8 @@ export default function PokedexGrid() {
     }, [pokedex]);
     return (
         <div>
-            <RenderHeader />
             <RenderModal data={modalData} setData={setData} />
-            <main className="pokedex-grid w-full grid grid-cols-[repeat(auto-fill,minmax(150px,1fr))] gap-4 p-2">
+            <main className="pokedex-grid pokemons w-full grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-4 p-2 rounded-xl hover:bg-(--)">
                 {filterData.length > 0 &&
                     filterData.map((poke) => {
                         return <RenderPokemon key={poke.id} pokemon={poke} setData={setData} />

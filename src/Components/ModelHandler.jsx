@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { RenderPokemon } from "./Renderer";
 import { RenderFavdexElem, RenderFeedingStrip } from "./FeedingStrip";
 import { capitalize, genRandom } from "../Utility/util-basic";
+import '../ComponentCSS//Model.css';
 export function RenderModal({ data, setData }) {
     const modalRef = useRef(null);
     const closeModal = () => setData(null);
@@ -35,13 +36,21 @@ export function RenderModal({ data, setData }) {
     }, [data]);
 
     return (
-        <dialog id="pokemon-details"
+        <dialog id="pokemon-modal"
+            className="overflow-auto bg-(--primary) p-3 m-auto"
             ref={modalRef}
             onClick={closeModal}
             onCancel={closeModal}>
-            <div onClick={(e) => e.stopPropagation()}>
-                <button onClick={closeModal}>Close</button>
-                {data ? <RenderPokemon pokemon={data[0]} modalview={true} /> : ''}
+            <div
+                className="flex flex-col items-center justify-center gap-4"
+                onClick={(e) => e.stopPropagation()}>
+                <button
+                    className="absolute right-0 top-0 m-4"
+                    onClick={closeModal}
+                >Close</button>
+                <div className="max-w-1/2 bg-(--secondary)/50 p-4 rounded-2xl">
+                    {data ? <RenderPokemon pokemon={data[0]} modalview={true} /> : ''}
+                </div>
                 {data ? <RenderDetails pokemon={data[0]} ability={ability} /> : ''}
                 {data ? <RenderFeedingStrip data={data} /> : ''}
             </div>
@@ -50,18 +59,19 @@ export function RenderModal({ data, setData }) {
 }
 
 function RenderDetails({ pokemon, ability }) {
+    const generalCss = 'm-2 p-2 hover:text-[var(--text-main)] text-(--text-secondary) hover:translateY-[-4px]'
     return (
-        <div>
-            <span>BMI:{(pokemon.weight / (pokemon.height ** 2)).toFixed(2)}</span>
-            <span>Weight: {pokemon.weight} Kg</span>
-            <span>Height: {pokemon.height} Metres</span>
+        <div className="bg-(--secondary)/25 rounded-xl">
+            <span className={generalCss}>BMI:{(pokemon.weight / (pokemon.height ** 2)).toFixed(2)}</span>
+            <span className={generalCss}>Weight: {pokemon.weight} Kg</span>
+            <span className={generalCss}>Height: {pokemon.height} Metres</span>
             <div>
-                <span>Gender-Rate: {checkGender(pokemon.gender_rate)}</span>
-                <span>Nature: {checkSocial(pokemon.base_happiness)}</span>
-                <span>Personality: {checkBehavior(pokemon.capture_rate)}</span>
-                <span>Habitat: {checkHabitat(pokemon.habitat)}</span>
+                <span className={generalCss}>Gender-Rate: {checkGender(pokemon.gender_rate)}</span><br />
+                <span className={generalCss} >Nature: {checkSocial(pokemon.base_happiness)}</span><br />
+                <span className={generalCss} >Personality: {checkBehavior(pokemon.capture_rate)}</span><br />
+                <span className={generalCss} >Habitat: {checkHabitat(pokemon.habitat)}</span>
             </div>
-            <div>
+            <div className={generalCss}>
                 {ability.map(a => {
                     return <div key={a.name}>
                         <span>{capitalize(a.name)}</span>
@@ -69,9 +79,8 @@ function RenderDetails({ pokemon, ability }) {
                         <div>{a.text}</div>
                     </div>
                 })}
+                <div>{pokemon.pokedexEntry}</div>
             </div>
-
-            <div>{pokemon.pokedexEntry}</div>
         </div>
     )
 }

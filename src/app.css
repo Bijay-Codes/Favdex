@@ -1,36 +1,41 @@
-@import 'tailwindcss';
+:root {
+    /* Brand Colors */
+    --primary: #afebff;
+    /* Bright, icy cyan */
+    --primary-variant: #7ed6df;
+    /* Mid-tone glacial blue */
+    --secondary: #22a6b3;
+    /* Deep sea teal */
 
-.header-grid {
-    width: 100%;
-    display: grid;
-    grid-template-areas: 
-        "search berry"
-        "filter filter";
-    grid-template-columns: 1fr auto; 
-    align-items: center;
-    gap: 8px;
-    padding: 8px;
+    /* Backgrounds */
+    --bg-main: #0a192f;
+    /* Deep arctic navy (Dark Mode) */
+    --bg-surface: #f0faff;
+    /* Soft winter white (Light Mode) */
+    --bg-card: rgba(255, 255, 255, 0.15);
+    /* Translucent glass */
+
+    /* Text & Details */
+    --text-main: #0a192f;
+    /* High contrast navy */
+    --font-main: 'Syne', sans-serif;
+    --text-secondary: #535c68;
+    /* Muted slate for captions */
+    --font-secondary: 'Outfit', sans-serif;
+    --text-inverse: #ffffff;
+    /* Pure white for dark backgrounds */
+    --font-inverse: 'JetBrains Mono', sans-serif;
+
+    /* Functional */
+    --border: rgba(175, 235, 255, 0.4);
+    --highlight: #dff9fb;
+    /* Hover state / subtle glow */
+    --gradient: linear-gradient(135deg, #afebff 0%, #7ed6df 100%);
+
+    /* Elevation  */
+    --shadow-glow: 0 4px 15px rgba(175, 235, 255, 0.3);
 }
 
-.search-strip {
-    grid-area: search;
-    display: flex;
-    align-items: center;
-    min-width: 0;
-}
-
-.berry-strip {
-    grid-area: berry;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    white-space: nowrap;
-}
-
-.filter-strip {
-    grid-area: filter;
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    width: 100%;
+#root {
+    background: var(--bg-main);
 }
