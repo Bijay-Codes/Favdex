@@ -11,7 +11,7 @@ export function RenderPokemon({ pokemon, setData, modalview = false }) {
         isShiny ? pokemon.sprite.shinySprite :
             pokemon.sprite.frontSprite;
     return (
-        <div className={!modalview ? `cards aspect-square flex flex-col items-center justify-center gap-4` : ''}
+        <div className={!modalview ? `cards aspect-square flex flex-col items-center justify-center gap-4 rounded-4xl` : ''}
             onClick={() => { if (!modalview) setData([pokemon]) }}>
             <span>{'#' + pokemon.id}</span>
             <div className="img-container relative aspect-square w-full flex items-center justify-center">
@@ -25,7 +25,8 @@ export function RenderPokemon({ pokemon, setData, modalview = false }) {
                 {!iserror && (
                     <img
                         loading="lazy"
-                        className={`relative z-10 w-full h-full object-contain transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
+                        className={`poke-img relative z-10 w-full h-full object-contain transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}
+                        drop-shadow-[0_5px_15px_rgba(0,0,0,0.5)]`}
                         onLoad={() => setLoaded(false)}
                         onError={() => {
                             setError(true);
@@ -40,10 +41,10 @@ export function RenderPokemon({ pokemon, setData, modalview = false }) {
                 )}
             </div>
             <div className="bg-(--bg-main)/25 p-3 w-full text-center rounded-4xl">
-                <div>
-                    {capitalize(pokemon.name)}
+                <div className="text-lg font-light">Species:
+                    <span className="text-(--text-inverse)">{capitalize(pokemon.name)}</span>
                 </div>
-                <div>
+                <div className="flex gap-2 justify-center">
                     {
                         pokemon.types.map(type => {
                             return <span

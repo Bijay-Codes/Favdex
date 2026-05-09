@@ -1,8 +1,9 @@
-import { useContext, useMemo, useState } from 'react'
+import { useContext, useState } from 'react'
 import { fetchSingle } from '../API/ApiFetcher.js'
 import { GlobalData } from '../Utility/GlobalData.js';
 import { PokeContext } from './Hooks/PokedexContext.jsx';
 export function RenderSearchbar() {
+    const { setError } = useContext(PokeContext);
     const [text, setText] = useState('');
     const { pokedex, setData, setType } = useContext(PokeContext);
 
@@ -12,8 +13,8 @@ export function RenderSearchbar() {
                 className='flex-1 min-w-0 accent-blue-400 bg-blue-600 px-1 py-1'
                 placeholder='Search'
                 type="search"
-                value={text} 
-                onChange={(e) => setText(e.target.value)} 
+                value={text}
+                onChange={(e) => setText(e.target.value)}
             />
             <button
                 className='bg-blue-300 px-1 py-1.5 whitespace-nowrap'
@@ -66,7 +67,10 @@ async function handleSearch(text, setText, pokedex, setData, setType) {
                 const pokeData = await fetchSingle(`${GlobalData.apiUrl}/${flipped}`);
                 setData([pokeData]);
             } catch {
-                alert('Pokemon not Found');
+                setTimeout(() => {
+                    setError('');
+                }, 2000);
+                setError('We couldnt find the requested data in our Database.');
             }
         }
     }

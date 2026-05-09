@@ -1,12 +1,14 @@
-import { useEffect, useRef, useState } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
 import { RenderPokemon } from "./Renderer";
-import { RenderFavdexElem, RenderFeedingStrip } from "./FeedingStrip";
-import { capitalize, genRandom } from "../Utility/util-basic";
+import { RenderFeedingStrip } from "./FeedingStrip";
+import { capitalize} from "../Utility/util-basic";
 import '../ComponentCSS//Model.css';
+import { PokeContext } from "./Hooks/PokedexContext";
 export function RenderModal({ data, setData }) {
     const modalRef = useRef(null);
     const closeModal = () => setData(null);
     const [ability, setAbility] = useState([]);
+    const {error,setError} = useContext(PokeContext);
     useEffect(() => {
         if (!data) {
             modalRef.current.close();
@@ -48,7 +50,7 @@ export function RenderModal({ data, setData }) {
                     className="absolute right-0 top-0 m-4"
                     onClick={closeModal}
                 >Close</button>
-                <div className="max-w-1/2 bg-(--secondary)/50 p-4 rounded-2xl">
+                <div className="min-w-1/2 bg-(--secondary)/50 p-4 rounded-2xl">
                     {data ? <RenderPokemon pokemon={data[0]} modalview={true} /> : ''}
                 </div>
                 {data ? <RenderDetails pokemon={data[0]} ability={ability} /> : ''}

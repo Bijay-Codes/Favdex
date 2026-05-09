@@ -1,6 +1,6 @@
 import { GlobalData } from "../Utility/GlobalData";
 import { saveToStorage, getItem } from "../Utility/storagehelper";
-export async function fetchPokeApi(limit = GlobalData.apiLimit, retry = 3, offset = 0) {
+export async function fetchPokeApi(limit = GlobalData.apiLimit, retry = 3, offset = 0, setError) {
     const apiUrl = GlobalData.apiUrl;
     try {
         const rawData = await fetch(apiUrl + '?limit=' + limit + '&offset=' + offset);
@@ -15,19 +15,26 @@ export async function fetchPokeApi(limit = GlobalData.apiLimit, retry = 3, offse
         return [totalData, offset + GlobalData.apiLimit, fetchData.count]
     } catch (e) {
         retry--;
-        console.error('Fetch crashed:', e);
         if (retry > 0) {
             await new Promise(resolve => setTimeout(resolve, 2000));
-            return fetchPokeApi(limit = GlobalData.apiLimit, retry, offset);
+            return fetchPokeApi(limit = GlobalData.apiLimit, retry, offset, setError);
         } else {
-            alert('Something went wrong, Please Check your Internet connection');
+            setTimeout(() => {
+                setError('');
+            }, 3000);
+            setError("Something Went Wrong! Please Check your Internet Connection.");
         }
     }
 }
 
-export async function fetchSingle(url) {
+export async function fetchSingle(url, setError) {
     const rawData = await fetch(url);
-    if (!rawData.ok) throw new Error('Not Found');
+    if (!rawData.ok) {
+        setTimeout(() => {
+            setError('');
+        }, 2000);
+        setError('The Requested Pokemon Does not Exist in the Database.');
+    };
     const realData = await rawData.json();
     const species = await fetch(realData.species.url).then(response => response.json());
     realData.speciesData = species;
@@ -43,7 +50,7 @@ function formating(data) {
         abilities: data.abilities.map(aArr => (
             {
                 name: aArr.ability.name,
-                url:aArr.ability.url,
+                url: aArr.ability.url,
                 is_hidden: String(aArr.is_hidden)
             }
         )),
@@ -53,7 +60,7 @@ function formating(data) {
                 data.sprites.front_shiny,
 
             frontSprite: data.sprites.other["official-artwork"].front_default ||
-                data.sprites.other["home"].front_default||
+                data.sprites.other["home"].front_default ||
                 data.sprites.front_default,
         },
         height: (data.height * 0.328).toFixed(2),

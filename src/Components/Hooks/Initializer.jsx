@@ -1,8 +1,10 @@
 import { fetchPokeApi } from "../../API/ApiFetcher.js";
 import { GlobalData } from "../../Utility/GlobalData.js";
 import { saveToStorage, getItem } from "../../Utility/storagehelper.js";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useContext } from "react";
+import { PokeContext } from "./PokedexContext.jsx";
 export function useInitializer(ref, setFunct, offset, setFunct2) {
+    const { setError } = useContext(PokeContext);
     const isFetching = useRef(false);
     const totalPokemonEntry = useRef(0);
     useEffect(() => {
@@ -12,7 +14,7 @@ export function useInitializer(ref, setFunct, offset, setFunct2) {
         isFetching.current = true;
         const prevData = getItem('pokedex-scroll');
         if (!prevData) {
-            fetchPokeApi(GlobalData.apiLimit, 3, 0).then((data) => {
+            fetchPokeApi(GlobalData.apiLimit, 3, 0,setError).then((data) => {
                 if (data) {
                     setFunct(data[0]);
                     offset.current = data[1];
