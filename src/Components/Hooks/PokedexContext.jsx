@@ -19,26 +19,40 @@ export function PokeProvider({ children }) {
         error, setError
     }), [pokedex, isComplete, modalData, type, berry, error]);
     useEffect(() => {
-        const { favdexKey, berryDaily, cooldown } = GlobalData.favdex;
+        const { favdexKey, berryDaily, cooldown, expiry } = GlobalData.favdex;
         let favdex = getItem(favdexKey);
 
         if (!favdex) {
             favdex = { ...favdexStorage };
-            saveToStorage(favdex, favdexKey);
         }
 
         const now = Date.now();
+        let currentBerries = favdex.berries;
+
         const cooldownMs = cooldown * 24 * 60 * 60 * 1000;
-
         if (now - (favdex.lastLogin || 0) >= cooldownMs) {
-            favdex.berries = berryDaily;
+            currentBerries = berryDaily;
             favdex.lastLogin = now;
-
-            saveToStorage(favdex, favdexKey);
-            setBerry(berryDaily);
-        } else {
-            setBerry(favdex.berries);
+            favdex.berries = currentBerries;
         }
+
+        const expiryMs = expiry * 24 * 60 * 60 * 1000;
+        if (favdex.lastExpiry && (now - favdex.lastExpiry >= expiryMs)) {
+            currentBerries = 0;
+            favdex.berries = 0;
+            favdex.lastExpiry = now;
+        } else if (!favdex.lastExpiry) {
+            favdex.lastExpiry = now;
+        }
+
+        favdex.progress.forEach(item => {
+            if (item.freindship >= 100 && !(favdex.pokemon.includes(item.id))) {
+                favdex.pokemon.push(item.id);
+            }
+        });
+
+        saveToStorage(favdex, favdexKey);
+        setBerry(currentBerries);
     }, []);
     return (
         <PokeContext.Provider value={passingValue}>

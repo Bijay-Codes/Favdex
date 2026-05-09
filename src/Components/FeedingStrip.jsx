@@ -8,7 +8,7 @@ import '../app.css';
 
 export function RenderFeedingStrip({ data }) {
     const pokemon = data[0];
-    const { favdexKey, berryDaily, cooldown, expiry } = GlobalData.favdex;
+    const { favdexKey} = GlobalData.favdex;
     const { berry, setBerry, error, setError } = useContext(PokeContext);
     const [prog, setProg] = useState(getItem(favdexKey)?.progress || favdexStorage.progress);
 
@@ -18,7 +18,6 @@ export function RenderFeedingStrip({ data }) {
         if (currentData) {
             setProg(currentData.progress);
         }
-        Initialize(favdexKey);
     }, []);
 
     return (
