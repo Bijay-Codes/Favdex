@@ -20,9 +20,12 @@ export default function PokedexGrid() {
         console.log(pokedex);
     }, [pokedex]);
     return (
-        <div>
+        <div className="relative">
             <ErrorBox message={'hey'} dur={3} />
+            <div
+            className="sticky top-0 z-2 bg-(--bg-main) rounded-b-lg">
             <RenderHeader />
+            </div>
             <RenderModal data={modalData} setData={setData} />
             <main className="pokedex-grid pokemons w-full grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-4 p-2 rounded-xl hover:bg-(--)">
                 {filterData.length > 0 &&

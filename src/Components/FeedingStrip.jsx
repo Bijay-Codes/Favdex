@@ -22,20 +22,21 @@ export function RenderFeedingStrip({ data }) {
 
 
     return (
-        <div className="relative"> 
-            <RenderFavdexElem pokemon={pokemon} progress={prog} />
+        <>
+            <div className="relative">
+                <RenderFavdexElem pokemon={pokemon} progress={prog} />
+                <button
+                    className="bg-(--bg-surface) mt-2 px-3 rounded hover:bg-(--primary-variant) transition-all 3s active:translate(0)"
+                    onClick={() => {
+                        const updatedProg = feedBerry(pokemon, berry, setBerry, setError);
+                        if (updatedProg) setProg([...updatedProg]);
+                    }}>Feed({berry})</button>
 
-            <div className="absolute top-10 left-0 w-full text-center font-bold text-blue-600 drop-shadow-sm pointer-events-none">
+            </div>
+            <div className="w-full text-center font-bold text-blue-600">
                 {error}
             </div>
-
-            <button
-                className="bg-(--bg-surface) mt-2 px-3 rounded hover:bg-(--primary-variant) transition-all 3s active:translate(0)"
-                onClick={() => {
-                    const updatedProg = feedBerry(pokemon, berry, setBerry, setError);
-                    if (updatedProg) setProg([...updatedProg]);
-                }}>Feed({berry})</button>
-        </div>
+        </>
     );
 }
 
@@ -86,18 +87,39 @@ function checkMilestones(poke, updated, added) {
     const checkCrossed = (milestone) =>
         freindship >= milestone && (freindship - added) < milestone;
 
-    if (checkCrossed(milestones[0])) return `Congratulations on Reaching 25 Friendship with your ${poke.name}`;
-    if (checkCrossed(milestones[1])) return `Milestone Achieved: Halfway there with your Buddy ${poke.name}`;
-    if (checkCrossed(milestones[2])) return `Milestone Achieved: ${freindship}% there with your Buddy ${poke.name}`;
-    if (checkCrossed(milestones[3])) return `You are Almost there keep going, ${poke.name}!`;
-    if (checkCrossed(milestones[4])) {
+    if (checkCrossed(milestones[0])) {
+        return `Congratulations on Reaching 25 Friendship with your ${poke.name}`;
+    }
+    else if (checkCrossed(milestones[1])) {
+        return `Milestone Achieved: Halfway there with your Buddy ${poke.name}`;
+    }
+    else if (checkCrossed(milestones[2])) {
+        return `Milestone Achieved: ${freindship}% there with your Buddy ${poke.name}`;
+    }
+    else if (checkCrossed(milestones[3])) {
+        return `You are Almost there keep going, ${poke.name}!`;
+    }
+    else if (checkCrossed(milestones[4])) {
         if (!(updated.pokemon.includes(poke.id)) && updated.pokemon.length < 60) {
             updated.pokemon.push(poke.id);
             saveToStorage(updated, favdexKey);
         }
         return `You Have Successfully Added ${poke.name} to your Favdex.`;
     }
-    return;
+    else if (checkCrossed(150)) {
+        return 'The Pokemon is already in your Favdex';
+    }
+    else if (checkCrossed(300)) {
+        return `Unmoved Love for the Pokemon- ${poke.name} `;
+    }
+    else if (checkCrossed(600)) {
+        return 'Keep Going Lets see how long you stick to this pokemon';
+    }
+    else if (checkCrossed(1000)) {
+        return `Your Love for this pokemon is has reached its bounds, i cant keep up anymore. Good luck`;
+    } else {
+        return;
+    }
 }
 
 export function RenderBerry({ count }) {
