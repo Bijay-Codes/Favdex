@@ -8,7 +8,7 @@ import '../app.css';
 
 export function RenderFeedingStrip({ data }) {
     const pokemon = data[0];
-    const { favdexKey} = GlobalData.favdex;
+    const { favdexKey } = GlobalData.favdex;
     const { berry, setBerry, error, setError } = useContext(PokeContext);
     const [prog, setProg] = useState(getItem(favdexKey)?.progress || favdexStorage.progress);
 
@@ -20,17 +20,22 @@ export function RenderFeedingStrip({ data }) {
         }
     }, []);
 
+
     return (
-        <>
+        <div className="relative"> 
             <RenderFavdexElem pokemon={pokemon} progress={prog} />
-            <div className="h-6 text-center">{error ? error : ''}</div>
+
+            <div className="absolute top-10 left-0 w-full text-center font-bold text-blue-600 drop-shadow-sm pointer-events-none">
+                {error}
+            </div>
+
             <button
-                className="bg-(--bg-surface) px-3 rounded hover:bg-(--primary-variant) transition-all 3s active:translate(0)"
+                className="bg-(--bg-surface) mt-2 px-3 rounded hover:bg-(--primary-variant) transition-all 3s active:translate(0)"
                 onClick={() => {
                     const updatedProg = feedBerry(pokemon, berry, setBerry, setError);
                     if (updatedProg) setProg([...updatedProg]);
                 }}>Feed({berry})</button>
-        </>
+        </div>
     );
 }
 

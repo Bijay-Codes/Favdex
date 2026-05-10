@@ -11,7 +11,8 @@ export function RenderPokemon({ pokemon, setData, modalview = false }) {
         isShiny ? pokemon.sprite.shinySprite :
             pokemon.sprite.frontSprite;
     return (
-        <div className={!modalview ? `cards aspect-square flex flex-col items-center justify-center gap-4 rounded-4xl` : ''}
+        <div className={`${!modalview ? 'cards aspect-square flex flex-col items-center justify-center gap-4 rounded-4xl' : ''}
+        ${pokemon.types.includes('psychic') ? 'psyshock' : ''}`}
             onClick={() => { if (!modalview) setData([pokemon]) }}>
             <span>{'#' + pokemon.id}</span>
             <div className="img-container relative aspect-square w-full flex items-center justify-center">
@@ -44,11 +45,12 @@ export function RenderPokemon({ pokemon, setData, modalview = false }) {
                 <div className="text-lg font-light">Species:
                     <span className="text-(--text-inverse)">{capitalize(pokemon.name)}</span>
                 </div>
-                <div className="flex gap-2 justify-center">
+                <div className="flex gap-2 justify-center relative">
                     {
                         pokemon.types.map(type => {
                             return <span
                                 key={type}
+                                className={`${type} px-4 rounded`}
                             >{capitalize(type)}</span>
                         })
                     }
@@ -59,13 +61,14 @@ export function RenderPokemon({ pokemon, setData, modalview = false }) {
     )
 }
 export const RenderBlank = forwardRef((props, ref) => {
-    const style = 'min-w-20 aspect-square bg-gray-500'
+    const style = 'empty-cards cards aspect-square rounded-4xl'
     return (
         <>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div ref={ref}></div>
+            <div className={style}></div>
+            <div className={style}></div>
+            <div className={style}></div>
+            <div className={style}
+                ref={ref}></div>
         </>
     )
 })
