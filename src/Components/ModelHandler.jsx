@@ -39,7 +39,7 @@ export function RenderModal({ data, setData }) {
 
     return (
         <dialog id="pokemon-modal"
-            className="overflow-auto bg-(--primary) p-3 m-auto"
+            className="overflow-auto bg-(--primary) p-3 m-auto rounded-2xl"
             ref={modalRef}
             onClick={closeModal}
             onCancel={closeModal}>

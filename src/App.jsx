@@ -18,6 +18,8 @@ export default function PokedexGrid() {
     useEffect(() => {
         console.log((JSON.stringify(localStorage).length * 2 / 1024 / 1024).toFixed(2) + ' MB');
         console.log(pokedex);
+        console.log(pokedex);
+        
     }, [pokedex]);
     return (
         <div className="relative">

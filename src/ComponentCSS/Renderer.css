@@ -49,15 +49,18 @@
 }
 
 .cards {
-    background: var(--primary-variant);
+    background: linear-gradient(to top, var(--primary), var(--secondary));
     backdrop-filter: blur(10px);
-    border: 1px solid var(--border);
+    border: 2px solid var(--border);
     padding: 1rem;
     transition: all 0.3s ease;
+
 }
 
 .cards:hover {
+    transition: all 0.4s ease;
     transform: translateY(-5px);
+    background: radial-gradient(at center, var(--secondary), var(--primary)) ;
     border-color: var(--bg-surface);
     box-shadow: 0 10px 10px var(--shadow-glow);
 }

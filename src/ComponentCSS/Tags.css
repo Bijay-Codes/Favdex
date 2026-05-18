@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@600&display=swap');
+.poke-tag {
+    font-family:  'Rajdhani', sans-serif;
+    display: inline-flex;
+    align-items: center;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+}
+
+.phantom-tag {
+    background: linear-gradient(135deg, #3d1f6e, #7c4dbd);
+    color: #ede0ff;
+}
+
+.dweller-tag {
+    background: linear-gradient(135deg, #1e3320, #5a8050);
+    color: #c8f0a0;
+}
+
+.blitz-tag {
+    background: linear-gradient(135deg, #1c2a00, #d4e000);
+    color: #0d1117;
+}
+
+.frost-tag {
+    background: linear-gradient(135deg, #0d2d44, #5ab8e8);
+    color: #d0f0ff;
+}
+
+.relic-tag {
+    background: linear-gradient(135deg, #1a3a10, #6ab840);
+    color: #c8f0a0;
+}
+
+.talon-tag {
+    background: linear-gradient(135deg, #101e38, #4a80cc);
+    color: #c4deff;
+}
+
+.strider-tag {
+    background: linear-gradient(135deg, #091e38, #1a7aa0);
+    color: #a0d8ef;
+}
+
+.guardian-tag {
+    background: linear-gradient(135deg, #242c34, #7a9ab0);
+    color: #d4dce8;
+}
+
+.observer-tag {
+    background: linear-gradient(135deg, #280f3a, #a060e0);
+    color: #e8c8ff;
+}
+
+.pyro-tag {
+    background: linear-gradient(135deg, #3a1000, #d45a00);
+    color: #ffd0a0;
+}
+
+.primal-tag {
+    background: linear-gradient(135deg, #2e2010, #a87030);
+    color: #e0c890;
+}
+
+.stonebound-tag {
+    background: linear-gradient(135deg, #252220, #887868);
+    color: #d0c8b8;
+}
+
+.bio-tag {
+    background: linear-gradient(135deg, #142810, #50a030);
+    color: #b8f0a0;
+}
+
+.vanguard-tag {
+    background: linear-gradient(135deg, #381010, #c03030);
+    color: #ffc0b0;
+}
+
+.grace-tag {
+    background: linear-gradient(135deg, #341830, #c060a8);
+    color: #f8c8f0;
+}
+
+.ascendant-tag {
+    background: linear-gradient(135deg, #1c1030, #8050c0);
+    color: #ffd080;
+}
+
+.lab-tag {
+    background: linear-gradient(135deg, #182030, #3090d0);
+    color: #b0e0ff;
+}
+
+.forge-tag {
+    background: linear-gradient(135deg, #221c10, #907030);
+    color: #e8d0a0;
+}
+
+.glitch-tag {
+    background: linear-gradient(135deg, #0e1c2a, #20a890);
+    color: #a0ffee;
+}

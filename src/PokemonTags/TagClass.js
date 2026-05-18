@@ -1,0 +1,22 @@
+export const map = {
+    'The Drifting Phantoms': 'phantom-tag',
+    'The Dusk Dwellers': 'dweller-tag',
+    '--Lightning Blitz': 'blitz-tag',
+    'The Frostborns': 'frost-tag',
+    "Nature's Relics": 'relic-tag',
+    'Rising Talons': 'talon-tag',
+    'The Depth Striders': 'strider-tag',
+    'The Guardians': 'guardian-tag',
+    "The Observers": 'observer-tag',
+    'Pyro Hazards': 'pyro-tag',
+    'The Primal Fang': 'primal-tag',
+    'Stonebounds': 'stonebound-tag',
+    'Biohazard': 'bio-tag',
+    'The Vanguard': 'vanguard-tag',
+    'Velvet Grace': 'grace-tag',
+    'The Ascendant': 'ascendant-tag',
+    "Author's Choice": 'fav-tag',
+    'Glitchborn': 'glitch-tag',
+    'Forged': 'forge-tag',
+    'Lab Rat': 'lab-tag'
+}

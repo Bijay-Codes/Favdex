@@ -1,7 +1,9 @@
 import { forwardRef, useState } from "react";
 import { capitalize } from "../Utility/util-basic";
 import { analyzeNature } from "../PokemonTags/PokeNature";
+import { map } from "../PokemonTags/TagClass";
 import '../ComponentCSS/Renderer.css';
+import '../ComponentCSS/Tags.css'
 export function RenderPokemon({ pokemon, setData, modalview = false }) {
     const mewUrl = "./mew.png";
     const [isShiny, setShiny] = useState(false);
@@ -10,6 +12,7 @@ export function RenderPokemon({ pokemon, setData, modalview = false }) {
     const spriteUrl =
         isShiny ? pokemon.sprite.shinySprite :
             pokemon.sprite.frontSprite;
+    const pokeTag = analyzeNature(pokemon);
     return (
         <div className={`${!modalview ? 'cards aspect-square flex flex-col items-center justify-center gap-4 rounded-4xl' : ''}
         ${pokemon.types.includes('psychic') ? 'psyshock' : ''}`}
@@ -55,7 +58,10 @@ export function RenderPokemon({ pokemon, setData, modalview = false }) {
                         })
                     }
                 </div>
-                {analyzeNature(pokemon)}
+                <span className={`${map[pokeTag]} poke-tag px-2 mt-1`}
+                >
+                    {pokeTag}
+                </span>
             </div>
         </div>
     )
