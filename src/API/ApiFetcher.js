@@ -29,7 +29,7 @@ export async function fetchPokeApi(limit = GlobalData.apiLimit, retry = 3, offse
 
 export async function fetchSingle(url, setError) {
     const rawData = await fetch(url);
-    if (!rawData.ok) {
+    if (!rawData.ok && setError) {
         setTimeout(() => {
             setError('');
         }, 2000);

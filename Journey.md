@@ -97,4 +97,21 @@ Hmmm Pretty frustrating to realize i forgot to commit the codes daily because i 
 
 1. First lesson... pokemon data can be confusing sometimes... i witnessed it when i was trying to map out my tag system and it kept firing on pokemon that made no sense at all, thats when i realised if we are getting to a conclusion using data manupulation there are bound to be misfires, Found a better approach that is a hybrid of hardcoding and dynamic generation i acheive this by handling the edge case pokemons using a filter like if the grass type tag came across the breloom which does not fit the current tag name we can either skip it or check if the selected pokemon is breloom if it is we give it a subtag of the tag (subtags system coming soon so looking forward to it).
 
-2. 
+Life update---
+IDK what the hell is going on atp i just come code and go i havent been writing here often, i feel like a machine today and if that werent enough i am sick from weeks... oh wait if im machine im not supposed to be sick.
+Well whatever i cant say i will write daily here because i know i dont have much energy to write here after those assignments i have to do and the coding sessions, but lets hope i do write here.
+
+Day IDK log---
+I used React router today and well... its bugging me why react doesnt bundle the react router with the project in some file like config, pakage node modules. I had to download it separately and the command for it was npm install react-router-dom, lets find out why its not bundled... ah well i dont have the energy for that.
+
+1. Basically react router is a liar it stimulates like the page was switched but in the background it is just switching which component that get rendered when a link like NavLink is clicked when a specific path is detected like in this project / for home /favdex for favdex page and /support for support page.
+
+2. There are tags??? links or functions that react router gives like BrowserRouter, Routes, NavLink and Route as well as hooks like useLocation, useParams, useNavigate
+
+3. NavLink is pretty simple... it just adds a class called active to the Link if its active if it isnt then it removes it.
+
+4. Links are basically <a> tags but the diffrence is when we click <a> tag our browser intecepts it or listens to it but Link tag prevents default behavior of clicking <a> tag like the function preventDefault(), Why we use it is because when we click a normal link our page reloads and could delete our states or data we have which is not saved, but Link tag avoids a reload and just switches the components to show a diffrent component on the same page.
+
+5. useParams... although i didnt use it i still leant what it does, What it does is it gives us a data which is at the end of a path or specifically a id which is like pathname/:id so we will get the id as a 'String' even if its a number.
+
+6. hmm i think the rest are pretty self explainatory except BrowserRouter... so its just a component that is used to make the whole react router work when we put anything inside it all its children are able the use router powers its like a event listener or observer which manages what page we are on and which page we can navigate to.

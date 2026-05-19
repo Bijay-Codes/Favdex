@@ -4,7 +4,7 @@ import { analyzeNature } from "../PokemonTags/PokeNature";
 import { map } from "../PokemonTags/TagClass";
 import '../ComponentCSS/Renderer.css';
 import '../ComponentCSS/Tags.css'
-export function RenderPokemon({ pokemon, setData, modalview = false }) {
+export function RenderPokemon({ pokemon, setData, modalview = false, favView = false }) {
     const mewUrl = "./mew.png";
     const [isShiny, setShiny] = useState(false);
     const [isLoading, setLoaded] = useState(true);
@@ -14,8 +14,9 @@ export function RenderPokemon({ pokemon, setData, modalview = false }) {
             pokemon.sprite.frontSprite;
     const pokeTag = analyzeNature(pokemon);
     return (
-        <div className={`${!modalview ? 'cards aspect-square flex flex-col items-center justify-center gap-4 rounded-4xl' : ''}
-        ${pokemon.types.includes('psychic') ? 'psyshock' : ''}`}
+        <div className={`${!modalview && !favView ? 'cards aspect-square flex flex-col items-center justify-center gap-4 rounded-4xl' : ''}
+        ${pokemon.types.includes('psychic') ? 'psyshock' : ''}
+        ${favView?'fav-pokemon max-w-1/2 aspect-square flex flex-col':''}`}
             onClick={() => { if (!modalview) setData([pokemon]) }}>
             <span>{'#' + pokemon.id}</span>
             <div className="img-container relative aspect-square w-full flex items-center justify-center">
@@ -85,25 +86,3 @@ function playCry(url) {
     audio.play()
 }
 
-// <div className="relative">
-//     {(isLoading || iserror) && (
-//         <img
-//             src={mewUrl}
-//             className={`absolute mewAnimation inset-0 mewAnimation object-contain transition-opacity duration-300`}
-//         />
-//     )}
-//     <img
-//         loading="lazy"
-//         className={`relative z-10 transition-opacity duration-300 ${isLoading || iserror ? 'opacity-0' : 'opacity-100'}`}
-//         onLoad={() => {
-//             setLoaded(true);
-//             setLoaded(false);
-//         }}
-//         onError={() => setError(true)}
-//         src={spriteUrl}
-//         onClick={() => {
-//             playCry(pokemon.cry)
-//             modalview ? setShiny(!isShiny) : '';
-//         }}
-//     />
-// </div>
