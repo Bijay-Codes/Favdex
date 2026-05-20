@@ -5,7 +5,7 @@ import { RenderModal } from "./ModelHandler";
 import { PokeContext } from "./Hooks/PokedexContext";
 import { filterByType } from "./FilterStrip";
 import { ErrorBox } from "./ErrorBox";
-import {RenderHeader} from '../Components/Header.jsx'
+import { RenderHeader } from '../Components/Header.jsx'
 import '../ComponentCSS/Renderer.css'
 import '../ComponentCSS/TypesCss.css';
 
@@ -31,17 +31,19 @@ export default function PokedexGrid() {
                 <RenderHeader />
             </div>
             <RenderModal data={modalData} setData={setData} />
-            <main
-                className="pokedex-grid pokemons w-full grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-4 p-2 rounded-xl hover:bg-(--)">
-                {filterData.length > 0 &&
-                    filterData.map((poke) => {
-                        return <RenderPokemon key={poke.id} pokemon={poke} setData={setData} />
-                    })
-                }
-                {
-                    !type && !isComplete && <RenderBlank ref={unloadedRef} />
-                }
-            </main>
+            {filterData.length !== 0 ?
+                <main
+                    className="pokedex-grid pokemons w-full grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-4 p-2 rounded-xl hover:bg-(--)">
+                    {filterData.length > 0 &&
+                        filterData.map((poke) => {
+                            return <RenderPokemon key={poke.id} pokemon={poke} setData={setData} />
+                        })
+                    }
+                    {
+                        !type && !isComplete && <RenderBlank ref={unloadedRef} />
+                    }
+                </main>
+                : ''}
         </div>
     )
 }

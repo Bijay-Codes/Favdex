@@ -42,7 +42,8 @@ export function RenderModal({ data, setData }) {
             className="overflow-auto bg-(--primary) p-3 m-auto rounded-2xl"
             ref={modalRef}
             onClick={closeModal}
-            onCancel={closeModal}>
+            onCancel={closeModal}
+            onKeyDown={(e)=> e.key==='Esc' && modalRef.current.close()}>
             <div
                 className="flex flex-col items-center justify-center gap-4"
                 onClick={(e) => e.stopPropagation()}>

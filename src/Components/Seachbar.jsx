@@ -10,14 +10,19 @@ export function RenderSearchbar() {
     return (
         <div className='search-strip'>
             <input
-                className='flex-1 min-w-0 accent-blue-400 bg-blue-600 px-1 py-1'
+                className='flex-1 min-w-0 accent-blue-400 bg-(--secondary) focus:outline-none rounded-xl rounded-bl-2xl rounded-tl-xl px-1 py-1 text-(--text-inverse)'
                 placeholder='Search'
                 type="search"
                 value={text}
                 onChange={(e) => setText(e.target.value)}
+                onKeyDown={(e) =>
+                    e.key === 'Enter' && handleSearch(text, setText, pokedex, setData, setType)}
             />
             <button
-                className='bg-blue-300 px-1 py-1.5 whitespace-nowrap'
+                className='bg-(--primary)
+                    px-2 whitespace-nowrap
+                    rounded-xl rounded-bl-3xl rounded-tr-4xl
+                    hover:bg-(--primary)/50'
                 onClick={() => handleSearch(text, setText, pokedex, setData, setType)}>
                 Search
             </button>

@@ -5,13 +5,13 @@ export function RenderFilterStrip({ array }) {
     const { type, setType } = useContext(PokeContext);
     return (<div
         className="filter-strip flex flex-nowrap justify-evenly gap-4 overflow-x-auto w-full
-        bg-(--secondary) py-4 text-xl text-(--text-main) font-(--font-main) rounded">
+     py-4 font-(--font-main) rounded-l-2xl rounded-r-lg">
         {array.map(data => {
             let isFilter = data === type;
             return <span
                 key={data}
-                className={`${isFilter?'bg-(--bg-main)/20 text-(--text-highlight) border-2 border-(--border) rounded animate-pulse'
-                    :'bg-(--highlight) text-(--text-secondary) border-2 border-(--bg-dark) rounded-lg'} px-2 mx-1`}
+                className={`${isFilter ? 'bg-(--bg-main)/20 text-(--text-highlight) border-2 border-(--border) rounded animate-pulse'
+                    : 'bg-(--highlight) text-(--text-secondary) border-2 border-(--bg-dark) rounded-lg'} px-2 mx-1`}
                 onClick={() => {
                     if (type !== data) {
                         setType(data);
