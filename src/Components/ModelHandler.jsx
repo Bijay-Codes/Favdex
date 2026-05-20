@@ -1,14 +1,13 @@
 import { useContext, useEffect, useRef, useState } from "react"
 import { RenderPokemon } from "./Renderer";
 import { RenderFeedingStrip } from "./FeedingStrip";
-import { capitalize} from "../Utility/util-basic";
-import '../ComponentCSS//Model.css';
+import { capitalize } from "../Utility/util-basic";
 import { PokeContext } from "./Hooks/PokedexContext";
 export function RenderModal({ data, setData }) {
     const modalRef = useRef(null);
     const closeModal = () => setData(null);
     const [ability, setAbility] = useState([]);
-    const {error,setError} = useContext(PokeContext);
+    const { error, setError } = useContext(PokeContext);
     useEffect(() => {
         if (!data) {
             modalRef.current.close();
@@ -38,26 +37,32 @@ export function RenderModal({ data, setData }) {
     }, [data]);
 
     return (
-        <dialog id="pokemon-modal"
-            className="overflow-auto bg-(--primary) p-3 m-auto rounded-2xl"
-            ref={modalRef}
-            onClick={closeModal}
-            onCancel={closeModal}
-            onKeyDown={(e)=> e.key==='Esc' && modalRef.current.close()}>
-            <div
-                className="flex flex-col items-center justify-center gap-4"
-                onClick={(e) => e.stopPropagation()}>
-                <button
-                    className="absolute right-0 top-0 m-4"
-                    onClick={closeModal}
-                >Close</button>
-                <div className="min-w-1/2 bg-(--secondary)/50 p-4 rounded-2xl">
-                    {data ? <RenderPokemon pokemon={data[0]} modalview={true} /> : ''}
+        <><style>
+            {`#pokemon-modal::backdrop{
+                backdrop-filter:blur(40px);
+            }`}
+        </style>
+            <dialog id="pokemon-modal"
+                className="overflow-auto bg-(--primary) p-3 m-auto rounded-2xl sm:max-w-[90%] md:max-w-[70%]"
+                ref={modalRef}
+                onClick={closeModal}
+                onCancel={closeModal}
+                onKeyDown={(e) => e.key === 'Esc' && closeModal}>
+                <div
+                    className="flex flex-col items-center justify-center gap-4"
+                    onClick={(e) => e.stopPropagation()}>
+                    <button
+                        className="absolute right-0 top-0 m-4"
+                        onClick={closeModal}
+                    >Close</button>
+                    <div className="min-w-1/2 bg-(--secondary)/50 p-4 rounded-2xl">
+                        {data ? <RenderPokemon pokemon={data[0]} modalview={true} /> : ''}
+                    </div>
+                    {data ? <RenderDetails pokemon={data[0]} ability={ability} /> : ''}
+                    {data ? <RenderFeedingStrip data={data} /> : ''}
                 </div>
-                {data ? <RenderDetails pokemon={data[0]} ability={ability} /> : ''}
-                {data ? <RenderFeedingStrip data={data} /> : ''}
-            </div>
-        </dialog>
+            </dialog>
+        </>
     )
 }
 

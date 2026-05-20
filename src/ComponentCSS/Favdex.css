@@ -1,0 +1,27 @@
+.fav-pokemon {
+    background: #000;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 2rem;
+    overflow: hidden;
+    aspect-ratio: 1/1;
+}
+
+.fav-pokemons {
+    background: radial-gradient(gold, white);
+}
+
+.nav-favdex {
+    background: linear-gradient(to top left, var(--secondary) 50%, hsl(from var(--secondary) calc(h + 30) s l)) 10%;
+    margin-bottom: 1rem;
+}
+
+.favdex-grid {
+    padding: 1rem;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    background: linear-gradient(var(--secondary), var(--bg-main));
+}

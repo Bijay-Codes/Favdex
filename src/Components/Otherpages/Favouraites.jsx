@@ -5,12 +5,12 @@ import { GlobalData } from "../../Utility/GlobalData.js";
 import { RenderPokemon } from "../Renderer.jsx";
 import { favdexStorage } from "../../Utility/Favdex.js";
 import { getItem } from "../../Utility/storagehelper.js";
+import { RenderNav } from "../Navbar.jsx";
+import '../../ComponentCSS/Favdex.css';
 export function RenderFavdex() {
     const [favdex, setFavdex] = useState(null);
     const { pokedex, setData } = useContext(PokeContext);
     const list = getItem(GlobalData.favdex.favdexKey).pokemon || favdexStorage.pokemon;
-    console.log('list:', list)
-    console.log('pokedex:', pokedex)
     useEffect(() => {
         async function load(params) {
             const data = await getPokeData(list, pokedex);
@@ -19,9 +19,16 @@ export function RenderFavdex() {
         load();
     }, []);
     return (
-        favdex && favdex.map(poke => {
-            return <RenderPokemon key={poke.id} pokemon={poke} setData={setData} favView={true} />
-        })
+        <div>
+            <RenderNav homeview={false} />
+            <main className="favdex-grid rounded-4xl">
+                {
+                    favdex && favdex.map(poke => {
+                        return <RenderPokemon key={poke.id} pokemon={poke} setData={setData} favView={true} />
+                    })
+                }
+            </main>
+        </div>
     )
 }
 
@@ -37,6 +44,5 @@ async function getPokeData(list, pokedex) {
         }
     })
     )
-    console.log(res);
     return res;
 }

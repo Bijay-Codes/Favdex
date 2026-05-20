@@ -8,9 +8,6 @@ export function useInitializer(ref, setFunct, offset, setFunct2) {
     const isFetching = useRef(false);
     const totalPokemonEntry = useRef(0);
     useEffect(() => {
-        // Inside the first useEffect
-        console.log("DEBUG: Initial useEffect Fetching");
-
         isFetching.current = true;
         const prevData = getItem('pokedex-scroll');
         if (!prevData) {
