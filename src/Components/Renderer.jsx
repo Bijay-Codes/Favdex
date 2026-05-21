@@ -91,19 +91,6 @@ export const RenderBlank = forwardRef((props, ref) => {
     )
 })
 
-
-function confirmRelease(id, setFavdex) {
-    const res = confirm('Do you Want to Remove this Pokemon from your Favdex List?');
-    if (res !== true) {
-        return;
-    } else {
-        const favdex = getItem(GlobalData.favdex.favdexKey) || favdexStorage;
-        favdex.pokemon = favdex.pokemon.filter(pokeId => pokeId !== id);
-        favdex.progress = favdex.progress.filter(poke => poke.id !== id);
-        setFavdex(favdex.pokemon);
-        saveToStorage(favdex, GlobalData.favdex.favdexKey);
-    }
-}
 function playCry(url) {
     const audio = new Audio(url);
     audio.play();

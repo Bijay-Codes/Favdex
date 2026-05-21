@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom"
 export function RenderNav({homeview=true}) {
     return (
         <nav
-            className={` grid-[nav] ${!homeview?'nav-favdex':''} text-white"`}>
+            className={` grid-[nav] ${homeview?'nav-favdex':''} text-white"`}>
             <h1>
                 FavDex, Where Pokèmon come Alive
             </h1>

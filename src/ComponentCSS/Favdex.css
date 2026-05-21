@@ -1,12 +1,10 @@
 .fav-pokemon {
-    background: #000;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     border-radius: 2rem;
     overflow: hidden;
-    aspect-ratio: 1/1;
 }
 
 .fav-pokemons {
