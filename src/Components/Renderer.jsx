@@ -16,7 +16,7 @@ export function RenderPokemon({ pokemon, setData, modalview = false, favView = f
         isShiny ? pokemon.sprite.shinySprite :
             pokemon.sprite.frontSprite;
     const pokeTag = analyzeNature(pokemon);
-    const [favdex, setFavdex] = useState(getItem(GlobalData.favdex.favdexKey).pokemon || favdexStorage.pokemon);
+    const [favdex, setFavdex] = useState(getItem(GlobalData.favdex.favdexKey)?.pokemon || favdexStorage.pokemon);
 
     return (
         <div className={`${!modalview && !favView ? `${favdex.includes(pokemon.id)?'fav-pokemons':'cards'} aspect-square flex flex-col items-center justify-center gap-4 rounded-4xl` : ''}

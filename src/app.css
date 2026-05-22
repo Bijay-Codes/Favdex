@@ -1,39 +1,32 @@
 :root {
-    /* Brand Colors */
-    --primary: #afebff;
-    /* Bright, icy cyan */
-    --primary-variant: #7ed6df;
-    /* Mid-tone glacial blue */
-    --secondary: #22a6b3;
-    /* Deep sea teal */
+    /* Brand */
+    --primary: #1c2128;
+    --primary-variant: #21262d;
+    --secondary: #161b22;
 
     /* Backgrounds */
-    --bg-main: #0a192f;
-    /* Deep arctic navy (Dark Mode) */
-    --bg-surface: #f0faff;
-    /* Soft winter white (Light Mode) */
-    --bg-card: rgba(255, 255, 255, 0.15);
-    /* Translucent glass */
+    --bg-main: #0d1117;
+    --bg-surface: #1c2128;
+    --bg-card: rgba(255, 255, 255, 0.04);
 
-    /* Text & Details */
-    --text-main: #0a192f;
-    /* High contrast navy */
-    --font-main: 'Syne', sans-serif;
-    --text-secondary: #535c68;
-    /* Muted slate for captions */
-    --font-secondary: 'Outfit', sans-serif;
+    /* Text */
+    --text-main: #e6edf3;
+    --text-secondary: #8b949e;
     --text-inverse: #ffffff;
-    /* Pure white for dark backgrounds */
+
+    /* Fonts - keep yours */
+    --font-main: 'Syne', sans-serif;
+    --font-secondary: 'Outfit', sans-serif;
     --font-inverse: 'JetBrains Mono', sans-serif;
 
     /* Functional */
-    --border: rgba(175, 235, 255, 0.4);
-    --highlight: #dff9fb;
-    /* Hover state / subtle glow */
-    --gradient: linear-gradient(135deg, #afebff 0%, #7ed6df 100%);
+    --border: rgba(255, 255, 255, 0.08);
+    --highlight: #21262d;
+    --gradient: linear-gradient(135deg, #1c2128 0%, #161b22 100%);
+    --accent: #58a6ff;
 
-    /* Elevation  */
-    --shadow-glow: 0 4px 15px rgba(175, 235, 255, 0.3);
+    /* Elevation */
+    --shadow-glow: 0 4px 15px rgba(88, 166, 255, 0.15);
 }
 
 #root {

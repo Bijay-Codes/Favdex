@@ -35,16 +35,19 @@
     filter: blur(1rem);
     animation: shinyToNormal var(--animaton-dur) alternate infinite linear;
 }
-.poke-img::after{
+
+.poke-img::after {
     content: '';
     position: absolute;
     bottom: 2;
     inset: 0;
 }
+
 .pokemons {
     background: linear-gradient(to left, var(--secondary), var(--primary));
+
     &.pokemons:hover {
-        background: linear-gradient(to right, var(--primary),var(--border));
+        background: linear-gradient(to right, var(--primary), var(--border));
     }
 }
 
@@ -55,12 +58,20 @@
     padding: 1rem;
     transition: all 0.3s ease;
 
+
+}
+
+.cards {
+    padding: 12px;
+    /* inner spacing */
+    gap: 8px;
+    /* space between elements inside */
 }
 
 .cards:hover {
     transition: all 0.4s ease;
     transform: translateY(-5px);
-    background: radial-gradient(at center, var(--secondary), var(--primary)) ;
+    background: radial-gradient(at center, var(--secondary), var(--primary));
     border-color: var(--bg-surface);
     box-shadow: 0 10px 10px var(--shadow-glow);
 }

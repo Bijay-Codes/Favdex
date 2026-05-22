@@ -32,7 +32,11 @@ export function RenderFavdex() {
                         {favdex.map(poke => (
                             <div className="flex flex-col items-center" key={poke.name}>
                                 <RenderPokemon pokemon={poke} setData={setData} favView={true} />
-                                <button onClick={() => setSelected(poke.id)}>Remove</button>
+                                <button onClick={() => setSelected(poke.id)}
+                                    className="bg-yellow-300 m-2
+                                    px-4 rounded-2xl rounded-b-4xl">
+                                    Remove
+                                </button>
                             </div>
                         ))}
                     </div>
@@ -56,7 +60,7 @@ function RenderRemovePane({ selected, favdex, setFavdex, setSelected, handleRemo
     }, [selected]);
     return (
         <dialog id="dialog-confirm"
-            className="w-[minmax(fit-content,50%)] h-1/3 sm:min-w-[60%] md:min-w-[40%] m-auto
+            className="w-[minmax(fit-content,50%)] h-1/3 sm:min-w-[60%] md:min-w-[50%] m-auto
             bg-transparent"
             ref={dialogRef}
             onClick={(e) => {
@@ -82,9 +86,9 @@ function RenderRemovePane({ selected, favdex, setFavdex, setSelected, handleRemo
                 <div>All Progress you have mede with this pokemon will be lost</div>
                 <div className="flex gap-2">
                     <button
-                        className="bg-gray-50"
+                        className=""
                         onClick={() => closePane()}>
-                        Cancel
+                        No
                     </button>
                     <button
                         onClick={() => {

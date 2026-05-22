@@ -1,40 +1,32 @@
-@import 'tailwindcss';
-
-.header-grid {
-    width: 100%;
-    display: grid;
-    grid-template-areas:
-        "nav nav"
-        "search berry"
-        "filter filter";
-    grid-template-columns: 1fr auto;
-    align-items: center;
-    gap: 8px;
-    padding: 8px;
-    background: linear-gradient(to top left, var(--secondary) 50%, hsl(from var(--secondary) calc(h + 30) s l)) 10%;
-}
-
-.search-strip {
-    grid-area: search;
+.nav-bar {
     display: flex;
     align-items: center;
-    min-width: 0;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+    height: 52px;
+    background: var(--secondary);
+    border-bottom: 1px solid var(--border);
 }
 
-.berry-strip {
-    grid-area: berry;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    white-space: nowrap;
+.nav-brand {
+    font-family: var(--font-main);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.3px;
 }
 
-.filter-strip {
-    grid-area: filter;
+.nav-links {
     display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    width: 100%;
-    color: white;
-    background: radial-gradient(at left, var(--secondary), hsl(from var(--secondary) h s calc(l - 10)));
+    gap: 1.5rem;
 }
+
+.nav-link {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.15s;
+}
+
+.nav-link:hover { color: var(--text-main); }
+.nav-link.active { color: var(--text-main); font-weight: 500; }
