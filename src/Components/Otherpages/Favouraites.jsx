@@ -6,7 +6,6 @@ import { RenderPokemon } from "../Renderer.jsx";
 import { favdexStorage } from "../../Utility/Favdex.js";
 import { getItem, saveToStorage } from "../../Utility/storagehelper.js";
 import { RenderNav } from "../Navbar.jsx";
-import '../../ComponentCSS/Favdex.css';
 export function RenderFavdex() {
     const [favdex, setFavdex] = useState(null);
     const [selected, setSelected] = useState(null);
@@ -33,8 +32,7 @@ export function RenderFavdex() {
                             <div className="flex flex-col items-center" key={poke.name}>
                                 <RenderPokemon pokemon={poke} setData={setData} favView={true} />
                                 <button onClick={() => setSelected(poke.id)}
-                                    className="bg-yellow-300 m-2
-                                    px-4 rounded-2xl rounded-b-4xl">
+                                    className="">
                                     Remove
                                 </button>
                             </div>
@@ -76,7 +74,6 @@ function RenderRemovePane({ selected, favdex, setFavdex, setSelected, handleRemo
             }}>
             <section
                 className="w-full h-full p-6
-                 bg-green-500
                  text-center
                  flex flex-col justify-center items-center
                  rounded-lg rounded-b-4xl"

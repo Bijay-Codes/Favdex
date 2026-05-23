@@ -1,6 +1,5 @@
 import { RenderNav } from "../Navbar";
 import { useState } from "react"
-import '../../ComponentCSS/Favdex.css'
 import { GlobalData } from "../../Utility/GlobalData";
 import { clearStorage } from "../../Utility/storagehelper";
 const POKEDEX_KEY = GlobalData.pokedexKey;

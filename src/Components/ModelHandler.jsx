@@ -49,7 +49,7 @@ export function RenderModal({ data, setData }) {
                 onCancel={closeModal}
                 onKeyDown={(e) => e.key === 'Esc' && closeModal}>
                 <div
-                    className="flex flex-col items-center justify-center gap-4"
+                    className="flex flex-col items-center justify-center gap-4 rounded-xs"
                     onClick={(e) => e.stopPropagation()}>
                     <button
                         className="absolute right-0 top-0 m-4"
@@ -67,9 +67,9 @@ export function RenderModal({ data, setData }) {
 }
 
 function RenderDetails({ pokemon, ability }) {
-    const generalCss = 'm-2 p-2 hover:text-[var(--text-main)] text-(--text-secondary) hover:translateY-[-4px]'
+    const generalCss = 'm-2 p-2'
     return (
-        <div className="bg-(--secondary)/25 rounded-xl">
+        <div className="">
             <span className={generalCss}>BMI:{(pokemon.weight / (pokemon.height ** 2)).toFixed(2)}</span>
             <span className={generalCss}>Weight: {pokemon.weight} Kg</span>
             <span className={generalCss}>Height: {pokemon.height} Metres</span>

@@ -2,7 +2,6 @@ import { forwardRef, useState } from "react";
 import { capitalize } from "../Utility/util-basic";
 import { analyzeNature } from "../PokemonTags/PokeNature";
 import { map } from "../PokemonTags/TagClass";
-import '../ComponentCSS/Renderer.css';
 import '../ComponentCSS/Tags.css'
 import { getItem, saveToStorage } from "../Utility/storagehelper";
 import { GlobalData } from "../Utility/GlobalData";
@@ -19,9 +18,12 @@ export function RenderPokemon({ pokemon, setData, modalview = false, favView = f
     const [favdex, setFavdex] = useState(getItem(GlobalData.favdex.favdexKey)?.pokemon || favdexStorage.pokemon);
 
     return (
-        <div className={`${!modalview && !favView ? `${favdex.includes(pokemon.id)?'fav-pokemons':'cards'} aspect-square flex flex-col items-center justify-center gap-4 rounded-4xl` : ''}
+        <div className={`${!modalview && !favView ?
+            `${favdex.includes(pokemon.id) ? 'fav-pokemons' : 'cards'} aspect-square flex flex-col items-center justify-center
+         gap-4
+         rounded-4xl` : ''}
         ${pokemon.types.includes('psychic') ? 'psyshock' : ''}
-        ${favView ? 'fav-pokemon fav-pokemons' : ''}`}
+        ${favView ? '' : ''}`}
             onClick={() => { if (!modalview) setData([pokemon]) }}>
             <span
                 className="flex gap-2 text-xl justify-center items-center">
@@ -54,9 +56,9 @@ export function RenderPokemon({ pokemon, setData, modalview = false, favView = f
                     />
                 )}
             </div>
-            <div className="bg-(--bg-main)/25 p-3 w-full text-center rounded-4xl">
-                <div className="text-lg font-light">Species:
-                    <span className="text-(--text-inverse)">{capitalize(pokemon.name)}</span>
+            <div className="">
+                <div className="">Species:
+                    <span className="">{capitalize(pokemon.name)}</span>
                 </div>
                 {!favView &&
                     <div className="flex gap-2 justify-center relative">
@@ -83,10 +85,10 @@ export const RenderBlank = forwardRef((props, ref) => {
     return (
         <>
             <div className={style}></div>
-            <div className={style}></div>
-            <div className={style}></div>
             <div className={style}
                 ref={ref}></div>
+            <div className={style}></div>
+            <div className={style}></div>
         </>
     )
 })

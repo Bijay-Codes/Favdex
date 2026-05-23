@@ -26,14 +26,14 @@ export function RenderFeedingStrip({ data }) {
             <div className="relative w-1/2 select-none">
                 <RenderFavdexElem pokemon={pokemon} progress={prog} />
                 <button
-                    className="bg-(--bg-surface) mt-2 px-3 rounded hover:bg-(--primary-variant) transition-all 3s active:translate(0)"
+                    className=""
                     onClick={() => {
                         const updatedProg = feedBerry(pokemon, berry, setBerry, setError);
                         if (updatedProg) setProg([...updatedProg]);
                     }}>Feed({berry})</button>
 
             </div>
-            <div className="w-full text-center font-bold text-blue-600">
+            <div className="w-full text-center font-bold">
                 {error}
             </div>
         </>

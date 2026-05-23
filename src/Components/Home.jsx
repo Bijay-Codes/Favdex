@@ -33,7 +33,7 @@ export default function PokedexGrid() {
             <RenderModal data={modalData} setData={setData} />
             {filterData.length !== 0 ?
                 <main
-                    className="pokedex-grid pokemons grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-5 p-6 rounded-xl">
+                    className="">
                     {filterData.length > 0 &&
                         filterData.map((poke) => {
                             return <RenderPokemon key={poke.id} pokemon={poke} setData={setData} />
