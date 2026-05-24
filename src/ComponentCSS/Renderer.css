@@ -1,0 +1,3 @@
+.cards:hover {
+  background: radial-gradient(circle at top left, var(--bg-overlay) 50%, var(--bg-surface) 100%);
+}

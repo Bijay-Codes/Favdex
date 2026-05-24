@@ -6,7 +6,6 @@ import { PokeContext } from "./Hooks/PokedexContext";
 import { filterByType } from "./FilterStrip";
 import { ErrorBox } from "./ErrorBox";
 import { RenderHeader } from '../Components/Header.jsx'
-import '../ComponentCSS/Renderer.css'
 import '../ComponentCSS/TypesCss.css';
 
 export function RenderHome() {
@@ -20,30 +19,29 @@ export default function PokedexGrid() {
     const { pokedex, setPokemon, isComplete, setComplete, modalData, setData, type } = useContext(PokeContext);
     useInitializer(unloadedRef, setPokemon, offset, setComplete);
     const filterData = filterByType(pokedex, type);
-    useEffect(() => {
-        console.log((JSON.stringify(localStorage).length * 2 / 1024 / 1024).toFixed(2) + ' MB');
-    }, [pokedex]);
     return (
         <div className="relative">
             <ErrorBox message={''} dur={3} />
             <div
-                className="sticky top-0 z-2 bg-(--bg-main) rounded-b-lg">
+                className="sticky top-0 z-2 rounded-b-lg">
                 <RenderHeader />
             </div>
             <RenderModal data={modalData} setData={setData} />
-            {filterData.length !== 0 ?
-                <main
-                    className="">
-                    {filterData.length > 0 &&
-                        filterData.map((poke) => {
-                            return <RenderPokemon key={poke.id} pokemon={poke} setData={setData} />
-                        })
-                    }
-                    {
-                        !type && !isComplete && <RenderBlank ref={unloadedRef} />
-                    }
-                </main>
-                : ''}
+
+            <main
+                className={`grid sm:grid-cols-[repeat(auto-fill,minmax(300px,1fr))]  md:grid-cols-3 xl:grid-cols-6
+                    gap-4 p-4
+                    rounded-lg ${filterData.length===0?'hidden':''}`}
+            >
+                {filterData.length > 0 &&
+                    filterData.map((poke) => {
+                        return <RenderPokemon key={poke.id} pokemon={poke} setData={setData} />
+                    })
+                }
+                {
+                    !type && !isComplete && <RenderBlank ref={unloadedRef} />
+                }
+            </main>
         </div>
     )
 }

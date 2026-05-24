@@ -1,32 +1,35 @@
+@import 'tailwindcss';
+
 [data-theme="dark"] {
   /* backgrounds */
-  --bg-base:     #0B0D13;
-  --bg-surface:  #13161E;
+  --bg-base: #0B0D13;
+  --bg-surface: #13161E;
   --bg-elevated: #1A1F2C;
-  --bg-overlay:  #21263A;
+  --bg-overlay: #21263A;
 
   /* text */
-  --text-primary:   #F0F2F8;
+  --text-primary: #F0F2F8;
   --text-secondary: #8B92A8;
-  --text-muted:     #5A6380; /* ⚠ large text / icons only */
+  --text-muted: #5A6380;
+  /* ⚠ large text / icons only */
 
   /* accent */
-  --accent:        #5B8DEF;
-  --accent-cta:    #2B5FDF;
-  --accent-hover:  #7AAAF5;
+  --accent: #5B8DEF;
+  --accent-cta: #2B5FDF;
+  --accent-hover: #7AAAF5;
   --accent-subtle: rgba(91, 141, 239, 0.10);
 
   /* borders */
-  --border:        rgba(255, 255, 255, 0.06);
-  --border-strong: rgba(255, 255, 255, 0.12);
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.24);
+  --border-white: rgba(255, 255, 255, 0.25);
 
   /* gradients */
-  --gradient-page:
-    linear-gradient(160deg, #0B0D13 0%, #0E1120 60%, #121830 100%);
+  --gradient-page: linear-gradient(to bottom right, #0B0D13 0%, #0E1120 60%, #121830 100%);
   --gradient-accent:
     linear-gradient(135deg, #2B5FDF 0%, #7B3FBF 100%);
   --gradient-card-hover:
     linear-gradient(135deg, #1A1F2C 0%, #1E2438 100%);
   --gradient-shine:
-    linear-gradient(180deg, rgba(255,255,255,0.04) 0%, transparent 60%);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, transparent 60%);
 }

@@ -5,7 +5,6 @@ import { RenderBerry } from "./FeedingStrip.jsx";
 import { favdexStorage } from "../Utility/Favdex.js";
 import { getItem } from "../Utility/storagehelper.js";
 import { RenderNav } from "./Navbar.jsx";
-import '../ComponentCSS/Header.css'
 export function RenderHeader() {
     const { favdexKey } = GlobalData.favdex
     const berries = getItem(favdexKey)?.berries ?? favdexStorage.berries;
