@@ -8,6 +8,7 @@ export function RenderModal({ data, setData }) {
     const closeModal = () => setData(null);
     const [ability, setAbility] = useState([]);
     const { error, setError } = useContext(PokeContext);
+
     useEffect(() => {
         if (!data) {
             modalRef.current.close();
@@ -20,46 +21,45 @@ export function RenderModal({ data, setData }) {
                 ...abilt,
                 text: abiltText.flavor_text_entries.find(
                     entry => entry.language.name === 'en')
-                    ?.flavor_text
-                    ?? 'Still Mystery'
+                    ?.flavor_text ?? 'Still Mystery'
             }
-        }
-        )).then(r => {
-            setAbility(r)
-        })
-        if (data) {
-            modalRef.current.showModal();
-        } else {
-            if (modalRef.current?.open) {
-                modalRef.current.close();
-            }
-        }
+        })).then(r => setAbility(r));
+
+        if (data) modalRef.current.showModal();
+        else if (modalRef.current?.open) modalRef.current.close();
     }, [data]);
 
     return (
-        <><style>
-            {`#pokemon-modal::backdrop{
-                backdrop-filter:blur(40px);
-            }`}
-        </style>
-            <dialog id="pokemon-modal"
-                className="overflow-auto bg-(--primary) p-3 m-auto rounded-2xl sm:max-w-[90%] md:max-w-[70%]"
+        <>
+            <style>{`#pokemon-modal::backdrop { backdrop-filter: blur(40px); }`}</style>
+            <dialog
+                id="pokemon-modal"
+                className="w-[90%] md:w-[70%] lg:w-[55%] max-h-[90dvh] overflow-y-auto
+                           text-(--text-secondary) bg-(--bg-overlay)/80
+                           border-2 border-(--border-white) p-3 m-auto rounded-2xl"
                 ref={modalRef}
                 onClick={closeModal}
                 onCancel={closeModal}
-                onKeyDown={(e) => e.key === 'Esc' && closeModal}>
+                onKeyDown={(e) => e.key === 'Escape' && closeModal()}
+            >
                 <div
-                    className="flex flex-col items-center justify-center gap-4 rounded-xs"
-                    onClick={(e) => e.stopPropagation()}>
+                    className="flex flex-col items-center gap-4 w-full relative"
+                    onClick={(e) => e.stopPropagation()}
+                >
                     <button
-                        className="absolute right-0 top-0 m-4"
+                        className="absolute right-0 top-0 text-red-400 text-sm lg:text-4xl lg:p-2"
                         onClick={closeModal}
                     >Close</button>
-                    <div className="min-w-1/2 bg-(--secondary)/50 p-4 rounded-2xl">
-                        {data ? <RenderPokemon pokemon={data[0]} modalview={true} /> : ''}
+
+                    <div className="w-full p-4 rounded-2xl flex flex-col items-center justify-center">
+                        {data && <RenderPokemon pokemon={data[0]} modalview={true} />}
                     </div>
-                    {data ? <RenderDetails pokemon={data[0]} ability={ability} /> : ''}
-                    {data ? <RenderFeedingStrip data={data} /> : ''}
+                    <div className="bg-(--bg-overlay) p-3 rounded-4xl">
+                        {data && <RenderDetails pokemon={data[0]} ability={ability} />}
+                        <div className="m-auto flex items-center justify-center">
+                            {data && <RenderFeedingStrip data={data} />}
+                        </div>
+                    </div>
                 </div>
             </dialog>
         </>
@@ -67,32 +67,67 @@ export function RenderModal({ data, setData }) {
 }
 
 function RenderDetails({ pokemon, ability }) {
-    const generalCss = 'm-2 p-2'
     return (
-        <div className="">
-            <span className={generalCss}>BMI:{(pokemon.weight / (pokemon.height ** 2)).toFixed(2)}</span>
-            <span className={generalCss}>Weight: {pokemon.weight} Kg</span>
-            <span className={generalCss}>Height: {pokemon.height} Metres</span>
-            <div>
-                <span className={generalCss}>Gender-Rate: {checkGender(pokemon.gender_rate)}</span><br />
-                <span className={generalCss} >Nature: {checkSocial(pokemon.base_happiness)}</span><br />
-                <span className={generalCss} >Personality: {checkBehavior(pokemon.capture_rate)}</span><br />
-                <span className={generalCss} >Habitat: {checkHabitat(pokemon.habitat)}</span>
+        <div className="w-fit flex flex-col justify-center items-center gap-3 px-2 pb-4">
+            <div className="flex flex-wrap justify-center w-fit m-auto
+             whitespace-nowrap gap-2 lg:gap-12 lg:p-6 lg:rounded-4xl
+             bg-(--bg-overlay) border-2 border-(--border) rounded-xl p-2">
+                <span className="text-(--text-secondary) text-xs lg:text-3xl">Height:
+                    <span className="text-(--text-muted) hover:text-(--text-primary) text-sm lg:text-4xl
+                     transition-all duration-200 ease-in-out">{pokemon.height} Feet</span>
+                </span>
+                <span className="text-(--text-secondary) text-xs lg:text-3xl">Weight:
+                    <span className="text-(--text-muted) hover:text-(--text-primary) text-sm lg:text-4xl
+                    transition-all duration-200 ease-in-out">{pokemon.weight} KG</span>
+                </span>
             </div>
-            <div className={generalCss}>
-                {ability.map(a => {
-                    return <div key={a.name}>
-                        <span>{capitalize(a.name)}</span>
-                        <span>Hidden-{capitalize(a.is_hidden)}</span>
-                        <div>{a.text}</div>
+
+            <div className="border-2 border-(--border) bg-(--bg-overlay) m-auto w-fit
+             rounded-xl px-2 text-(--text-muted) hover:text-(--text-primary) lg:p-12 lg:rounded-4xl
+             transition-all duration-400 ease-in-out">
+                {[
+                    { label: 'Gender Rate', value: checkGender(pokemon.gender_rate) },
+                    { label: 'Nature', value: checkSocial(pokemon.base_happiness) },
+                    { label: 'Personality', value: checkBehavior(pokemon.capture_rate) },
+                    { label: 'Habitat', value: checkHabitat(pokemon.habitat) },
+                ].map(({ label, value }) => (
+                    <div key={label} className="">
+                        <span className="text-(--text-secondary) text-xs lg:text-2xl">{label}:</span>
+                        <span className="text-sm lg:text-3xl">{value}</span>
                     </div>
-                })}
-                <div>{pokemon.pokedexEntry}</div>
+                ))}
+            </div>
+
+            <div className="flex flex-col justify-center items-center text-xs
+             gap-2">
+                {ability.map(a => (
+                    <div key={a.name}
+                        className="bg-(--bg-overlay) border-2 lg:border-4 lg:rounded-2xl border-(--border)
+                        rounded-xl p-4">
+                        <div className="flex items-center gap-2 flex-wrap">
+                            <span className="font-semibold text-(--text-secondary) tracking-widest lg:text-4xl">{capitalize(a.name)}:</span>
+                            <span className={`text-xs lg:text-4xl ${a.is_hidden
+                                ? 'text-red-400'
+                                : 'text-green-400'
+                                }`}>
+                                {a.is_hidden ? '(Hidden)' : '(Active)'}
+                            </span>
+                        </div>
+                        <p className="text-xs text-(--text-muted) lg:text-3xl
+                         hover:text-(--text-primary)
+                         transition-all duration-200 ease-in-out leading-relaxed">{a.text}</p>
+                    </div>
+                ))}
+            </div>
+
+            <div className="border-l-2 border-(--accent) p-4 lg:p-6 bg-(--bg-overlay) rounded-r-xl">
+                <p className="text-xs lg:text-2xl tracking-widest uppercase text-(--accent) mb-1.5">Pokédex Entry</p>
+                <p className="text-xs lg:text-4xl text-(--text-muted) leading-relaxed hover:text-(--text-primary)
+                 transition-all duration-400 ease-in-out">{pokemon.pokedexEntry}</p>
             </div>
         </div>
     )
 }
-
 function checkSocial(base_happiness) {
     if (base_happiness < 50) {
         return 'Introverted- So Shy/Pround to Distance itself with others leading to its grumpy mood.';

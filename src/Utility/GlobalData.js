@@ -37,7 +37,7 @@ export const GlobalData = {
         cooldown: 1,
         expiry: 2,
         favdexKey: 'favdex-storage',
-        berryDaily: 10,
+        berryDaily: 1000,
         randomPoints: {
             min: 2,
             max: 6

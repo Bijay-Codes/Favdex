@@ -19,25 +19,27 @@ export function RenderFeedingStrip({ data }) {
             setProg(currentData.progress);
         }
     }, []);
-
-
     return (
-        <>
-            <div className="relative w-1/2 select-none">
+        <div className="w-full flex flex-col items-center justify-center">
+            <div className="relative w-full lg:w-1/2 select-none flex flex-col items-center gap-2">
                 <RenderFavdexElem pokemon={pokemon} progress={prog} />
                 <button
-                    className=""
+                    className="mt-2 px-2 py-1.5 lg:px-4 lg:text-4xl rounded-lg border-2 lg:border-4 border-(--border) bg-(--accent-cta) 
+                    text-(--text-primary) hover:border-(--border-white) 
+                    transition-all duration-200 active:opacity-0 text-xs tracking-wide whitespace-nowrap"
                     onClick={() => {
                         const updatedProg = feedBerry(pokemon, berry, setBerry, setError);
                         if (updatedProg) setProg([...updatedProg]);
-                    }}>Feed({berry})</button>
-
+                    }}
+                >
+                    Feed ({berry})
+                </button>
             </div>
-            <div className="w-full text-center font-bold">
+            <div className="text-center font-bold">
                 {error}
             </div>
-        </>
-    );
+        </div>
+    )
 }
 
 function feedBerry(pokemon, berry, setBerry, setError) {
@@ -138,17 +140,19 @@ export function RenderFavdexElem({ pokemon, progress }) {
     let percent = poke.freindship <= 100 ? poke.freindship : 100;
 
     return (
-        <div className="h-6 w-full bg-white outline-2 outline-blue-700 relative overflow-hidden rounded-sm">
+        <div className="h-6 lg:h-8 w-full bg-white outline-2 lg:outline-4 outline-(--accent)
+        m-auto
+         relative overflow-hidden rounded-sm">
             <div
-                className={`${percent < 25 ? 'bg-red-300'
-                    : percent < 50 ? 'bg-yellow-300'
-                        : percent < 75 ? 'bg-green-300'
-                            : percent < 100 ? 'bg-green-500'
-                                : 'bg-green-600'
-                    } h-full transition-all duration-500`}
+                className={`${percent < 25 ? 'bg-rose-500'
+                    : percent < 50 ? 'bg-amber-400'
+                        : percent < 75 ? 'bg-sky-400'
+                            : percent < 100 ? 'bg-violet-400'
+                                : 'bg-emerald-400'
+                    } h-full transition-all duration-500 ease-in-out`}
                 style={{ width: `${Math.max(percent, 1)}%` }}
             />
-            <span className="absolute inset-0 flex justify-center items-center text-xl text-(--text-main)">
+            <span className="text-(--bg-base) absolute inset-0 flex justify-center items-center text-xl lg:text-4xl">
                 {poke.freindship <= 100 ? percent + '%' : poke.freindship + ' pts'}
             </span>
         </div>
