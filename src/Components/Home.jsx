@@ -29,9 +29,9 @@ export default function PokedexGrid() {
             <RenderModal data={modalData} setData={setData} />
 
             <main
-                className={`grid sm:grid-cols-[repeat(auto-fill,minmax(300px,1fr))]  md:grid-cols-3 xl:grid-cols-6
-                    gap-4 p-4
-                    rounded-lg ${filterData.length===0?'hidden':''}`}
+                className={`grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] md:grid-cols-3 xl:grid-cols-6 
+                     gap-4 p-4 rounded-lg xl:gap-5 justify-center
+                     ${filterData.length === 0 ? 'hidden' : ''}`}
             >
                 {filterData.length > 0 &&
                     filterData.map((poke) => {

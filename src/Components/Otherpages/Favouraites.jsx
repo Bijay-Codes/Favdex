@@ -21,7 +21,7 @@ export function RenderFavdex() {
     }, []);
     return (
         <>
-            <RenderNav homeView={false} />
+            <RenderNav />
             <RenderRemovePane selected={selected} favdex={favdexList} setFavdex={setFavdex} setSelected={setSelected} handleRemove={handleRemove} />
             {!favdex
                 ? null

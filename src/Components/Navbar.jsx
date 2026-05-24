@@ -1,12 +1,15 @@
 import { NavLink } from "react-router-dom"
 
-export function RenderNav({ homeview = true }) {
+export function RenderNav() {
     const link = `text-(--text-secondary)`;
     const activeLink = `text-(--text-primary)
      underline decoration-(--accent) decoration-3 underline-offset-2
      `;
     return (
-        <nav className={`nav-bar ${homeview ? '' : ''} flex gap-6 mr-6`}>
+        <nav className={`header-part [grid-area:nav]
+             flex gap-2 justify-center items-center
+             bg-(--bg-overlay)
+             w-full md:gap-6 md:pr-5 pb-2 pr-2`}>
             <span className="text-(--accent) text-2xl">Favdex</span>
             <div className="ml-auto flex justify-evenly gap-4 text-md">
                 <NavLink to='/' className={({ isActive }) => isActive ? activeLink : link}>Home</NavLink>

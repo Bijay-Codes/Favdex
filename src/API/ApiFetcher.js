@@ -75,6 +75,8 @@ function formating(data) {
             speed: data.stats.find(s => s.stat.name === 'speed')?.base_stat ?? 0,
         },
         base_experience: data.base_experience ?? 0,
+        is_baby: data.speciesData.is_baby ?? null,
+        growth_rate: data.speciesData.growth_rate?.name ?? null,
         is_legendary: data.speciesData.is_legendary ?? false,
         is_mythical: data.speciesData.is_mythical ?? false,
         egg_groups: data.speciesData.egg_groups.map(g => g.name) ?? [],

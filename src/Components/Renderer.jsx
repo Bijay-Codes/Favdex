@@ -23,31 +23,33 @@ export function RenderPokemon({ pokemon, setData, modalview = false, favView = f
         <div className={`${!modalview && !favView ?
             `${favdex.includes(pokemon.id) ? 'fav-pokemons' : 'cards'}
                flex flex-col items-center justify-center text-center
-               gap-6 aspect-square rounded-2xl p-2
-               bg-(--bg-surface) border-2 border-(--border)
+               gap-6 h-fit overflow-hidden rounded-2xl p-2
+                border-2 border-(--border)
                hover:bg-(--bg-elevated) hover:-translate-y-1.5 hover:border-(--border-white) hover:shadow-[0_4px_5px_var(--accent-hover)]
                transition-all ease-in-out duration-300` : ''}
         ${pokemon.types.includes('psychic') ? 'psyshock' : ''}
         ${favView ? '' : ''}`}
             onClick={() => { if (!modalview) setData([pokemon]) }}>
             <span
-                className="flex gap-2 text-xl justify-center items-center">
+                className="flex gap-2 text-xl justify-center items-center
+                text-(--text-primary)">
                 {'#' + pokemon.id}
             </span>
 
-            <div className="img-container relative aspect-square w-fit flex items-center justify-center">
+            <div className="relative aspect-square w-fit flex items-center justify-center
+            ">
                 {(isLoading || iserror) && (
                     <img
                         src={mewUrl}
-                        className="absolute img-mew inset-0 w-full h-full object-contain z-0"
+                        className="absolute inset-0 w-full h-full object-contain z-0"
                         alt="Loading/Error Placeholder"
                     />
                 )}
                 {!iserror && (
                     <img
                         loading="lazy"
-                        className={`poke-img relative z-1 w-full h-full object-contain
-                             transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}
+                        className={`relative z-1 w-full h-full object-contain
+                            transition-all ease-in-out duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}
                         `}
                         onLoad={() => setLoaded(false)}
                         onError={() => {
@@ -62,25 +64,24 @@ export function RenderPokemon({ pokemon, setData, modalview = false, favView = f
                     />
                 )}
             </div>
-            <div className="">
-                <div className="">Species:
-                    <span className="">{capitalize(pokemon.name)}</span>
+            <div className="text-xl flex flex-col items-center gap-2 pb-1">
+                <div className="text-(--text-muted) font-extrabold">Species:
+                    <span className="text-(--text-primary)">{capitalize(pokemon.name)}</span>
                 </div>
                 {!favView &&
-                    <div className="flex gap-2 justify-center relative">
+                    <div className="flex gap-4 justify-center relative min-w-0 overflow-hidden">
                         {
                             pokemon.types.map(type => {
                                 return <span
                                     key={type}
-                                    className={`${type} px-4 rounded`}
+                                    className={`${type} poke-types shrink px-4 rounded`}
                                 >{capitalize(type)}</span>
                             })
                         }
                     </div>
                 }
-                <span className={`${map[pokeTag]} poke-tag px-2 mt-1`}
-                >
-                    {pokeTag}
+                <span className={`${map[pokeTag] ?? ''} poke-tag py-1 px-2`}>
+                    {pokeTag ?? '\u00A0'}
                 </span>
             </div>
         </div>

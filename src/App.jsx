@@ -6,7 +6,7 @@ import RenderAbout from "./Components/Otherpages/About.jsx";
 export default function App() {
     return (
         <BrowserRouter>
-            <div className=""
+            <div className="w-full m-auto"
             style={{ background: 'var(--gradient-page)' }}>
                 <Routes>
                     <Route path="/" element={<RenderHome />} />

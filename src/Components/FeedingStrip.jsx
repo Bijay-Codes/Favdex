@@ -5,7 +5,7 @@ import { genRandom } from "../Utility/util-basic";
 import { saveToStorage, getItem } from "../Utility/storagehelper";
 import { PokeContext } from "./Hooks/PokedexContext";
 import '../app.css';
-
+import '../ComponentCSS/Header.css'
 export function RenderFeedingStrip({ data }) {
     const pokemon = data[0];
     const { favdexKey } = GlobalData.favdex;
@@ -124,7 +124,7 @@ function checkMilestones(poke, updated, added) {
 
 export function RenderBerry({ count }) {
     return (
-        <div className="berry-strip pr-1">
+        <div className="[grid-area:berry] flex ml-auto pr-1">
             <img className="w-6 h-6" src="./sitrus-berry.png" alt="berry" />
             <span className="ml-1 text-(--text-inverse)">{count}</span>
         </div>

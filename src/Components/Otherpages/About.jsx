@@ -27,7 +27,7 @@ export default function RenderAbout() {
     return (
         <div
             className="text-white">
-            <RenderNav homeview={false} />
+            <RenderNav />
             {message && <div>{message}</div>}
             <section>
                 <h2>About FavDex</h2>

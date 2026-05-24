@@ -8,9 +8,11 @@ export function RenderSearchbar() {
     const { pokedex, setData, setType } = useContext(PokeContext);
 
     return (
-        <div className=''>
+        <div className='header-part [grid-area:search] relative overflow-hidden mb-2'>
             <input
-                className='flex-1 min-w-1/2 max-w-[70%]'
+                className='w-full pl-2 rounded-lg
+                 bg-(--bg-elevated) mask-r-from-90% border-2 border-(--border-white)
+                 focus:outline-2 focus:outline-(--accent)'
                 placeholder='Search'
                 type="search"
                 value={text}
@@ -19,7 +21,9 @@ export function RenderSearchbar() {
                     e.key === 'Enter' && handleSearch(text, setText, pokedex, setData, setType)}
             />
             <button
-                className=''
+                className='[grid-area:search] absolute top-1/2 -translate-y-1/2 right-0
+                bg-(--accent-cta) px-2 hover:bg-(--accent-hover) h-full
+                rounded rounded-tl-2xl rounded-tr-2xl border-r-4 border-double'
                 onClick={() => handleSearch(text, setText, pokedex, setData, setType)}>
                 Search
             </button>

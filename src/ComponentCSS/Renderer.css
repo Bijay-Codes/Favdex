@@ -1,3 +1,7 @@
+.cards {
+  background: linear-gradient(to top right, var(--bg-overlay) 50%, var(--bg-surface) 100%);
+}
+
 .cards:hover {
-  background: radial-gradient(circle at top left, var(--bg-overlay) 50%, var(--bg-surface) 100%);
+  background: radial-gradient(circle at top right, var(--bg-overlay) 50%, var(--bg-surface) 100%);
 }

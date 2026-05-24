@@ -1,0 +1,10 @@
+.header-grid {
+    display: grid;
+    grid-template-areas: 'nav nav'
+        'search berry'
+        'filter filter';
+}
+
+.header-part{
+    padding-left: 0.5rem;
+}

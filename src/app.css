@@ -1,5 +1,4 @@
 @import 'tailwindcss';
-
 [data-theme="dark"] {
   /* backgrounds */
   --bg-base: #0B0D13;
@@ -15,7 +14,7 @@
 
   /* accent */
   --accent: #5B8DEF;
-  --accent-cta: #2B5FDF;
+  --accent-cta: #5583f7;
   --accent-hover: #7AAAF5;
   --accent-subtle: rgba(91, 141, 239, 0.10);
 
@@ -25,9 +24,10 @@
   --border-white: rgba(255, 255, 255, 0.25);
 
   /* gradients */
-  --gradient-page: linear-gradient(to bottom right, #0B0D13 0%, #0E1120 60%, #121830 100%);
+  --gradient-page:
+    linear-gradient(to bottom right, #0B0D13 0%, #0E1120 60%, #121830 100%);
   --gradient-accent:
-    linear-gradient(135deg, #2B5FDF 0%, #7B3FBF 100%);
+    linear-gradient(135deg, #5984f1 50%, #7B3FBF 50%);
   --gradient-card-hover:
     linear-gradient(135deg, #1A1F2C 0%, #1E2438 100%);
   --gradient-shine:
