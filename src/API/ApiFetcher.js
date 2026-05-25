@@ -86,5 +86,4 @@ function formating(data) {
         gender_rate: data.speciesData.gender_rate ?? null,
         pokedexEntry: data.speciesData.flavor_text_entries.find(e => e.language.name === 'en')?.flavor_text ?? null
     }
-
 }

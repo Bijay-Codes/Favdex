@@ -4,33 +4,38 @@ import { PokeContext } from "./Hooks/PokedexContext.jsx";
 import '../ComponentCSS/TypesCss.css'
 export function RenderFilterStrip({ array }) {
     const { type, setType } = useContext(PokeContext);
+
     return (
-        <div
-            className="header-part [grid-area:filter]
-             gap-5 flex flex-nowrap overflow-auto py-2">
+        <div className="header-part modern-scroll-x [grid-area:filter] gap-5 flex flex-nowrap overflow-auto py-2 lg:text-3xl lg:p-4">
             {array.map(data => {
-                let isFilter = data === type;
-                return <span
-                    key={data}
-                    className={`${isFilter ? `${data}`
-                        : ''} ${data} poke-types min-w-fit px-4 rounded-lg`}
-                    onClick={() => {
-                        if (type !== data) {
-                            setType(data);
-                        } else {
-                            setType(null);
-                        }
-                    }}>
-                    {capitalize(data)}
-                </span>
+                const isFilter = data === type;
+                return (
+                    <div
+                        key={data}
+                        className="flex items-center justify-center min-w-fit"
+                    >
+                        <span
+                            className={`${isFilter
+                                ? 'outline-2 outline-(--border-white) lg:outline-6 text-center'
+                                : data
+                                } poke-types lg:px-6 px-4 rounded-lg cursor-pointer transition-all relative`}
+                            onClick={() => setType(isFilter ? null : data)}
+                        >
+                            {capitalize(data)} <span
+                                className={`absolute right-0 bottom-0 text-xl text-(--text-primary) px-1 transition-all duration-200
+                                 ${isFilter ? 'opacity-100 scale-100' : 'opacity-0 scale-50'
+                                    }`}
+                            >𝕩</span>
+                        </span>
+                    </div>
+                );
             })}
         </div>
-    )
+    );
 }
-
 export function filterByType(list, type) {
     if (!type) return list;
     return list.filter(data => {
-        return data.types[0] === type || data.types[1] === type;
+        return data.types[0] === type || data.types?.[1] === type;
     })
 }

@@ -732,12 +732,10 @@
    }
 
    .electric::after {
-       content: '🗱';
-       filter: drop-shadow(4px 4px 1px white);
+       content: '🗲';
        animation: flicker 1.5s infinite linear;
    }
 
-   .electric-selected,
    .electric::before {
        content: '';
        position: absolute;

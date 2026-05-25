@@ -5,7 +5,9 @@ export function ErrorBox() {
     const { error } = useContext(PokeContext);
     return (
         error &&
-        <div className="h-max min-h-10 p-2 w-full text-(--text-inverse) fixed top-[20%] z-999 lg:text:2xl text-center">
+        <div className="h-max min-h-10 p-2 w-full
+         text-(--text-inverse) fixed top-[20%]
+         z-999 lg:text:2xl text-center">
             {error}
         </div>
     )

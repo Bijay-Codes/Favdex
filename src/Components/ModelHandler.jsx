@@ -47,9 +47,9 @@ export function RenderModal({ data, setData }) {
                     onClick={(e) => e.stopPropagation()}
                 >
                     <button
-                        className="absolute right-0 top-0 text-red-400 text-sm lg:text-4xl lg:p-2"
+                        className="absolute right-0 top-0 text-red-400 text-xs lg:text-3xl lg:p-2 "
                         onClick={closeModal}
-                    >Close</button>
+                    >Close <span>𝕩</span></button>
 
                     <div className="w-full p-4 rounded-2xl flex flex-col items-center justify-center">
                         {data && <RenderPokemon pokemon={data[0]} modalview={true} />}

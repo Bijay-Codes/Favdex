@@ -27,12 +27,15 @@ export function RenderFavdex() {
                 ? null
                 : favdex.length === 0
                     ? <RenderEmptyMessage />
-                    : <div className="favdex-grid">
+                    : <div className="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))]
+                     sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-6
+                     m-auto gap-4 p-4">
                         {favdex.map(poke => (
-                            <div className="flex flex-col items-center" key={poke.name}>
+                            <div className="bg-(--gradient-page) flex flex-col items-center" key={poke.name}>
                                 <RenderPokemon pokemon={poke} setData={setData} favView={true} />
                                 <button onClick={() => setSelected(poke.id)}
-                                    className="">
+                                    className="bg-(--accent)/80 text-(--text-primary) text-xl
+                                     px-4 border-2 border-(--border-white) rounded-br-3xl rounded-bl-3xl rounded lg:text-2xl">
                                     Remove
                                 </button>
                             </div>
@@ -74,20 +77,22 @@ function RenderRemovePane({ selected, favdex, setFavdex, setSelected, handleRemo
             }}>
             <section
                 className="w-full h-full p-6
-                 text-center
+                 text-center text-xl text-(--text-primary)
+                 bg-(--bg-overlay) border-2 border-(--border-white)
                  flex flex-col justify-center items-center
-                 rounded-lg rounded-b-4xl"
+                 rounded-xl lg:text-3xl"
                 onClick={(e) => e.stopPropagation()}
             >
                 <h1>Do you want to Remove this Pokemon from Favdex?</h1>
                 <div>All Progress you have mede with this pokemon will be lost</div>
-                <div className="flex gap-2">
+                <div className="flex gap-2 m-4">
                     <button
-                        className=""
+                        className="bg-emerald-400 w-max border-2 border-(--border-white) px-4 rounded-lg"
                         onClick={() => closePane()}>
                         No
                     </button>
                     <button
+                        className="bg-rose-500 w-max px-4 border-2 border-(--border-white) rounded-lg"
                         onClick={() => {
                             handleRemove(favdex, selected, setFavdex, setSelected, closePane);
                         }}>
@@ -127,11 +132,11 @@ async function getPokeData(list, pokedex) {
 
 function RenderEmptyMessage() {
     return (
-        <>
-            <h1 className="text-white">
+        <div className="text-(--text-primary) text-xl p-2 m-2 flex flex-col items-start justify-center">
+            <h1 className="font-extrabold text-shadow-2xs text-shadow-blue-100">
                 Your Favdex is Currently Empty try Feeding a Pokemon to add it here
             </h1>
-            <div className="text-white">It will be added here after you reach 100 Freindship Points with that Pokemon</div>
-        </>
+            <div className="text-sm">It will be added here after you reach 100 Freindship Points with that Pokemon</div>
+        </div>
     )
 }

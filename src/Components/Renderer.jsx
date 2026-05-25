@@ -26,9 +26,9 @@ export function RenderPokemon({ pokemon, setData, modalview = false, favView = f
                gap-6 h-fit overflow-hidden rounded-2xl p-2
                border-2 border-(--border)
                hover:bg-(--bg-elevated) hover:-translate-y-1.5 hover:border-(--border-white) hover:shadow-[0_4px_5px_var(--accent-hover)]
-               transition-all ease-in-out duration-300` : modalview?'':'cards grid rounded-4xl p-4 mt-4'}
+               transition-all ease-in-out duration-300` : modalview ? '' : `fav-pokemons rounded-4xl p-4 mt-4`}
         ${pokemon.types.includes('psychic') ? 'psyshock' : ''}`}
-            onClick={() => { if (!modalview) setData([pokemon]) }}>
+            onClick={() => { if (!modalview && !favView) setData([pokemon]) }}>
             <span
                 className="flex gap-2 text-xl justify-center items-center
                 text-(--text-primary)">
@@ -58,7 +58,7 @@ export function RenderPokemon({ pokemon, setData, modalview = false, favView = f
                         src={spriteUrl}
                         onClick={() => {
                             playCry(pokemon.cry);
-                            if (modalview) setShiny(!isShiny);
+                            if (modalview || favView) setShiny(!isShiny);
                         }}
                     />
                 )}

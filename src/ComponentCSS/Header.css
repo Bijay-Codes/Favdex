@@ -5,6 +5,32 @@
         'filter filter';
 }
 
-.header-part{
+.header-part {
     padding-left: 0.5rem;
+}
+
+.modern-scroll-x {
+    scrollbar-width: auto;
+    scrollbar-color: var(--text-muted) var(--bg-surface);
+}
+
+/* Chrome, Safari, Edge */
+.modern-scroll-x::-webkit-scrollbar {
+    height: 10px;
+}
+
+.modern-scroll-x::-webkit-scrollbar-track {
+    background: var(--bg-surface);
+    border-radius: 10px;
+}
+
+.modern-scroll-x::-webkit-scrollbar-thumb {
+    background-color: var(--text-muted);
+    border-radius: 50%;
+    border: 0.2rem solid var(--bg-surface);
+    transition: background-color 0.15s ease;
+}
+
+.modern-scroll-x::-webkit-scrollbar-thumb:hover {
+    background-color: var(--text-secondary);
 }
