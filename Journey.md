@@ -143,3 +143,11 @@ What i learnt today- Clamp css- This function of css is just like minmax except 
 
 
 Also noticed tailwind doesnt feel much bad these days its fine if i structure it like css properties it looks messy but a readable messy, probably how other devs do it as well so im going to stick to this style atleast it looks like something complex so nobody will touch it without thinking. I wonder if the same will happen when i learn typescript.
+
+Okay next day atleast it feels fine today so lets get the about page done today as well-
+The goal for today might look like finishing the about page and populating it with relevant data as well as find any responsive bugs i can and fix it so i can sleep peacefully
+
+I assume that the user will scan the about page like F pattern so i gotta optimise for that.
+In my vision i am thinking of using summary and details tags to show the user necessary data and give a drop down to show more honest and detailed info about that section if i dont go this method the site will look like a documentation site and not everyone likes to read it.
+
+okay first session is done i figure my voice is very dry honest and casual which wont sound good on a professional about page so im taking help of ai but that doesnt mean i give up on trying to sneak in my voice in it i will find a way to put my own dry voice there in the second session, total hours coded this session 2 hours...
