@@ -167,3 +167,8 @@ and while all this is happening our modal is trying to show a data because of mo
 How i fixed it? hmm as shamefull as it sounds i was so dam confused that i went and took help of AI which was a very painfull loop because i didnt even understand whats happening we spent literally hours thinking what the bug was and when i saw the search button method worked i told AI and it pinned the bug down so the fix was we just listen to the keydown and literally prevent html from doing its default behavior by element.preventDefault function, Yeah that simple... idk what to say atp
 
 Also side discovery... There is a record function in profiler tab in React Devtools that allows us to record when the site runs and when we stop recording it, this lists all the components that got rendered and WHY it rendered What caused it to rerender what updated it and which component made the update etc, pretty handy tool to be honest it can help us find bugs, though a dumb person like me wont know...
+
+Finishing at 7pm today... basically 2 hour in morning 2 hour debugging and now 3 hours more so total 7 hours coding... dam today is good,
+
+So what i did was styled the about page and created buttons to link to external sites like github and discord, Discord is not ready so the link isnt there yet but the github is totally linked.
+As i was saying i will try to find a way to put some of my voice in the about section i will try tomorrow as im completely drained for today i hope tomorrow is as peacefull as today not chaotic like yesterday, afterall what else can i do except hope.
