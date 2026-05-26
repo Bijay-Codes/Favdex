@@ -24,15 +24,28 @@ export function RenderModal({ data, setData }) {
                     ?.flavor_text ?? 'Still Mystery'
             }
         })).then(r => setAbility(r));
-
-        if (data) modalRef.current.showModal();
+    //     const timerId = setTimeout(() => {
+    //     if (modalRef.current && !modalRef.current.open) {
+    //         modalRef.current.showModal();
+    //     }
+    // }, 0);
+        if (data) {
+            console.log('calling showModal');
+            modalRef.current.showModal();
+            console.log('dialog open?', modalRef.current.open);
+            setTimeout(() => {
+                console.log('still open after 100ms?', modalRef.current?.open);
+            }, 100);
+        }
         else if (modalRef.current?.open) modalRef.current.close();
+        console.log('modal effect fired, data:', data);
     }, [data]);
 
     return (
         <>
             <style>{`#pokemon-modal::backdrop { backdrop-filter: blur(40px); }`}</style>
             <dialog
+            autoFocus
                 id="pokemon-modal"
                 className="w-[90%] md:w-[70%] lg:w-[55%] max-h-[90dvh] overflow-y-auto
                            text-(--text-secondary) bg-(--bg-overlay)/80

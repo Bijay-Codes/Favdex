@@ -1,7 +1,7 @@
 export const map = {
     'The Drifting Phantoms': 'phantom-tag',
     'The Dusk Dwellers': 'dweller-tag',
-    '--Lightning Blitz': 'blitz-tag',
+    'Lightning Blitz': 'blitz-tag',
     'The Frostborns': 'frost-tag',
     "Nature's Relics": 'relic-tag',
     'Rising Talons': 'talon-tag',

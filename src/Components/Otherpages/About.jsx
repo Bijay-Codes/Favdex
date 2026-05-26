@@ -24,11 +24,12 @@ export default function RenderAbout() {
     function clearFavdexData() {
         clearStorage(FAVDEX_KEY)
         dialogRef.current.close();
+        location.reload();
         showMessage("FavDex data cleared.");
     }
 
     return (
-        <div id="home" className="text-(--text-primary) text-xl relative">
+        <div className="text-(--text-primary) text-xl relative">
             <dialog
                 onClick={(e) => {
                     if (e.target === dialogRef.current) dialogRef.current.close();
@@ -51,7 +52,6 @@ export default function RenderAbout() {
                 <RenderNav />
                 {message && <div>{message}</div>}
                 <ul className="flex flex-wrap gap-4">
-                    <li><a href="#home">Home</a></li>
                     <li><a href="#about-project">Project</a></li>
                     <li><a href="#tech-used">Tech Stack</a></li>
                     <li><a href="#tutorial">Tutorial</a></li>

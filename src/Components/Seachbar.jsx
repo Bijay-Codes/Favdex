@@ -17,14 +17,19 @@ export function RenderSearchbar() {
                 type="search"
                 value={text}
                 onChange={(e) => setText(e.target.value)}
-                onKeyDown={(e) =>
-                    e.key === 'Enter' && handleSearch(text, setText, pokedex, setData, setType)}
+                onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        handleSearch(text, setText, pokedex, setData, setType, setError)
+                    }
+                }
+                }
             />
             <button
                 className='[grid-area:search] absolute top-1/2 -translate-y-1/2 right-0
                 bg-(--accent-cta) px-2 hover:bg-(--accent-hover) h-full lg:px-5 lg:text-2xl
                 rounded rounded-tl-2xl rounded-tr-2xl border-r-4 border-double'
-                onClick={() => handleSearch(text, setText, pokedex, setData, setType)}>
+                onClick={() => handleSearch(text, setText, pokedex, setData, setType, setError)}>
                 Search
             </button>
         </div>
@@ -47,9 +52,11 @@ function searchLocal(list, criteria) {
     })
     return pokeData;
 }
-async function handleSearch(text, setText, pokedex, setData, setType) {
+async function handleSearch(text, setText, pokedex, setData, setType, setError) {
     const cleanData = cleanInput(text);
     const localData = searchLocal(pokedex, cleanData);
+    console.log('cleanData:', cleanData);
+    console.log('localData:', localData);
     setText('');
     if (!cleanData) {
         return;
@@ -66,7 +73,6 @@ async function handleSearch(text, setText, pokedex, setData, setType) {
             const url = `${GlobalData.apiUrl}/${cleanData}`;
             const pokeData = await fetchSingle(url);
             setData([pokeData]);
-
         } catch {
             const flipped = cleanData.split('-').reverse().join('-');
             try {

@@ -10,7 +10,8 @@ function checkHardcoded(pokemon) {
     const { authorsChoice, labrat, manmade, digital } = GlobalData.pokemonNature;
     const { id } = pokemon;
     let tag = null;
-    if (labrat.includes(id)) tag = 'Lab Rat';
+    if(authorsChoice.includes(id)) tag='Authors Choice'
+    else if (labrat.includes(id)) tag = 'Lab Rat';
     else if (manmade.includes(id)) tag = 'Forged';
     else if (digital.includes(id)) tag = 'Glitchborn';
     return tag;

@@ -51,7 +51,7 @@ function formating(data) {
             {
                 name: aArr.ability.name,
                 url: aArr.ability.url,
-                is_hidden: String(aArr.is_hidden)
+                is_hidden: aArr.is_hidden
             }
         )),
         sprite: {
