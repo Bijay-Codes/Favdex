@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Space+Grotesk:wght@300..700&display=swap');
 @import 'tailwindcss';
 
 [data-theme="dark"] {
@@ -11,7 +12,10 @@
   --text-primary: #F0F2F8;
   --text-secondary: #8B92A8;
   --text-muted: #5A6380;
-  /* ⚠ large text / icons only */
+
+  /* fonts */
+  --primary-font: 'Space Grotesk', 'DM Sans', 'Trebuchet MS', sans-serif;
+  --secondary-font: 'Outfit', 'Nunito', 'Segoe UI', sans-serif;
 
   /* accent */
   --accent: #5B8DEF;

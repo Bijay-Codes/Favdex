@@ -21,18 +21,17 @@ export function PokeProvider({ children }) {
     useEffect(() => {
         const { favdexKey, berryDaily, cooldown, expiry } = GlobalData.favdex;
         let favdex = getItem(favdexKey);
-
         if (!favdex) {
             favdex = { ...favdexStorage };
         }
-
         const now = Date.now();
         let currentBerries = favdex.berries;
-
         const cooldownMs = cooldown * 24 * 60 * 60 * 1000;
+
         if (now - (favdex.lastLogin || 0) >= cooldownMs) {
-            currentBerries = berryDaily;
+            currentBerries = Math.min(currentBerries + berryDaily, 20);
             favdex.lastLogin = now;
+            favdex.lastExpiry = now;
             favdex.berries = currentBerries;
         }
 

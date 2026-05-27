@@ -23,7 +23,7 @@ export function RenderPokemon({ pokemon, setData, modalview = false, favView = f
         <div className={`${!modalview && !favView ?
             `${favdex.includes(pokemon.id) ? 'fav-pokemons' : 'cards'}
                flex flex-col items-center justify-center text-center
-               gap-6 h-fit overflow-hidden rounded-2xl p-2
+               gap-6 h-fit rounded-2xl p-4
                border-2 border-(--border)
                hover:bg-(--bg-elevated) hover:-translate-y-1.5 hover:border-(--border-white) hover:shadow-[0_4px_5px_var(--accent-hover)]
                transition-all ease-in-out duration-300` : modalview ? '' : `fav-pokemons rounded-4xl p-4 mt-4`}
@@ -73,15 +73,19 @@ export function RenderPokemon({ pokemon, setData, modalview = false, favView = f
                             pokemon.types.map(type => {
                                 return <span
                                     key={type}
-                                    className={`${type} poke-types shrink px-4 rounded`}
+                                    className={`${type} poke-types px-4 rounded`}
                                 >{capitalize(type)}</span>
                             })
                         }
                     </div>
                 }
-                <span className={`${map[pokeTag] ?? ''} poke-tag py-1 px-2`}>
-                    {pokeTag ?? '\u00A0'}
+                <span className={`${map[pokeTag] ?? ''} poke-tag py-1 px-2 min-h-6`}>
+                    {pokeTag}
                 </span>
+
+                {/* <span className={`${map[pokeTag] ?? ''} poke-tag py-1 px-2`}>
+                    {pokeTag ?? '\u00A0'}
+                </span> saving this here for backup and also this \u00a0 is confusing as heck on what it does */}
             </div>
         </div>
     )

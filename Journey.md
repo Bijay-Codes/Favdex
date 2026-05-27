@@ -172,3 +172,13 @@ Finishing at 7pm today... basically 2 hour in morning 2 hour debugging and now 3
 
 So what i did was styled the about page and created buttons to link to external sites like github and discord, Discord is not ready so the link isnt there yet but the github is totally linked.
 As i was saying i will try to find a way to put some of my voice in the about section i will try tomorrow as im completely drained for today i hope tomorrow is as peacefull as today not chaotic like yesterday, afterall what else can i do except hope.
+
+
+Today unexpected things happened, a powersurge hit and well since my laptop is currently so ancient that its practically a desktop with no battery, broken trackpad, usb keyboard, usb mouse its just desktop with extra steps so i couldnt code for today but in the end i have found a really usefull app for me...
+
+The app name is ResponsivelyApp... pretty responsible name telling what it does just by its name so what it helps me with is, it can stimulate my site across multiple devices at the same time so i can work on responsive design of my site. its pretty handy and can improve my workflow... though it would have been better if i didnt have myopia to begin with but well coding for 6-7 hours most of the time comes with a price to pay and i hope the price doesnt increase too much.
+
+What i did today--- i learnt i could use clamp() function that is very handy i literally forgot if i already mentioned it here or not but lets see.
+What it does is take 3 values one is minimum size (in px)  preffered size (in viewport width vw) and max size (in px) well this clamp function can be used pretty much everywhere what it does is it enables us to give browser direct instructions saying this element should be atleast min and shouldnt go beyond max while mid or prefered size is the baseline in which it can adjust, it enables smooth scaling between the sizes instead of using breakpoints we can use this function its a shame i already added breakpoint to the text and all and i have to optimize now.
+
+Since my head hurts right now this will be the last commit for today and in the background i am still coding not slaking off its just that i will be experimenting with the new app i found and the site.

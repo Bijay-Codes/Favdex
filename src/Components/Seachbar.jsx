@@ -10,7 +10,7 @@ export function RenderSearchbar() {
     return (
         <div className='header-part [grid-area:search] relative overflow-hidden mb-2'>
             <input
-                className='w-full pl-2 rounded-lg lg:py-2 xl:py-4 lg:text-2xl
+                className='w-full pl-2 rounded-lg lg:py-1 lg:text-2xl xl:text-3xl
                  bg-(--bg-elevated) mask-r-from-90% border-2 border-(--border-white)
                  focus:outline-2 focus:outline-(--accent)'
                 placeholder='Search'

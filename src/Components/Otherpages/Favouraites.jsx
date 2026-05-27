@@ -27,8 +27,8 @@ export function RenderFavdex() {
                 ? null
                 : favdex.length === 0
                     ? <RenderEmptyMessage />
-                    : <div className="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))]
-                     sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-6
+                    : <div className="grid grid-cols-[repeat(auto-fill,minmax(clamp(300px,20vw,400px),1fr))]
+                     w-[clamp(80%,85vw,90%)]
                      m-auto gap-4 p-4">
                         {favdex.map(poke => (
                             <div className="bg-(--gradient-page) flex flex-col items-center" key={poke.name}>
@@ -61,7 +61,7 @@ function RenderRemovePane({ selected, favdex, setFavdex, setSelected, handleRemo
     }, [selected]);
     return (
         <dialog id="dialog-confirm"
-            className="w-[minmax(fit-content,50%)] h-1/3 sm:min-w-[60%] md:min-w-[50%] m-auto
+            className="h-1/3 sm:min-w-[60%] md:min-w-[50%] m-auto
             bg-transparent"
             ref={dialogRef}
             onClick={(e) => {
