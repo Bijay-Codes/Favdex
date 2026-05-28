@@ -23,6 +23,7 @@
 
    /* Shared Styles */
    .poke-types {
+       font-family: 'Space Grotesk', 'DM Sans', 'Trebuchet MS', sans-serif;
        position: relative;
        display: inline-flex;
        align-items: center;
@@ -30,6 +31,7 @@
        overflow: hidden;
        font-weight: 600;
        flex-shrink: 1;
+       border-radius: 0.5rem;
    }
 
    /* Animations */

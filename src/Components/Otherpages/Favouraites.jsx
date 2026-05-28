@@ -27,9 +27,9 @@ export function RenderFavdex() {
                 ? null
                 : favdex.length === 0
                     ? <RenderEmptyMessage />
-                    : <div className="grid grid-cols-[repeat(auto-fill,minmax(clamp(300px,20vw,400px),1fr))]
+                    : <div className="grid grid-cols-[repeat(auto-fill,minmax(clamp(250px,15vw,400px),1fr))]
                      w-[clamp(80%,85vw,90%)]
-                     m-auto gap-4 p-4">
+                     m-auto gap-4 md:gap-16 p-4">
                         {favdex.map(poke => (
                             <div className="bg-(--gradient-page) flex flex-col items-center" key={poke.name}>
                                 <RenderPokemon pokemon={poke} setData={setData} favView={true} />
@@ -61,7 +61,7 @@ function RenderRemovePane({ selected, favdex, setFavdex, setSelected, handleRemo
     }, [selected]);
     return (
         <dialog id="dialog-confirm"
-            className="h-1/3 sm:min-w-[60%] md:min-w-[50%] m-auto
+            className="min-h-1/3 sm:min-w-[60%] md:min-w-[50%] m-auto
             bg-transparent"
             ref={dialogRef}
             onClick={(e) => {
@@ -84,7 +84,7 @@ function RenderRemovePane({ selected, favdex, setFavdex, setSelected, handleRemo
                 onClick={(e) => e.stopPropagation()}
             >
                 <h1>Do you want to Remove this Pokemon from Favdex?</h1>
-                <div>All Progress you have mede with this pokemon will be lost</div>
+                <div>All Progress you have made with this pokemon will be lost</div>
                 <div className="flex gap-2 m-4">
                     <button
                         className="bg-emerald-400 w-max border-2 border-(--border-white) px-4 rounded-lg"

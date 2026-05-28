@@ -16,7 +16,7 @@
   /* fonts */
   --primary-font: 'Space Grotesk', 'DM Sans', 'Trebuchet MS', sans-serif;
   --secondary-font: 'Outfit', 'Nunito', 'Segoe UI', sans-serif;
-
+  --brand-font: "Gasoek One", sans-serif;
   /* accent */
   --accent: #5B8DEF;
   --accent-secondary: #7B3FBF;
@@ -38,4 +38,22 @@
     linear-gradient(135deg, #1A1F2C 0%, #1E2438 100%);
   --gradient-shine:
     linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, transparent 60%);
+}
+
+.primary-font {
+  font-family: var(--primary-font);
+  letter-spacing: -0.02em;
+}
+
+.secondary-font {
+  font-family: var(--secondary-font);
+  line-height: 1.75;
+  font-weight: 400;
+}
+
+.brand-font{
+  font-family: var(--brand-font);
+  font-weight: 500;
+  line-height: 1.75;
+  letter-spacing: 2px;
 }

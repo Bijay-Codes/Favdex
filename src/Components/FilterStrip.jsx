@@ -12,17 +12,18 @@ export function RenderFilterStrip({ array }) {
                 return (
                     <div
                         key={data}
-                        className="flex items-center justify-center min-w-fit"
+                        className="flex items-center justify-center min-w-fit shrink"
                     >
                         <span
                             className={`${isFilter
-                                ? 'outline-2 outline-(--border-white) lg:outline-6 text-center'
+                                ? 'outline outline-(--border-white) text-center'
                                 : data
-                                } poke-types lg:px-6 px-4 rounded-lg cursor-pointer transition-all relative`}
-                            onClick={() => setType(isFilter ? null : data)}
-                        >
+                                } poke-types px-[clamp(0.5rem,2vw,2rem)] md:py-1 rounded-lg cursor-pointer text-[clamp(1rem,1vw,1.3rem)]
+                                 transition-all ease-in-out relative`}
+                            onClick={() => setType(isFilter ? null : data)}>
                             {capitalize(data)} <span
-                                className={`absolute right-0 bottom-0 text-xl text-(--text-primary) px-1 transition-all duration-200
+                                className={`absolute top-1/2 right-2 mr-0 -translate-x-1/2 -translate-y-1/2 text-(--text-primary)
+                                     transition-all duration-200
                                  ${isFilter ? 'opacity-100 scale-100' : 'opacity-0 scale-50'
                                     }`}
                             >𝕩</span>

@@ -39,7 +39,7 @@ export function useInitializer(ref, setFunct, offset, setFunct2) {
             }
             if (ent[0].isIntersecting && offset.current && !isFetching.current) {
                 isFetching.current = true;
-                fetchPokeApi(GlobalData.apiLimit, 3, offset.current).then(data => {
+                fetchPokeApi(GlobalData.apiLimit, 3, offset.current,setError).then(data => {
                     if (data) {
                         setFunct(previous => {
                             const updated = [...previous, ...data[0]];
@@ -52,6 +52,8 @@ export function useInitializer(ref, setFunct, offset, setFunct2) {
                 })
             }
         })
+        console.log('firing');
+        
         if (ref.current) observer.observe(ref.current);
         return () => observer.disconnect();
     }, [ref.current])

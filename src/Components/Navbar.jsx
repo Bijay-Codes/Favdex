@@ -9,8 +9,9 @@ export function RenderNav() {
         <nav className={`header-part [grid-area:nav]
              flex gap-2 justify-center items-center
              bg-(--bg-overlay)
-             w-full md:gap-6 md:pr-5 pb-2 pr-2`}>
-            <span className="text-(--accent) text-2xl lg:text-4xl ">Favdex</span>
+             w-full md:gap-6 md:pr-5 pb-2 pr-2
+             `}>
+            <span className="text-(--accent) text-xl lg:text-2xl brand-font">Favdex</span>
             <div className="ml-auto flex justify-evenly gap-4">
                 <NavLink to='/' className={({ isActive }) => isActive ? activeLink : link}>Home</NavLink>
                 <NavLink to='/favdex' className={({ isActive }) => isActive ? activeLink : link}>Favdex</NavLink>

@@ -29,11 +29,11 @@ export default function PokedexGrid() {
             <RenderModal data={modalData} setData={setData} />
 
             <main
-                className={`max-w-[90%] lg:max-w-[90%] m-auto
-            grid grid-cols-[repeat(auto-fill,minmax(clamp(300px,20vw,500px),1fr))]
-            gap-4 p-4 rounded-lg lg:mt-20 lg:gap-9 justify-center
-            ${filterData.length === 0 ? 'hidden' : ''}`}
-            >
+                className={`max-w-[90%] lg:max-w-[90%] mx-auto
+                px-2 md:px-6
+                grid grid-cols-[repeat(auto-fill,minmax(clamp(280px,15vw,500px),1fr))]
+                gap-4 lg:gap-9 p-4 rounded-lg lg:mt-20
+                ${filterData.length === 0 ? 'hidden' : ''}`}>
                 {filterData.length > 0 &&
                     filterData.map((poke) => {
                         return <RenderPokemon key={poke.id} pokemon={poke} setData={setData} />

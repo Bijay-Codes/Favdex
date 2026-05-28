@@ -21,12 +21,17 @@ export function RenderFeedingStrip({ data }) {
     }, []);
     return (
         <div className="w-full flex flex-col items-center justify-center">
-            <div className="relative w-full lg:w-1/2 select-none flex flex-col items-center gap-2">
+            <div className="w-full lg:w-1/2 select-none flex flex-col items-center gap-2">
                 <RenderFavdexElem pokemon={pokemon} progress={prog} />
+                <div className={`text-center fixed top-1/2 text-[clamp(1rem,1.2vw,1.5rem)]
+                 font-bold secondary-font text-emerald-300
+                 bg-(--bg-overlay) border p-6 ${error?'opacity-100':'opacity-0'}`}>
+                    {error}
+                </div>
                 <button
-                    className="mt-2 px-2 py-1.5 lg:px-4 lg:text-4xl rounded-lg border-2 lg:border-4 border-(--border) bg-(--accent-cta) 
-                    text-(--text-primary) hover:border-(--border-white) 
-                    transition-all duration-200 active:opacity-0 text-xs tracking-wide whitespace-nowrap"
+                    className="mt-2 px-2 py-1.5 lg:px-4 lg:text-xl rounded-lg border-2 lg:border-4 border-(--border) bg-(--accent-cta) 
+                    text-(--text-primary) hover:border-(--border-white) primary-font 
+                    transition-all duration-200 active:opacity-40 text-sm tracking-wide whitespace-nowrap"
                     onClick={() => {
                         const updatedProg = feedBerry(pokemon, berry, setBerry, setError);
                         if (updatedProg) setProg([...updatedProg]);
@@ -35,9 +40,7 @@ export function RenderFeedingStrip({ data }) {
                     Feed ({berry})
                 </button>
             </div>
-            <div className="text-center font-bold">
-                {error}
-            </div>
+
         </div>
     )
 }
@@ -140,7 +143,7 @@ export function RenderFavdexElem({ pokemon, progress }) {
     let percent = poke.freindship <= 100 ? poke.freindship : 100;
 
     return (
-        <div className="h-6 lg:h-8 w-full bg-white outline-2 lg:outline-4 outline-(--accent)
+        <div className="h-6 lg:h-8 w-[90%] bg-white outline lg:outline-2 outline-(--accent)
         m-auto
          relative overflow-hidden rounded-sm">
             <div
@@ -152,7 +155,7 @@ export function RenderFavdexElem({ pokemon, progress }) {
                     } h-full transition-all duration-500 ease-in-out`}
                 style={{ width: `${Math.max(percent, 1)}%` }}
             />
-            <span className="text-(--bg-base) absolute inset-0 flex justify-center items-center text-xl lg:text-4xl">
+            <span className="text-(--bg-base) absolute inset-0 flex justify-center items-center text-sm lg:text-xl">
                 {poke.freindship <= 100 ? percent + '%' : poke.freindship + ' pts'}
             </span>
         </div>

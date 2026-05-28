@@ -26,7 +26,7 @@ export function RenderPokemon({ pokemon, setData, modalview = false, favView = f
                gap-6 h-fit rounded-2xl p-4
                border-2 border-(--border)
                hover:bg-(--bg-elevated) hover:-translate-y-1.5 hover:border-(--border-white) hover:shadow-[0_4px_5px_var(--accent-hover)]
-               transition-all ease-in-out duration-300` : modalview ? '' : `fav-pokemons rounded-4xl p-4 mt-4`}
+               transition-all ease-in-out duration-300` : modalview ? 'm-auto' : `fav-pokemons rounded-4xl p-4 mt-4`}
         ${pokemon.types.includes('psychic') ? 'psyshock' : ''}`}
             onClick={() => { if (!modalview && !favView) setData([pokemon]) }}>
             <span
@@ -35,12 +35,11 @@ export function RenderPokemon({ pokemon, setData, modalview = false, favView = f
                 {'#' + pokemon.id}
             </span>
 
-            <div className="relative aspect-square w-fit flex items-center justify-center
-            ">
+            <div className="relative aspect-square  w-full flex items-center justify-center">
                 {(isLoading || iserror) && (
                     <img
                         src={mewUrl}
-                        className="absolute inset-0 w-full h-full object-contain z-0"
+                        className="mew-loading absolute inset-0 w-full h-full object-contain z-0"
                         alt="Loading/Error Placeholder"
                     />
                 )}
@@ -63,9 +62,9 @@ export function RenderPokemon({ pokemon, setData, modalview = false, favView = f
                     />
                 )}
             </div>
-            <div className="text-xl flex flex-col items-center gap-2 pb-1">
-                <div className="text-(--text-muted) font-extrabold">Species:
-                    <span className="text-(--text-primary)">{capitalize(pokemon.name)}</span>
+            <div className="flex flex-col items-center gap-2 mb-1 text-[clamp(1rem,1.2vw,3rem)]">
+                <div className="text-(--text-muted) font-extrabold primary-font">Species:
+                    <span className="text-(--text-primary) secondary-font text-[clamp(1rem,1.4vw,4rem)]">{capitalize(pokemon.name)}</span>
                 </div>
                 {!favView &&
                     <div className="flex gap-4 justify-center relative min-w-0 overflow-hidden">
@@ -91,19 +90,21 @@ export function RenderPokemon({ pokemon, setData, modalview = false, favView = f
     )
 }
 export const RenderBlank = forwardRef((props, ref) => {
-    const style = 'empty-cards cards aspect-square rounded-4xl';
+    const blanks = [1, 2, 3];
     return (
         <>
-            <div className={style} ref={ref}></div>
-            <div className={style}></div>
-            <div className={style}></div>
-            <div className={style}></div>
+            <div ref={ref} className="cards flex flex-col items-center justify-center gap-6 h-fit rounded-2xl p-4 border-2 border-(--border)">
+                <img src="/mew.png" className="mew-loading w-full h-full object-contain" />
+                <div className="skeleton h-4 w-1/3 rounded-lg" />
+                <div className="skeleton h-4 w-1/2 rounded-lg" />
+            </div>
+            {blanks.map(num => (
+                <div key={num} className="cards flex flex-col items-center justify-center gap-6 h-fit rounded-2xl p-4 border-2 border-(--border)">
+                    <img src="/mew.png" className="mew-loading w-full h-full object-contain" />
+                    <div className="skeleton h-4 w-1/3 rounded-lg" />
+                    <div className="skeleton h-4 w-1/2 rounded-lg" />
+                </div>
+            ))}
         </>
-    )
-})
-
-function playCry(url) {
-    const audio = new Audio(url);
-    audio.play();
-}
-
+    );
+});

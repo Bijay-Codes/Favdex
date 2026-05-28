@@ -24,30 +24,23 @@ export function RenderModal({ data, setData }) {
                     ?.flavor_text ?? 'Still Mystery'
             }
         })).then(r => setAbility(r));
-    //     const timerId = setTimeout(() => {
-    //     if (modalRef.current && !modalRef.current.open) {
-    //         modalRef.current.showModal();
-    //     }
-    // }, 0);
+        //     const timerId = setTimeout(() => {
+        //     if (modalRef.current && !modalRef.current.open) {
+        //         modalRef.current.showModal();
+        //     }
+        // }, 0);
         if (data) {
-            console.log('calling showModal');
             modalRef.current.showModal();
-            console.log('dialog open?', modalRef.current.open);
-            setTimeout(() => {
-                console.log('still open after 100ms?', modalRef.current?.open);
-            }, 100);
-        }
-        else if (modalRef.current?.open) modalRef.current.close();
-        console.log('modal effect fired, data:', data);
+        } else if (modalRef.current?.open) modalRef.current.close();
     }, [data]);
 
     return (
         <>
             <style>{`#pokemon-modal::backdrop { backdrop-filter: blur(40px); }`}</style>
             <dialog
-            autoFocus
+                autoFocus
                 id="pokemon-modal"
-                className="w-[90%] md:w-[70%] lg:w-[55%] max-h-[90dvh] overflow-y-auto
+                className="w-full md:w-[70%] max-h-[90vh] overflow-y-auto
                            text-(--text-secondary) bg-(--bg-overlay)/80
                            border-2 border-(--border-white) p-3 m-auto rounded-2xl"
                 ref={modalRef}
@@ -60,14 +53,14 @@ export function RenderModal({ data, setData }) {
                     onClick={(e) => e.stopPropagation()}
                 >
                     <button
-                        className="absolute right-0 top-0 text-red-400 text-xs lg:text-3xl lg:p-2 "
+                        className="absolute right-0 top-0 text-red-400 text-sm lg:text-3xl lg:p-2 "
                         onClick={closeModal}
                     >Close <span>𝕩</span></button>
 
                     <div className="w-full p-4 rounded-2xl flex flex-col items-center justify-center">
                         {data && <RenderPokemon pokemon={data[0]} modalview={true} />}
                     </div>
-                    <div className="bg-(--bg-overlay) p-3 rounded-4xl">
+                    <div className="bg-(--bg-overlay) w-fit rounded-2xl">
                         {data && <RenderDetails pokemon={data[0]} ability={ability} />}
                         <div className="m-auto flex items-center justify-center">
                             {data && <RenderFeedingStrip data={data} />}
@@ -82,21 +75,21 @@ export function RenderModal({ data, setData }) {
 function RenderDetails({ pokemon, ability }) {
     return (
         <div className="w-fit flex flex-col justify-center items-center gap-3 px-2 pb-4">
-            <div className="flex flex-wrap justify-center w-fit m-auto
-             whitespace-nowrap gap-2 lg:gap-12 lg:p-6 lg:rounded-4xl
-             bg-(--bg-overlay) border-2 border-(--border) rounded-xl p-2">
-                <span className="text-(--text-secondary) text-xs lg:text-3xl">Height:
-                    <span className="text-(--text-muted) hover:text-(--text-primary) text-sm lg:text-4xl
+            <div className="flex flex-wrap justify-center m-auto p-2
+             whitespace-nowrap gap-2 lg:gap-12 lg:p-6 lg:rounded-2xl
+             bg-(--bg-overlay) border border-(--border) rounded-xl">
+                <span className="text-(--text-secondary) text-sm lg:text-xl">Height:
+                    <span className="text-(--text-muted) hover:text-(--text-primary) text-xs lg:text-xl
                      transition-all duration-200 ease-in-out">{pokemon.height} Feet</span>
                 </span>
-                <span className="text-(--text-secondary) text-xs lg:text-3xl">Weight:
-                    <span className="text-(--text-muted) hover:text-(--text-primary) text-sm lg:text-4xl
+                <span className="text-(--text-secondary) text-sm lg:text-xl">Weight:
+                    <span className="text-(--text-muted) hover:text-(--text-primary) text-sm lg:text-2xl
                     transition-all duration-200 ease-in-out">{pokemon.weight} KG</span>
                 </span>
             </div>
 
             <div className="border-2 border-(--border) bg-(--bg-overlay) m-auto w-fit
-             rounded-xl px-2 text-(--text-muted) hover:text-(--text-primary) lg:p-12 lg:rounded-4xl
+             rounded-xl px-2 text-(--text-muted) hover:text-(--text-primary) lg:p-12 lg:rounded-2xl
              transition-all duration-400 ease-in-out">
                 {[
                     { label: 'Gender Rate', value: checkGender(pokemon.gender_rate) },
@@ -105,28 +98,28 @@ function RenderDetails({ pokemon, ability }) {
                     { label: 'Habitat', value: checkHabitat(pokemon.habitat) },
                 ].map(({ label, value }) => (
                     <div key={label} className="">
-                        <span className="text-(--text-secondary) text-xs lg:text-2xl">{label}:</span>
-                        <span className="text-sm lg:text-3xl">{value}</span>
+                        <span className="text-(--text-secondary) text-xs lg:text-xl">{label}:</span>
+                        <span className="text-sm lg:text-2xl">{value}</span>
                     </div>
                 ))}
             </div>
 
-            <div className="flex flex-col justify-center items-center text-xs
+            <div className="flex flex-col justify-center items-center
              gap-2">
                 {ability.map(a => (
                     <div key={a.name}
                         className="bg-(--bg-overlay) border-2 lg:border-4 lg:rounded-2xl border-(--border)
                         rounded-xl p-4">
                         <div className="flex items-center gap-2 flex-wrap">
-                            <span className="font-semibold text-(--text-secondary) tracking-widest lg:text-4xl">{capitalize(a.name)}:</span>
-                            <span className={`text-xs lg:text-4xl ${a.is_hidden
+                            <span className="font-semibold text-(--text-secondary) tracking-widest lg:text-xl">{capitalize(a.name)}:</span>
+                            <span className={`text-sm lg:text-xl ${a.is_hidden
                                 ? 'text-red-400'
                                 : 'text-green-400'
                                 }`}>
                                 {a.is_hidden ? '(Hidden)' : '(Active)'}
                             </span>
                         </div>
-                        <p className="text-xs text-(--text-muted) lg:text-3xl
+                        <p className="text-sm text-(--text-muted) lg:text-2xl
                          hover:text-(--text-primary)
                          transition-all duration-200 ease-in-out leading-relaxed">{a.text}</p>
                     </div>
@@ -134,8 +127,8 @@ function RenderDetails({ pokemon, ability }) {
             </div>
 
             <div className="border-l-2 border-(--accent) p-4 lg:p-6 bg-(--bg-overlay) rounded-r-xl">
-                <p className="text-xs lg:text-2xl tracking-widest uppercase text-(--accent) mb-1.5">Pokédex Entry</p>
-                <p className="text-xs lg:text-4xl text-(--text-muted) leading-relaxed hover:text-(--text-primary)
+                <p className="text-sm lg:text-xl tracking-widest uppercase text-(--accent) mb-1.5">Pokédex Entry</p>
+                <p className="text-sm lg:text-xl text-(--text-muted) leading-relaxed hover:text-(--text-primary)
                  transition-all duration-400 ease-in-out">{pokemon.pokedexEntry}</p>
             </div>
         </div>

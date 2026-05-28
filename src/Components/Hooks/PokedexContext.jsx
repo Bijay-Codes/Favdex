@@ -27,21 +27,21 @@ export function PokeProvider({ children }) {
         const now = Date.now();
         let currentBerries = favdex.berries;
         const cooldownMs = cooldown * 24 * 60 * 60 * 1000;
-
-        if (now - (favdex.lastLogin || 0) >= cooldownMs) {
-            currentBerries = Math.min(currentBerries + berryDaily, 20);
-            favdex.lastLogin = now;
-            favdex.lastExpiry = now;
-            favdex.berries = currentBerries;
-        }
-
         const expiryMs = expiry * 24 * 60 * 60 * 1000;
+
+        // 1. Expiry check FIRST
         if (favdex.lastExpiry && (now - favdex.lastExpiry >= expiryMs)) {
             currentBerries = 0;
             favdex.berries = 0;
             favdex.lastExpiry = now;
-        } else if (!favdex.lastExpiry) {
-            favdex.lastExpiry = now;
+        }
+
+        // 2. Then daily grant
+        if (now - (favdex.lastLogin || 0) >= cooldownMs) {
+            currentBerries = currentBerries + berryDaily; // no hardcoded cap
+            favdex.lastLogin = now;
+            favdex.lastExpiry = now; // reset expiry window on fresh grant
+            favdex.berries = currentBerries;
         }
 
         favdex.progress.forEach(item => {
