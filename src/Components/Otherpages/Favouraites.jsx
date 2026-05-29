@@ -129,14 +129,13 @@ async function getPokeData(list, pokedex) {
     return res;
 }
 
-
 function RenderEmptyMessage() {
     return (
-        <div className="text-(--text-primary) text-xl p-2 m-2 flex flex-col items-start justify-center">
-            <h1 className="font-extrabold text-shadow-2xs text-shadow-blue-100">
+        <div className="text-(--text-primary) text-2xl p-2 m-2 flex flex-col items-start justify-center">
+            <h1 className="font-extrabold text-shadow-2xs primary-font text-shadow-blue-100">
                 Your Favdex is Currently Empty try Feeding a Pokemon to add it here
             </h1>
-            <div className="text-sm">It will be added here after you reach 100 Freindship Points with that Pokemon</div>
+            <div className="text-xl secondary-font">It will be added here after you reach 100 Freindship Points with that Pokemon</div>
         </div>
     )
 }

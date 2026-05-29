@@ -1,9 +1,9 @@
 import { NavLink } from "react-router-dom"
 
 export function RenderNav() {
-    const link = `text-(--text-secondary) lg:text-2xl`;
+    const link = `text-(--text-secondary) secondary-font lg:text-2xl`;
     const activeLink = `text-(--text-primary) lg:text-2xl
-     underline decoration-(--accent) decoration-5 underline-offset-6
+     underline decoration-(--accent) decoration-5 underline-offset-6 primary-font
      `;
     return (
         <nav className={`header-part [grid-area:nav]
