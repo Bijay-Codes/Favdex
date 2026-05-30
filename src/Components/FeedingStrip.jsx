@@ -24,8 +24,8 @@ export function RenderFeedingStrip({ data }) {
             <div className="w-full lg:w-1/2 select-none flex flex-col items-center gap-2">
                 <RenderFavdexElem pokemon={pokemon} progress={prog} />
                 <div className={`text-center fixed top-1/2 text-[clamp(1rem,1.2vw,1.5rem)]
-                 font-bold secondary-font text-emerald-300
-                 bg-(--bg-overlay) border p-6 ${error?'opacity-100':'opacity-0'}`}>
+                 font-bold secondary-font text-emerald-300 m-auto
+                 bg-(--bg-overlay) border p-6 ${error ? 'opacity-100' : 'opacity-0'}`}>
                     {error}
                 </div>
                 <button
@@ -130,7 +130,7 @@ function checkMilestones(poke, updated, added) {
 export function RenderBerry({ count }) {
     return (
         <div className="[grid-area:berry] items-center flex ml-auto mr-2 text-xl lg:text-2xl">
-            <img className="w-fit-content lg:min-w-[5%] lg:scale-150 aspect-square" src="./sitrus-berry.png" alt="berry" />
+            <img className="w-fit-content image-rendering-pixelated lg:min-w-[5%] lg:scale-150 aspect-square" src="./sitrus-berry.png" alt="berry" />
             <span className="ml-1 text-(--text-inverse)">{count}</span>
         </div>
     );

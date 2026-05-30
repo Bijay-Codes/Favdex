@@ -735,6 +735,8 @@
 
    .electric::after {
        content: '🗲';
+       font-size: 0.8rem;
+       padding: 0.1rem;
        animation: flicker 1.5s infinite linear;
    }
 
@@ -814,6 +816,9 @@
    .fighting {
        color: #ffeaea;
        background: var(--fighting);
+   }
+
+   .fighting:hover {
        animation: badge-recoil 1.5s infinite linear;
    }
 
@@ -834,9 +839,13 @@
 
    .poison {
        color: #ffd0ff;
-       background: linear-gradient(to right, #5a005a, var(--poison) 40%, #5a005a);
        box-shadow: 0 0 4px 1px rgba(160, 64, 160, 0.4);
+       background: linear-gradient(to right, #5a005a, var(--poison) 40%, #5a005a);
+   }
+
+   .poison:hover {
        animation: toxic-pulse 3s ease-in-out infinite;
+
    }
 
    .poison::before {
@@ -852,7 +861,7 @@
        animation: stripe-crawl 0.6s linear infinite;
    }
 
-   .poison::after {
+   .poison:hover::after {
        content: '';
        position: absolute;
        inset: 0;
@@ -866,30 +875,33 @@
 
 
    .ground {
+       color: black;
        background: var(--ground);
-       animation: shake 3s ease-in-out infinite;
    }
 
-   .ground::before {
+   .ground:hover {
+       animation: shake 4s ease-in-out infinite;
+   }
+
+   .ground:hover::before {
        content: '';
        position: absolute;
        right: 0.8rem;
        width: 0.1rem;
        height: 100%;
        background-color: #3a2000;
-       animation: cracks 3s ease-in-out infinite;
+       animation: cracks 4s ease-in-out infinite;
    }
 
-   .ground::after {
+   .ground:hover::after {
        content: '';
        position: absolute;
        right: 1.2rem;
        width: 0.1rem;
        height: 85%;
        background: lch(from var(--ground) calc(l - 50) c h);
-       animation: fade 3s ease-in-out infinite 0.3s;
+       animation: fade 4s ease-in-out infinite 0.3s;
    }
-
 
    .flying {
        color: #f0eeff;
@@ -975,9 +987,12 @@
    .ghost {
        color: #e8d8ff;
        background: linear-gradient(135deg, #4a3870, var(--ghost));
-       animation: txt-glitch 5s ease-in-out infinite, drift 2.5s ease-in-out infinite;
+       animation: txt-glitch 5s ease-in-out infinite;
    }
 
+   .ghost:hover {
+       animation: drift 2.5s ease-in-out infinite
+   }
 
    .dragon {
        color: #d0b8ff;
@@ -1018,15 +1033,26 @@
    .dark::before {
        content: '◉ ◉';
        position: absolute;
-       top: 50%;
+       top: 10%;
        left: 50%;
-       font-size: 6px;
+       font-size: 0.3rem;
        letter-spacing: 6px;
        color: rgba(255, 180, 60, 0.85);
        transform: translate(-50%, -50%);
-       animation: eyes 4s ease-in-out infinite;
+       animation: eyes 3s ease-in-out infinite;
    }
 
+   .dark:hover::after {
+       content: '⊚ ⊚';
+       position: absolute;
+       bottom: 10%;
+       left: 20%;
+       font-size: 0.6rem;
+       letter-spacing: 6px;
+       color: rgba(255, 180, 60, 0.85);
+       transform: translate(-50%, -50%);
+       animation: eyes 3s ease-in-out infinite;
+   }
 
    .steel {
        color: #2a2a3a;

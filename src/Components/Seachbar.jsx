@@ -12,7 +12,7 @@ export function RenderSearchbar() {
         <div className='header-part [grid-area:search] relative mb-2'>
             <input
                 className='w-full pl-2 py-1 rounded-lg text-[clamp(1rem,1.5vw,1.5rem)]
-                 bg-(--bg-elevated) mask-r-from-90% border-2 border-(--border-white)
+                 bg-(--bg-elevated) mask-r-from-50% border-2 border-(--border-white)
                  focus:outline-2 focus:outline-(--accent) primary-font'
                 placeholder='Search'
                 type="search"
@@ -28,8 +28,8 @@ export function RenderSearchbar() {
             />
             <button
                 className='[grid-area:search] absolute top-1/2 -translate-y-1/2 right-0
-                bg-(--accent-cta) px-2 hover:bg-(--accent-hover) h-full text-[clamp(1rem,1.3vw,1.5rem)]
-                rounded rounded-tl-2xl rounded-tr-2xl border-r-4 border-double'
+                bg-(--accent-cta) px-2 hover:bg-(--accent-hover) h-[90%] text-[clamp(1rem,1.3vw,1.5rem)]
+                rounded rounded-bl-2xl rounded-br-2xl border-r-4 border-double'
                 onClick={() => handleSearch(text, setText, pokedex, setData, setType, setError)}>
                 Search
             </button>

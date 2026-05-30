@@ -61,7 +61,7 @@ export default function RenderAbout() {
 
             {/* Toast */}
             {message && (
-                <div className="primary-font fixed top-24 left-1/2 -translate-x-1/2 z-10
+                <div className="primary-font fixed top-24 left-1/2 -translate-x-1/2 z-50
                   bg-emerald-500 text-white text-[clamp(0.8rem,1.4vw,1rem)]
                   px-5 py-3 rounded-xl shadow-lg font-medium tracking-wide
                   animate-bounce">

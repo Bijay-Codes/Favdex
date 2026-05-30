@@ -37,15 +37,15 @@ export function RenderPokemon({ pokemon, setData, modalview = false, favView = f
 
             <div className="relative aspect-square  w-full flex items-center justify-center">
                 {(isLoading || iserror) && (
-                    <img
+                    <img alt='Mew.png'
+                        loading="lazy"
                         src={mewUrl}
                         className="mew-loading absolute inset-0 w-full h-full object-contain z-0"
-                        alt="Loading/Error Placeholder"
                     />
                 )}
                 {!iserror && (
                     <img
-                        loading="lazy"
+                        loading="lazy" alt={`${pokemon}.png`}
                         className={`relative z-1 w-full h-full object-contain
                             transition-all ease-in-out duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}
                         `}
@@ -94,13 +94,13 @@ export const RenderBlank = forwardRef((props, ref) => {
     return (
         <>
             <div ref={ref} className="cards flex flex-col items-center justify-center gap-6 h-fit rounded-2xl p-4 border-2 border-(--border)">
-                <img src="/mew.png" className="mew-loading w-full h-full object-contain" />
+                <img src="/mew.png" className="mew-loading w-full h-full object-contain" alt="Mew.png" />
                 <div className="skeleton h-4 w-1/3 rounded-lg" />
                 <div className="skeleton h-4 w-1/2 rounded-lg" />
             </div>
             {blanks.map(num => (
                 <div key={num} className="cards flex flex-col items-center justify-center gap-6 h-fit rounded-2xl p-4 border-2 border-(--border)">
-                    <img src="/mew.png" className="mew-loading w-full h-full object-contain" />
+                    <img src="/mew.png" className="mew-loading w-full h-full object-contain" alt="Mew.png" />
                     <div className="skeleton h-4 w-1/3 rounded-lg" />
                     <div className="skeleton h-4 w-1/2 rounded-lg" />
                 </div>
@@ -108,3 +108,8 @@ export const RenderBlank = forwardRef((props, ref) => {
         </>
     );
 });
+
+function playCry(url) {
+    const audio = new Audio(url);
+    audio.play();
+}
