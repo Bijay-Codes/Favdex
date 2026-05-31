@@ -22,12 +22,12 @@ export function RenderPokemon({ pokemon, setData, modalview = false, favView = f
     return (
         <div className={`${!modalview && !favView ?
             `${favdex.includes(pokemon.id) ? 'fav-pokemons' : 'cards'}
-               flex flex-col items-center justify-center text-center
-               gap-6 h-fit rounded-2xl p-4
-               border-2 border-(--border)
-               hover:bg-(--bg-elevated) hover:-translate-y-1.5 hover:border-(--border-white) hover:shadow-[0_4px_5px_var(--accent-hover)]
-               transition-all ease-in-out duration-300` : modalview ? 'm-auto' : `fav-pokemons rounded-4xl p-4 mt-4`}
-        ${pokemon.types.includes('psychic') ? 'psyshock' : ''}`}
+       flex flex-col items-center justify-center text-center
+       gap-6 min-h-105 h-fit rounded-2xl p-4
+       border-2 border-(--border)
+       hover:bg-(--bg-elevated) hover:-translate-y-1.5 hover:border-(--border-white) hover:shadow-[0_4px_5px_var(--accent-hover)]
+       transition-all ease-in-out duration-300` : modalview ? 'm-auto' : `fav-pokemons rounded-4xl p-4 mt-4`}
+${pokemon.types.includes('psychic') ? 'psyshock' : ''}`}
             onClick={() => { if (!modalview && !favView) setData([pokemon]) }}>
             <span
                 className="flex gap-2 text-xl justify-center items-center
@@ -35,30 +35,32 @@ export function RenderPokemon({ pokemon, setData, modalview = false, favView = f
                 {'#' + pokemon.id}
             </span>
 
-            <div className="relative aspect-square  w-full max-w-full m-auto flex items-center justify-center">
+            <div className="relative aspect-square  w-full max-w-full m-auto flex items-center justify-center"
+                style={{ height: '280px' }}>
                 {(isLoading || iserror) && (
-                    <img alt='Mew.png'
-                        loading="lazy"
+                    <img
                         src={mewUrl}
+                        alt="Mew.png"
+                        width={475}
+                        height={475}
+                        loading="lazy"
                         className="mew-loading absolute inset-0 w-full h-full object-contain z-0"
                     />
                 )}
                 {!iserror && (
+
                     <img
-                        loading="lazy" alt={`${pokemon} sprite`}
+                        alt={`${pokemon.name} sprite`}
+                        width={475}
+                        height={475}
+                        loading="lazy"
                         className={`relative z-0 w-full h-full object-contain ${imgStyle === 'pixel' ? 'w-24 h-24 [image-rendering:pixelated]' : 'w-full h-full'}
-                            transition-all ease-in-out duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}
-                        `}
+        transition-all ease-in-out duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}
+    `}
                         onLoad={() => setLoaded(false)}
-                        onError={() => {
-                            setError(true);
-                            setLoaded(false);
-                        }}
+                        onError={() => { setError(true); setLoaded(false); }}
                         src={spriteUrl}
-                        onClick={() => {
-                            playCry(pokemon.cry);
-                            if (modalview || favView) setShiny(!isShiny);
-                        }}
+                        onClick={() => { playCry(pokemon.cry); if (modalview || favView) setShiny(!isShiny); }}
                     />
                 )}
             </div>
@@ -96,22 +98,21 @@ export const RenderBlank = forwardRef((props, ref) => {
     const blanks = [1, 2, 3];
     return (
         <>
-            <div ref={ref} className="cards flex flex-col items-center justify-center gap-6 h-fit rounded-2xl p-4 border-2 border-(--border)">
-                <img src="/mew.png" className="mew-loading w-full h-full object-contain" alt="Mew.png" />
+            <div ref={ref} className="cards flex flex-col items-center justify-center gap-6 min-h-105 h-fit rounded-2xl p-4 border-2 border-(--border)">
+                <img src="/mew.png" width={475} height={475} className="mew-loading w-full h-full object-contain" alt="Mew.png" />
                 <div className="skeleton h-4 w-1/3 rounded-lg" />
                 <div className="skeleton h-4 w-1/2 rounded-lg" />
             </div>
             {blanks.map(num => (
-                <div key={num} className="cards flex flex-col items-center justify-center gap-6 h-fit rounded-2xl p-4 border-2 border-(--border)">
-                    <img src="/mew.png" className="mew-loading w-full h-full object-contain" alt="Mew.png" />
+                <div key={num} className="cards flex flex-col items-center justify-center gap-6 min-h-105 h-fit rounded-2xl p-4 border-2 border-(--border)">
+                    <img src="/mew.png" width={475} height={475} className="mew-loading w-full h-full object-contain" alt="Mew.png" />
                     <div className="skeleton h-4 w-1/3 rounded-lg" />
                     <div className="skeleton h-4 w-1/2 rounded-lg" />
                 </div>
             ))}
         </>
     );
-});
-
+})
 function playCry(url) {
     const audio = new Audio(url);
     audio.play();
