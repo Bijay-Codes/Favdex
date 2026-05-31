@@ -64,10 +64,10 @@ export function RenderModal({ data, setData }) {
                     <div className="w-full p-4 rounded-2xl flex flex-col items-center justify-center">
                         {data && <RenderPokemon pokemon={data[0]} modalview={true} />}
                     </div>
-                    <div className="bg-(--bg-overlay) w-fit rounded-2xl">
-                        {data && <RenderDetails pokemon={data[0]} ability={ability} />}
+                    <div className="bg-(--bg-overlay) w-fit py-4 rounded-2xl">
+                        {data && <RenderFeedingStrip data={data} />}
                         <div className="m-auto flex items-center justify-center">
-                            {data && <RenderFeedingStrip data={data} />}
+                            {data && <RenderDetails pokemon={data[0]} ability={ability} />}
                         </div>
                     </div>
                 </div>
@@ -83,7 +83,7 @@ function RenderDetails({ pokemon, ability }) {
              whitespace-nowrap gap-2 lg:gap-12 lg:p-6 lg:rounded-2xl
              bg-(--bg-overlay) border border-(--border) rounded-xl">
                 <span className="text-(--text-secondary) text-sm lg:text-xl">Height:
-                    <span className="text-(--text-muted) hover:text-(--text-primary) text-xs lg:text-xl
+                    <span className="text-(--text-muted) hover:text-(--text-primary) text-sm lg:text-2xl
                      transition-all duration-200 ease-in-out">{pokemon.height} Feet</span>
                 </span>
                 <span className="text-(--text-secondary) text-sm lg:text-xl">Weight:
@@ -140,47 +140,47 @@ function RenderDetails({ pokemon, ability }) {
 }
 function checkSocial(base_happiness) {
     if (base_happiness < 50) {
-        return `Low࠷ ${happiness_texts.low[genRandom(0, happiness_texts.low.length-1)]}`;
+        return `Low࠷ ${happiness_texts.low[genRandom(0, happiness_texts.low.length - 1)]}`;
     } else if (base_happiness < 110) {
-        return `Average࠷ ${happiness_texts.mid[genRandom(0, happiness_texts.mid.length-1)]}`;
+        return `Average࠷ ${happiness_texts.mid[genRandom(0, happiness_texts.mid.length - 1)]}`;
     } else {
-        return `High࠷ ${happiness_texts.high[genRandom(0, happiness_texts.high.length-1)]}`
+        return `High࠷ ${happiness_texts.high[genRandom(0, happiness_texts.high.length - 1)]}`
     }
 }
 
 function checkBehavior(catchrate) {
     if (catchrate < 5) {
-        return `Very Hard to catch࠷ ${catchrate_texts.veryLow[genRandom(0, catchrate_texts.veryLow.length-1)]}`;
+        return `Very Hard to catch࠷ ${catchrate_texts.veryLow[genRandom(0, catchrate_texts.veryLow.length - 1)]}`;
     }
     if (catchrate < 30) {
-        return `Not very Easy to catch࠷ ${catchrate_texts.lowMid[genRandom(0, catchrate_texts.lowMid.length-1)]}`;
+        return `Not very Easy to catch࠷ ${catchrate_texts.lowMid[genRandom(0, catchrate_texts.lowMid.length - 1)]}`;
     }
     if (catchrate < 150) {
-        return `Easy to catch࠷ ${catchrate_texts.high[genRandom(0, catchrate_texts.high.length-1)]}`;
+        return `Easy to catch࠷ ${catchrate_texts.high[genRandom(0, catchrate_texts.high.length - 1)]}`;
     }
-    return `Very Easy to catch࠷ ${catchrate_texts.veryHigh[genRandom(0, catchrate_texts.veryHigh.length-1)]}`;
+    return `Very Easy to catch࠷ ${catchrate_texts.veryHigh[genRandom(0, catchrate_texts.veryHigh.length - 1)]}`;
 }
 function checkHabitat(habitat) {
     if (!habitat) {
         return 'Unknown Geographical Area ⯑'
     } else if (habitat === 'cave') {
-        return `Caves࠷ ${habitat_texts.cave[genRandom(0, habitat_texts.cave.length-1)]}`;
+        return `Caves࠷ ${habitat_texts.cave[genRandom(0, habitat_texts.cave.length - 1)]}`;
     } else if (habitat === 'forest') {
-        return `Forests࠷ ${habitat_texts.forest[genRandom(0, habitat_texts.forest.length-1)]}`;
+        return `Forests࠷ ${habitat_texts.forest[genRandom(0, habitat_texts.forest.length - 1)]}`;
     } else if (habitat === 'grassland') {
-        return `Grasslands࠷ ${habitat_texts.grassland[genRandom(0, habitat_texts.grassland.length-1)]}`;
+        return `Grasslands࠷ ${habitat_texts.grassland[genRandom(0, habitat_texts.grassland.length - 1)]}`;
     } else if (habitat === 'mountain') {
-        return `Mountains࠷ ${habitat_texts.mountain[genRandom(0, habitat_texts.mountain.length-1)]}`;
+        return `Mountains࠷ ${habitat_texts.mountain[genRandom(0, habitat_texts.mountain.length - 1)]}`;
     } else if (habitat === 'rare') {
-        return `Rare࠷ ${habitat_texts.rare[genRandom(0, habitat_texts.rare.length-1)]}`;
+        return `Rare࠷ ${habitat_texts.rare[genRandom(0, habitat_texts.rare.length - 1)]}`;
     } else if (habitat === 'rough-terrain') {
-        return `Rough terrain࠷ ${habitat_texts.rough_terrain[genRandom(0, habitat_texts.rough_terrain.length-1)]}`;
+        return `Rough terrain࠷ ${habitat_texts.rough_terrain[genRandom(0, habitat_texts.rough_terrain.length - 1)]}`;
     } else if (habitat === 'sea') {
-        return `Sea࠷ ${habitat_texts.sea[genRandom(0, habitat_texts.sea.length-1)]}`;
+        return `Sea࠷ ${habitat_texts.sea[genRandom(0, habitat_texts.sea.length - 1)]}`;
     } else if (habitat === 'urban') {
-        return `Urban࠷ ${habitat_texts.urban[genRandom(0, habitat_texts.urban.length-1)]}`;
+        return `Urban࠷ ${habitat_texts.urban[genRandom(0, habitat_texts.urban.length - 1)]}`;
     } else if (habitat === 'waters-edge') {
-        return `Waters Edge࠷ ${habitat_texts.waters_edge[genRandom(0, habitat_texts.waters_edge.length-1)]}`;
+        return `Waters Edge࠷ ${habitat_texts.waters_edge[genRandom(0, habitat_texts.waters_edge.length - 1)]}`;
     }
 }
 
@@ -190,13 +190,13 @@ function checkGender(genderrate) {
     } else if (genderrate === -1) {
         return 'Genderless (No comments)';
     } else if (genderrate === 0) {
-        return `♂️ Males Only Species࠷ ${gender_texts.maleOnly[genRandom(0, gender_texts.maleOnly.length-1)]}`;
+        return `♂️ Males Only Species࠷ ${gender_texts.maleOnly[genRandom(0, gender_texts.maleOnly.length - 1)]}`;
     } else if (genderrate === 1) {
-        return `♀️ 12.5% Chance for Female to be born࠷ ${gender_texts.mostlyMale[genRandom(0, gender_texts.mostlyMale.length-1)]}`;
+        return `♀️ 12.5% Chance for Female to be born࠷ ${gender_texts.mostlyMale[genRandom(0, gender_texts.mostlyMale.length - 1)]}`;
     } else if (genderrate === 4) {
-        return `Balanced࠷ ${gender_texts.equal[genRandom(0, gender_texts.equal.length-1)]}`;
+        return `Balanced࠷ ${gender_texts.equal[genRandom(0, gender_texts.equal.length - 1)]}`;
     } else if (genderrate === 8) {
-        return `♀️ Female Only Species࠷ ${gender_texts.femaleOnly[genRandom(0, gender_texts.femaleOnly.length-1)]}`
+        return `♀️ Female Only Species࠷ ${gender_texts.femaleOnly[genRandom(0, gender_texts.femaleOnly.length - 1)]}`
     } else {
         const genChance = (genderrate / 8) * 100;
         return genChance + '%࠷ ♀️ Female chance';

@@ -109,13 +109,13 @@ function checkMilestones(poke, updated, added) {
             updated.pokemon.push(poke.id);
             saveToStorage(updated, favdexKey);
         }
-        return `You Have Successfully Added ${poke.name} to your Favdex.`;
+        return `You Have Successfully Added࠷ ${poke.name} to your Favdex.`;
     }
     else if (checkCrossed(150)) {
         return 'The Pokemon is already in your Favdex';
     }
     else if (checkCrossed(300)) {
-        return `Unmoved Love for the Pokemon- ${poke.name} `;
+        return `Unmoved Love for the Pokemon࠷ ${poke.name} `;
     }
     else if (checkCrossed(600)) {
         return 'Keep Going Lets see how long you stick to this pokemon';

@@ -55,13 +55,9 @@ function formating(data) {
             }
         )),
         sprite: {
-            shinySprite: data.sprites.other["official-artwork"].front_shiny ||
-                data.sprites.other["home"].front_shiny ||
-                data.sprites.front_shiny,
+            shinySprite: getSpriteUrl(data, 'shiny'),
 
-            frontSprite: data.sprites.other["official-artwork"].front_default ||
-                data.sprites.other["home"].front_default ||
-                data.sprites.front_default,
+            frontSprite: getSpriteUrl(data, 'base'),
         },
         height: (data.height * 0.328).toFixed(2),
         weight: (data.weight / 10).toFixed(2),
@@ -86,4 +82,34 @@ function formating(data) {
         gender_rate: data.speciesData.gender_rate ?? null,
         pokedexEntry: data.speciesData.flavor_text_entries.find(e => e.language.name === 'en')?.flavor_text ?? null
     }
+}
+
+function getSpriteUrl(data, type) {
+    const style = getItem(GlobalData.imgStyleKey) || 'official';
+    if (type === 'shiny') {
+        const shinyMap = {
+            official: data.sprites.other["official-artwork"].front_shiny ||
+                data.sprites.other["home"].front_shiny ||
+                data.sprites.front_shiny,
+            modern: data.sprites.other["official-artwork"].front_shiny ||
+                data.sprites.front_shiny, // no dreamworld shiny exists
+            pixel: data.sprites.front_shiny ||
+                data.sprites.other["official-artwork"].front_shiny,
+        };
+        return shinyMap[style] || shinyMap.official;
+    } else {
+        const spriteMap = {
+            official: data.sprites.other["official-artwork"].front_default ||
+                data.sprites.other["home"].front_default ||
+                data.sprites.front_default,
+            modern: data.sprites.other.dream_world.front_default ||
+                data.sprites.other["official-artwork"].front_default ||
+                data.sprites.front_default,
+            pixel: data.sprites.front_default ||
+                data.sprites.other["official-artwork"].front_default,
+        };
+
+        return spriteMap[style] || spriteMap.official;
+    }
+
 }

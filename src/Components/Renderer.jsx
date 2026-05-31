@@ -18,7 +18,7 @@ export function RenderPokemon({ pokemon, setData, modalview = false, favView = f
             pokemon.sprite.frontSprite;
     const pokeTag = analyzeNature(pokemon);
     const [favdex, setFavdex] = useState(getItem(GlobalData.favdex.favdexKey)?.pokemon || favdexStorage.pokemon);
-
+    const imgStyle = getItem(GlobalData.imgStyleKey);
     return (
         <div className={`${!modalview && !favView ?
             `${favdex.includes(pokemon.id) ? 'fav-pokemons' : 'cards'}
@@ -35,7 +35,7 @@ export function RenderPokemon({ pokemon, setData, modalview = false, favView = f
                 {'#' + pokemon.id}
             </span>
 
-            <div className="relative aspect-square  w-full flex items-center justify-center">
+            <div className="relative aspect-square  w-full max-w-full m-auto flex items-center justify-center">
                 {(isLoading || iserror) && (
                     <img alt='Mew.png'
                         loading="lazy"
@@ -45,8 +45,8 @@ export function RenderPokemon({ pokemon, setData, modalview = false, favView = f
                 )}
                 {!iserror && (
                     <img
-                        loading="lazy" alt={`${pokemon}.png`}
-                        className={`relative z-1 w-full h-full object-contain
+                        loading="lazy" alt={`${pokemon} sprite`}
+                        className={`relative z-0 w-full h-full object-contain ${imgStyle === 'pixel' ? 'w-24 h-24 [image-rendering:pixelated]' : 'w-full h-full'}
                             transition-all ease-in-out duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}
                         `}
                         onLoad={() => setLoaded(false)}
@@ -62,6 +62,9 @@ export function RenderPokemon({ pokemon, setData, modalview = false, favView = f
                     />
                 )}
             </div>
+            <p className="text-xs text-(--text-muted) text-center m-auto">
+                Click pokemon for Cry 🔊 ·  Toggle Shiny ✨
+            </p>
             <div className="flex flex-col items-center gap-2 mb-1 text-[clamp(1rem,1.2vw,3rem)]">
                 <div className="text-(--text-muted) font-extrabold primary-font">Species:
                     <span className="text-(--text-primary) secondary-font text-[clamp(1rem,1.4vw,4rem)]">{capitalize(pokemon.name)}</span>

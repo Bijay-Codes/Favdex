@@ -19,7 +19,7 @@ export const GlobalData = {
         labrat: [151, 152, 132],
         manmade: [351, 386, 649, 772, 773, 100, 101, 622, 623],
         digital: [137, 233, 474, 479, 10008, 10009, 10010, 10011, 10012, 81, 82, 462],
-        legendary:[],
+        legendary: [],
         // baseStats: {
         //     speed: { low: 50, mid: 89, high: 90 },
         //     ATKandDEF: { low: 50, mid: 84, high: 85 },
@@ -33,6 +33,7 @@ export const GlobalData = {
         // keeping this in case i need in future
     },
     pokedexKey: 'pokedex-scroll',
+    imgStyleKey: 'img-style',
     favdex: {
         cooldown: 1,
         expiry: 2,

@@ -1,15 +1,14 @@
 import { RenderNav } from "../Navbar";
 import { useState, useRef } from "react";
 import { GlobalData } from "../../Utility/GlobalData";
-import { clearStorage } from "../../Utility/storagehelper";
+import { clearStorage, getItem, saveToStorage } from "../../Utility/storagehelper";
 
 const POKEDEX_KEY = GlobalData.pokedexKey;
 const FAVDEX_KEY = GlobalData.favdex.favdexKey;
-
+const imgStyle = getItem(GlobalData.imgStyleKey) || 'default';
 export default function RenderAbout() {
     const dialogRef = useRef(null);
     const [message, setMessage] = useState("");
-
     const greenButton = 'secondary-font bg-emerald-500 hover:bg-emerald-600 text-white font-medium px-5 rounded-lg transition-colors cursor-pointer';
     const redButton = 'secondary-font bg-rose-500 hover:bg-rose-600 text-white font-medium px-5 rounded-lg transition-colors cursor-pointer';
 
@@ -59,7 +58,7 @@ export default function RenderAbout() {
                 </div>
             </dialog>
 
-            {/* Toast */}
+            {/* Messages */}
             {message && (
                 <div className="primary-font fixed top-24 left-1/2 -translate-x-1/2 z-50
                   bg-emerald-500 text-white text-[clamp(0.8rem,1.4vw,1rem)]
@@ -80,7 +79,7 @@ export default function RenderAbout() {
                         <li><a href="#about-project" className={navLink}>Project</a></li>
                         <li><a href="#tech-used" className={navLink}>Tech Stack</a></li>
                         <li><a href="#tutorial" className={navLink}>Tutorial</a></li>
-                        <li><a href="#cache-clear" className={navLink}>Data Settings</a></li>
+                        <li><a href="#settings" className={navLink}>Data Settings</a></li>
                         <li>
                             <a href="#contacts"
                                 className="primary-font px-4 py-1.5 rounded-full
@@ -95,7 +94,7 @@ export default function RenderAbout() {
             </nav>
 
             {/* Main Content */}
-<main className="max-w-5xl w-full mx-auto px-6 md:px-12 lg:px-16 py-8 space-y-14">
+            <main className="max-w-5xl w-full mx-auto px-6 md:px-12 lg:px-16 py-8 space-y-14">
 
                 {/* About */}
                 <section id="about-project" className="scroll-mt-32 space-y-4">
@@ -150,7 +149,7 @@ export default function RenderAbout() {
                     <div className="bg-(--bg-overlay)/40 border border-(--border) rounded-2xl p-6">
                         <h4 className="primary-font text-[clamp(1rem,2vw,1.25rem)] font-semibold uppercase
                          tracking-wider text-(--accent) mb-4">
-                            Features at a glance
+                            Features at glance
                         </h4>
                         <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                             {[
@@ -161,6 +160,7 @@ export default function RenderAbout() {
                                 "Track and manage your favorites",
                                 "Custom tags for special Pokémon",
                                 "Fast offline experience after initial load",
+                                "Swtich sprites from pixelated to modern or official sprite",
                             ].map((feature, idx) => (
                                 <li key={idx} className="flex items-start gap-2
                                  secondary-font text-[clamp(0.9rem,1.6vw,1.1rem)]">
@@ -173,8 +173,33 @@ export default function RenderAbout() {
                 </section>
 
                 {/* Data Settings */}
-                <section id="cache-clear" className="scroll-mt-32 space-y-6">
+                <section id="settings" className="scroll-mt-32 space-y-6">
                     <div>
+                        <div className="space-y-3 p-4">
+                            <h2 className="primary-font font-extrabold tracking-tight text-[clamp(1.375rem,3vw,2rem)]">
+                                # Image Style
+                            </h2>
+                            <p className="secondary-font text-[clamp(0.9rem,1.6vw,1.1rem)] opacity-75">
+                                Changing style will re-fetch Pokémon data.
+                            </p>
+                            <select
+                                defaultValue={imgStyle}
+                                onChange={(e) => {
+                                    saveToStorage(e.target.value, GlobalData.imgStyleKey);
+                                    clearPokedexCache();
+                                }}
+                                className="secondary-font w-full md:w-64
+                                    bg-(--bg-elevated) text-(--text-primary)
+                                    border border-(--border) hover:border-(--border-strong)
+                                    focus:outline-none focus:border-(--accent)
+                                    text-[clamp(0.9rem,1.6vw,1.1rem)]
+                                    px-4 py-2.5 rounded-xl cursor-pointer
+                                    transition-all">
+                                <option value="official">Default (Suggested)</option>
+                                <option value="pixel">Pixelated (Experimental)</option>
+                                <option value="modern">Modern (Experimental)</option>
+                            </select>
+                        </div>
                         <h2 className="primary-font font-extrabold tracking-tight mb-1
                          text-[clamp(1.375rem,3vw,2rem)]">
                             # Your Data
@@ -243,13 +268,17 @@ export default function RenderAbout() {
                         Have a suggestion, feature request, or found an edge-case bug? Reach out on our community platform.
                     </p>
                     <div className="flex items-center justify-center gap-3">
-                        <a href="#" target="_blank"
-                            className="primary-font inline-block
-                             text-[clamp(0.85rem,1.4vw,1rem)]
-                             bg-[#5865F2] text-white hover:bg-[#4752C4]
-                             font-semibold px-4 py-2 rounded-full shadow-md
-                             transition-all hover:-translate-y-0.5">
-                            Discord
+                        <a href="mailto:favdexsupport@gmail.com"
+                            className="primary-font inline-flex items-center gap-2
+                        text-[clamp(0.85rem,1.4vw,1rem)]
+                        bg-(--bg-overlay) text-(--text-primary) hover:border-(--accent) hover:text-(--accent)
+                        border border-(--border) font-semibold px-4 py-2 rounded-full shadow-md
+                        transition-all hover:-translate-y-0.5">
+                            <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <rect width="20" height="16" x="2" y="4" rx="2" />
+                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                            </svg>
+                            Email
                         </a>
                         <a href="https://github.com/Bijay-Codes" target="_blank"
                             className="primary-font inline-flex items-center gap-2

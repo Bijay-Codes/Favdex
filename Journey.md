@@ -191,3 +191,18 @@ okay i tested it on the About page and well... it looks okay actually but this w
 About page is diffrent though, because the about page is basically full of text the user will get annoyed if he has to read the text in a long horizontal line instead i understand that user would like to go and read it in F pattern or some similar pattern depending on them so the text shoud be centered and there should be margin between the text mostly more than half of the page like 60% of the page should show text and the remaining should be empty also there is another reason for this... since human attention goes to the center of the page the most we should avoid putting the text where his dont even follow naturally we already have a very low attention span probably 6-7 seconds which will be reduced to 0 if we try to make the user work or confuse his brain/eyes-
 
 Must have heard of rule of thirds where we divide a picture or page in 9 equal parts and we get ourself 4 boxes in the center, those boxes draw the most attention, our eyes go there without any effort almost automatically so we should take benifit of that by putting our most important conetent there as for why im not using it in pokedex grid??? well i think the cards draw attention on their own and i am giving a little breating space to the cards as well so i am fitting as many cards as it can fit.
+
+nice and peacefull sunday morning- lets see how long i code and stay bundled in my home today XD
+morning session was fine i guess but i will use today to find stuff to fix regardless of it.
+
+So today i thought making a discord server just to link it to the projects while its in its initial phases is pretty useless, so im replacing the link with a email link rather than discord.
+
+I have added a analytics component to the page to monitor the vercel deployment and other stuff to improve it.
+
+new features added- Sprite switcher: we can now change the sprite that the pokemon cards display from pixelated sprites to modern dreamworld sprites to official sprites and their shiny variants as well but as we know PokeApi doesnt provide any shiny variants of dreamworld sprites so i have added a fallback sprite in case that the user tries to toggle shiny regardless
+
+we can now see how many pokemon we have fetched till now in the top most section and see a message when filtering if the list is empty
+
+currently the performance of the site is stutering in mobile devices that might be due to the images sent by PokeApi is high quality images and loading them takes time... i could fix that if i was using Next.js but its just that its pointless if i do that since that will add a steep learing curve for now and add little to now ROI as for now but it will be helpfull in my journey to become a full stack developer regardless but i know myself enough if i keep doing this then i will forever keep trying to add new features.
+
+i have compressed the mewpng in public forlder so to improve the load time and the vite config is now structured so that the loading is faster (caching the non changing code/bundles and only downloads the ever changing codes)

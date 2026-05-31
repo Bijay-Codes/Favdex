@@ -27,17 +27,30 @@ export default function PokedexGrid() {
                 <RenderHeader />
             </div>
             <RenderModal data={modalData} setData={setData} />
-
+            {!type && (
+                <p className="text-(--text-primary) sm:text-left sm:w-fit secondary-font bg-(--bg-overlay) rounded-xl p-2 px-4 text-sm tracking-wide text-center">
+                    Pokémon fetched so far —{" "}
+                    <span className="primary-font text-(--accent) opacity-100 font-bold">
+                        {pokedex.length}
+                    </span>
+                </p>
+            )}
             <main
                 className={`max-w-[90%] lg:max-w-[90%] mx-auto
                 px-2 md:px-6
                 grid grid-cols-[repeat(auto-fill,minmax(clamp(280px,15vw,500px),1fr))]
                 gap-4 lg:gap-9 p-4 rounded-lg lg:mt-20
-                ${filterData.length === 0 ? 'hidden' : ''}`}>
-                {filterData.length > 0 &&
-                    filterData.map((poke) => {
-                        return <RenderPokemon key={poke.id} pokemon={poke} setData={setData} />
-                    })
+                `}>
+                {filterData.length > 0 ? (
+                    filterData.map((poke) => (
+                        <RenderPokemon key={poke.id} pokemon={poke} setData={setData} />
+                    ))
+                ) :
+                    type && (
+                        <p className="col-span-full text-center text-(--text-primary) lg:text-2xl opacity-50 py-20 primary-font text-xl">
+                            No Pokémon from your fetched list matches this type.
+                        </p>
+                    )
                 }
                 {
                     !type && !isComplete && <RenderBlank ref={unloadedRef} />

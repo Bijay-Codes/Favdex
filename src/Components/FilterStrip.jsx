@@ -23,7 +23,7 @@ export function RenderFilterStrip({ array }) {
                             onClick={() => setType(isFilter ? null : data)}>
                             {capitalize(data)} <span
                                 className={` text-(--text-primary)
-                                     transition-all duration-200
+                                     transition-all duration-200 p-1
                                  ${isFilter ? 'opacity-100 scale-100' : 'hidden opacity-0 scale-50'
                                     }`}
                             >𝕩</span>

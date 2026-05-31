@@ -1,11 +1,11 @@
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
-import { PokeContext, PokeProvider } from './Components/Hooks/PokedexContext.jsx'
-import { useContext } from 'react'
-
+import { PokeProvider } from './Components/Hooks/PokedexContext.jsx';
+import { Analytics } from '@vercel/analytics/react'
 createRoot(document.getElementById('root')).render(
     <PokeProvider>
         <App />
+        <Analytics />
     </PokeProvider>
 );
 
