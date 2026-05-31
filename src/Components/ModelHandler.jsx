@@ -46,7 +46,7 @@ export function RenderModal({ data, setData }) {
                 id="pokemon-modal"
                 className="w-full md:w-[70%] max-h-[90vh] overflow-y-auto
                            text-(--text-secondary) bg-(--bg-overlay)/80
-                           border-2 border-(--border-white) p-3 m-auto rounded-2xl"
+                           border-2 border-(--border-white) p-3 m-auto rounded-2xl "
                 ref={modalRef}
                 onClick={closeModal}
                 onCancel={closeModal}
