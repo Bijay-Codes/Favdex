@@ -635,6 +635,7 @@
 /* Type Badge Styles */
 
 .normal {
+    color: white;
     justify-content: flex-start;
     background: linear-gradient(var(--normal) 30%, hsl(from var(--normal) h s calc(l - 10)) 70%);
 }
@@ -683,7 +684,7 @@
 
 .grass {
     color: white;
-    background: linear-gradient(135deg, #5aaa30, var(--grass) 50%, #3a8020);
+    background: linear-gradient(135deg, #44712c, var(--grass) 50%, #265415);
 }
 
 .grass::before {

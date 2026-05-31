@@ -16,7 +16,7 @@ export const GlobalData = {
             666, 671, 677, 678, 678, 693, 706, 715, 719, 730,
             746, 752, 778, 807, 815, 823, 873, 922, 959, 937
         ],
-        labrat: [151, 152, 132],
+        labrat: [151],
         manmade: [351, 386, 649, 772, 773, 100, 101, 622, 623],
         digital: [137, 233, 474, 479, 10008, 10009, 10010, 10011, 10012, 81, 82, 462],
         legendary: [],
@@ -38,7 +38,7 @@ export const GlobalData = {
         cooldown: 1,
         expiry: 2,
         favdexKey: 'favdex-storage',
-        berryDaily: 1000,
+        berryDaily: 10,
         randomPoints: {
             min: 2,
             max: 6

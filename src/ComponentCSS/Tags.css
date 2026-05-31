@@ -1,27 +1,41 @@
 .poke-tag {
-    font-family:  'Space Grotesk', 'DM Sans', 'Trebuchet MS', sans-serif;
+    font-family: 'Space Grotesk', 'DM Sans', 'Trebuchet MS', sans-serif;
     display: inline-flex;
     align-items: center;
     border-radius: 0.5rem;
     font-weight: 500;
     letter-spacing: 0.05em;
     white-space: nowrap;
+    flex-shrink: 1;
 }
 
 .phantom-tag {
-    background: linear-gradient(135deg, #3d1f6e, #7c4dbd);
+    border-top: 2px solid #8c1ed4;
+    border-left: 4px solid #5d178c;
+    background: linear-gradient(135deg, #3d1f6e, transparent, #7c4dbd, transparent);
     color: #ede0ff;
+    box-shadow: 1px 2px 5px oklch(from #8c1ed4 l c calc(h + 180));
 }
 
 .dweller-tag {
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
     background: linear-gradient(135deg, #1e3320, #5a8050);
     color: #c8f0a0;
+    border-left: 1px solid gray;
 }
 
 .blitz-tag {
     background: linear-gradient(135deg, #1c2a00, #d4e000);
     color: #0d1117;
+    box-shadow: 3px 3px 0px #6a7000;
+    transform: skewX(-8deg);
 }
+
+.blitz-tag:hover {
+    transform: skewX(-8deg) translateY(-1px);
+}
+
 
 .frost-tag {
     background: linear-gradient(135deg, #0d2d44, #5ab8e8);
@@ -29,76 +43,127 @@
 }
 
 .relic-tag {
-    background: linear-gradient(135deg, #1a3a10, #6ab840);
+    border: 1px solid var(--border);
+    background: linear-gradient(135deg, #6ab840, #1a3a10, transparent);
     color: #c8f0a0;
 }
 
 .talon-tag {
+    position: relative;
     background: linear-gradient(135deg, #101e38, #4a80cc);
     color: #c4deff;
+    overflow: hidden;
+}
+
+.talon-tag::after {
+    content: '⋆';
+    position: absolute;
+    top: 0;
+    inset: 0;
+    animation: flicker 5s ease-in-out infinite;
+}
+
+@keyframes flicker {
+
+    0%,
+    100% {
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.2;
+    }
+
+    20% {
+        opacity: 0.4;
+    }
+
+    40% {
+        opacity: 0.6;
+    }
+
+    60% {
+        opacity: 0.4;
+    }
+
+    80% {
+        opacity: 0.5;
+    }
 }
 
 .strider-tag {
-    background: linear-gradient(135deg, #091e38, #1a7aa0);
+    background: linear-gradient(135deg, #051224, #091e38, #1a7aa0, #2cb0e1);
     color: #a0d8ef;
 }
 
 .guardian-tag {
-    background: linear-gradient(135deg, #242c34, #7a9ab0);
+    background: linear-gradient(135deg, #14191e, #242c34, #7a9ab0, #a0bcd0);
     color: #d4dce8;
 }
 
 .observer-tag {
-    background: linear-gradient(135deg, #280f3a, #a060e0);
+    background: linear-gradient(135deg, #150621, #280f3a, #a060e0, #c080ff);
     color: #e8c8ff;
 }
 
 .pyro-tag {
-    background: linear-gradient(135deg, #3a1000, #d45a00);
+    background: linear-gradient(135deg, #200800, #3a1000, #d45a00, #ff8424);
     color: #ffd0a0;
 }
 
 .primal-tag {
-    background: linear-gradient(135deg, #2e2010, #a87030);
+    background: linear-gradient(135deg, #1b1208, #2e2010, #a87030, #d09858);
     color: #e0c890;
 }
 
 .stonebound-tag {
-    background: linear-gradient(135deg, #252220, #887868);
+    background: linear-gradient(135deg, #151312, #252220, #887868, #a89888);
     color: #d0c8b8;
 }
 
 .bio-tag {
-    background: linear-gradient(135deg, #142810, #50a030);
+    background: linear-gradient(135deg, #0a1408, #142810, #50a030, #7cd854);
     color: #b8f0a0;
 }
 
 .vanguard-tag {
-    background: linear-gradient(135deg, #381010, #c03030);
+    background: linear-gradient(135deg, #200808, #381010, #c03030, #f05858);
     color: #ffc0b0;
 }
 
 .grace-tag {
-    background: linear-gradient(135deg, #341830, #c060a8);
+    background: linear-gradient(135deg, #1e0d1c, #341830, #c060a8);
     color: #f8c8f0;
 }
 
 .ascendant-tag {
-    background: linear-gradient(135deg, #1c1030, #8050c0);
-    color: #ffd080;
+    background: linear-gradient(135deg, #0e071a, #1c1030, #8050c0, #a878e8);
+    color: whitesmoke;
 }
 
 .lab-tag {
-    background: linear-gradient(135deg, #182030, #3090d0);
+    background: linear-gradient(135deg, #0b0f18, #182030, #3090d0, #60b8ff);
     color: #b0e0ff;
 }
 
 .forge-tag {
-    background: linear-gradient(135deg, #221c10, #907030);
+    background: linear-gradient(135deg, #141009, #221c10, #907030, #b89858);
     color: #e8d0a0;
 }
 
 .glitch-tag {
-    background: linear-gradient(135deg, #0e1c2a, #20a890);
+    background: linear-gradient(135deg, #050b12, #0e1c2a, #20a890, #3cd0b8);
     color: #a0ffee;
+}
+.fav-tag {
+    background: linear-gradient(135deg, #090610, #180f2b, #5b30a0, #dca842, #fff3c0);
+    color: #ffe8b0;
+    box-shadow: 0 0 0px rgba(220, 168, 66, 0);
+    transition: background-position 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                transform 0.2s ease, 
+                box-shadow 0.3s ease;
+}
+
+.fav-tag:hover {
+    box-shadow: 0 2px 8px rgba(220, 168, 66, 0.3);
 }

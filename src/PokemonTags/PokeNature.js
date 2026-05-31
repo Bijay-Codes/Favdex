@@ -10,7 +10,7 @@ function checkHardcoded(pokemon) {
     const { authorsChoice, labrat, manmade, digital } = GlobalData.pokemonNature;
     const { id } = pokemon;
     let tag = null;
-    if(authorsChoice.includes(id)) tag='Authors Choice'
+    if (authorsChoice.includes(id)) tag = "Author's Choice"
     else if (labrat.includes(id)) tag = 'Lab Rat';
     else if (manmade.includes(id)) tag = 'Forged';
     else if (digital.includes(id)) tag = 'Glitchborn';
@@ -46,7 +46,7 @@ function checkDriftingPhantom(poke) {
         !poke.is_mythical &&
         (poke.habitat === 'cave' || poke.habitat === 'urban') &&
         Number(poke.weight) <= 5
-    ) return "The Drifting Phantoms";
+    ) return "Drifting Phantoms";
 }
 
 function checkDuskDweller(poke) {
@@ -57,7 +57,7 @@ function checkDuskDweller(poke) {
         (poke.habitat === 'cave' || poke.habitat === 'forest') &&
         poke.capture_rate < 110 &&
         poke.base_happiness <= 50
-    ) return "The Dusk Dwellers";
+    ) return "Dusk Dwellers";
 }
 
 function checkLightningBlitz(poke) {
@@ -77,7 +77,7 @@ function checkFrostborn(poke) {
         !hasType(poke.types, ['rock', 'water']) &&
         (poke.habitat === 'cave' || poke.habitat === null) &&
         poke.capture_rate < 100
-    ) return "The Frostborns";
+    ) return "Frostborns";
 }
 
 function checkNaturesRelic(poke) {
@@ -105,7 +105,7 @@ function checkDepthStrider(poke) {
         !hasType(poke.types, ['fighting', 'rock']) &&
         poke.habitat === 'sea' &&
         (poke.capture_rate < 150 || poke.stats.speed >= 90)
-    ) return "The Depth Striders";
+    ) return "Depth Striders";
 }
 
 function checkGuardian(poke) {
@@ -116,7 +116,7 @@ function checkGuardian(poke) {
         poke.stats.defense >= 80 &&
         poke.capture_rate < 100 &&
         Number(poke.height) >= 1.0
-    ) return "The Guardians";
+    ) return "Guardians";
 }
 
 function checkObserver(poke) {
@@ -124,11 +124,9 @@ function checkObserver(poke) {
         !poke.is_baby &&
         hasType(poke.types, 'psychic') &&
         !hasType(poke.types, ['ice', 'fighting', 'water']) &&
-        !poke.is_legendary &&
-        !poke.is_mythical &&
         (poke.stats.sp_atk >= 90 || poke.stats.sp_def >= 90) &&
         poke.capture_rate < 100
-    ) return "The Observers";
+    ) return "Observers";
 }
 
 function checkPyroHazard(poke) {
@@ -138,7 +136,7 @@ function checkPyroHazard(poke) {
         !poke.is_legendary &&
         !poke.is_mythical &&
         poke.base_experience >= 150 &&
-        poke.base_happiness<=50
+        poke.base_happiness <= 50
     ) return "Pyro Hazards";
 }
 
@@ -149,7 +147,7 @@ function checkPrimalFang(poke) {
         !hasType(poke.types, ['dragon', 'flying', 'fairy']) &&
         poke.stats.attack >= 100 &&
         poke.capture_rate < 150
-    ) return "The Primal Fang";
+    ) return "Primal Fang";
 }
 
 function checkStonebound(poke) {
@@ -169,7 +167,7 @@ function checkBiohazard(poke) {
         !hasType(poke.types, ['fairy', 'grass']) &&
         poke.capture_rate < 120 &&
         poke.base_happiness <= 50
-    ) return "Biohazard";
+    ) return "Biohazards";
 }
 
 function checkVanguard(poke) {
@@ -178,7 +176,7 @@ function checkVanguard(poke) {
         hasType(poke.types, 'fighting') &&
         poke.stats.attack >= 90 &&
         poke.capture_rate < 100
-    ) return "The Vanguard";
+    ) return "Vanguard";
 }
 
 function checkVelvetGrace(poke) {
@@ -198,5 +196,5 @@ function checkAscendant(poke) {
         hasType(poke.types, 'dragon') &&
         poke.growth_rate === 'slow' &&
         (poke.is_legendary || poke.egg_groups.includes('undiscovered') || poke.capture_rate < 50)
-    ) return "The Ascendant";
+    ) return "Ascendants";
 }

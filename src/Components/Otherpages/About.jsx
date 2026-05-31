@@ -6,6 +6,7 @@ import { clearStorage, getItem, saveToStorage } from "../../Utility/storagehelpe
 const POKEDEX_KEY = GlobalData.pokedexKey;
 const FAVDEX_KEY = GlobalData.favdex.favdexKey;
 const imgStyle = getItem(GlobalData.imgStyleKey) || 'default';
+
 export default function RenderAbout() {
     const dialogRef = useRef(null);
     const [message, setMessage] = useState("");
@@ -41,14 +42,16 @@ export default function RenderAbout() {
                 onClick={(e) => { if (e.target === dialogRef.current) dialogRef.current.close(); }}
                 onKeyDown={(e) => { if (e.key === 'Escape') dialogRef.current.close(); }}
                 ref={dialogRef}
+                aria-labelledby="dialog-title"
+                aria-describedby="dialog-desc"
                 className="backdrop:bg-black/60 backdrop-blur-sm
                  bg-(--bg-overlay) text-(--text-primary) text-center m-auto
                  p-6 md:p-8 border border-(--border) rounded-2xl
                  min-w-[min(90vw,480px)] shadow-2xl">
-                <h3 className="primary-font font-extrabold text-[clamp(1.1rem,3vw,1.75rem)] mb-2 text-rose-400">
+                <h3 id="dialog-title" className="primary-font font-extrabold text-[clamp(1.1rem,3vw,1.75rem)] mb-2 text-rose-400">
                     Are you absolutely sure?
                 </h3>
-                <p className="secondary-font text-[clamp(0.9rem,1.6vw,1.1rem)] opacity-80 mb-6 leading-relaxed">
+                <p id="dialog-desc" className="secondary-font text-[clamp(0.9rem,1.6vw,1.1rem)] opacity-80 mb-6 leading-relaxed">
                     This will permanently delete all your FavDex data, including your caught Pokémon
                     and berry progress. This action cannot be undone.
                 </p>
@@ -58,18 +61,19 @@ export default function RenderAbout() {
                 </div>
             </dialog>
 
-            {/* Messages */}
-            {message && (
-                <div className="primary-font fixed top-24 left-1/2 -translate-x-1/2 z-50
-                  bg-emerald-500 text-white text-[clamp(0.8rem,1.4vw,1rem)]
-                  px-5 py-3 rounded-xl shadow-lg font-medium tracking-wide
-                  animate-bounce">
-                    {message}
-                </div>
-            )}
+            {/* Messages - Uses aria-live so screen readers capture the dynamic updates */}
+            <div aria-live="polite" aria-atomic="true" className="fixed top-24 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
+                {message && (
+                    <div className="primary-font bg-emerald-500 text-white text-[clamp(0.8rem,1.4vw,1rem)]
+                      px-5 py-3 rounded-xl shadow-lg font-medium tracking-wide
+                      animate-bounce pointer-events-auto">
+                        {message}
+                    </div>
+                )}
+            </div>
 
             {/* Sticky Nav */}
-            <nav className="sticky top-0 primary-font
+            <nav aria-label="About Page Navigation" className="sticky top-0 primary-font
              bg-(--bg-overlay)/90 backdrop-blur-md
              border-b-2 border-(--border) pb-4 z-10
              transition-all ease-in-out">
@@ -116,7 +120,7 @@ export default function RenderAbout() {
                  bg-(--bg-overlay) border border-(--border) rounded-2xl p-6 md:p-8 shadow-sm space-y-4">
                     <h2 className="primary-font font-bold tracking-tight flex items-center gap-2
                      text-[clamp(1.375rem,3vw,2rem)]">
-                        <span className="text-(--accent)">#</span> Tech Stack
+                        <span className="text-(--accent)" aria-hidden="true">#</span> Tech Stack
                     </h2>
                     <p className="secondary-font text-[clamp(0.95rem,1.8vw,1.25rem)] leading-relaxed opacity-80">
                         Built with <strong>React</strong> and the <strong>PokéAPI</strong>. Styled using CSS and{" "}
@@ -147,10 +151,10 @@ export default function RenderAbout() {
                     </div>
 
                     <div className="bg-(--bg-overlay)/40 border border-(--border) rounded-2xl p-6">
-                        <h4 className="primary-font text-[clamp(1rem,2vw,1.25rem)] font-semibold uppercase
+                        <h3 className="primary-font text-[clamp(1rem,2vw,1.25rem)] font-semibold uppercase
                          tracking-wider text-(--accent) mb-4">
                             Features at glance
-                        </h4>
+                        </h3>
                         <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                             {[
                                 "Search Pokémon by name",
@@ -160,11 +164,11 @@ export default function RenderAbout() {
                                 "Track and manage your favorites",
                                 "Custom tags for special Pokémon",
                                 "Fast offline experience after initial load",
-                                "Swtich sprites from pixelated to modern or official sprite",
+                                "Switch sprites from pixelated to modern or official sprite",
                             ].map((feature, idx) => (
                                 <li key={idx} className="flex items-start gap-2
                                  secondary-font text-[clamp(0.9rem,1.6vw,1.1rem)]">
-                                    <span className="text-(--accent) pt-0.5 shrink-0">✦</span>
+                                    <span className="text-(--accent) pt-0.5 shrink-0" aria-hidden="true">✦</span>
                                     <span className="opacity-95">{feature}</span>
                                 </li>
                             ))}
@@ -174,16 +178,18 @@ export default function RenderAbout() {
 
                 {/* Data Settings */}
                 <section id="settings" className="scroll-mt-32 space-y-6">
-                    <div>
-                        <div className="space-y-3 p-4">
+                    <div className="space-y-6">
+                        <div className="border border-(--border) bg-(--bg-overlay) p-6 rounded-2xl space-y-3">
+                            {/* Heading corrected to sequential h2 */}
                             <h2 className="primary-font font-extrabold tracking-tight text-[clamp(1.375rem,3vw,2rem)]">
                                 # Image Style
                             </h2>
-                            <p className="secondary-font text-[clamp(0.9rem,1.6vw,1.1rem)] opacity-75">
+                            <p id="img-style-desc" className="secondary-font text-[clamp(0.9rem,1.6vw,1.1rem)] opacity-75">
                                 Changing style will re-fetch Pokémon data.
                             </p>
                             <select
                                 defaultValue={imgStyle}
+                                aria-describedby="img-style-desc"
                                 onChange={(e) => {
                                     saveToStorage(e.target.value, GlobalData.imgStyleKey);
                                     clearPokedexCache();
@@ -200,13 +206,16 @@ export default function RenderAbout() {
                                 <option value="modern">Modern (Experimental)</option>
                             </select>
                         </div>
-                        <h2 className="primary-font font-extrabold tracking-tight mb-1
-                         text-[clamp(1.375rem,3vw,2rem)]">
-                            # Your Data
-                        </h2>
-                        <p className="secondary-font text-[clamp(0.9rem,1.6vw,1.1rem)] opacity-75">
-                            All data is stored locally on your device. Nothing is sent to any external server.
-                        </p>
+
+                        <div>
+                            <h2 className="primary-font font-extrabold tracking-tight mb-1
+                             text-[clamp(1.375rem,3vw,2rem)]">
+                                # Your Data
+                            </h2>
+                            <p className="secondary-font text-[clamp(0.9rem,1.6vw,1.1rem)] opacity-75">
+                                All data is stored locally on your device. Nothing is sent to any external server.
+                            </p>
+                        </div>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -274,19 +283,19 @@ export default function RenderAbout() {
                         bg-(--bg-overlay) text-(--text-primary) hover:border-(--accent) hover:text-(--accent)
                         border border-(--border) font-semibold px-4 py-2 rounded-full shadow-md
                         transition-all hover:-translate-y-0.5">
-                            <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                                 <rect width="20" height="16" x="2" y="4" rx="2" />
                                 <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
                             </svg>
                             Email
                         </a>
-                        <a href="https://github.com/Bijay-Codes" target="_blank"
+                        <a href="https://github.com/Bijay-Codes" target="_blank" rel="noopener noreferrer"
                             className="primary-font inline-flex items-center gap-2
                              text-[clamp(0.85rem,1.4vw,1rem)]
                              px-4 py-2 bg-[#1f2328] hover:bg-[#2c3137] text-white
                              font-semibold rounded-md border border-white/10
                              shadow-sm transition-colors">
-                            <svg className="w-4 h-4 shrink-0" viewBox="0 0 16 16" fill="currentColor">
+                            <svg className="w-4 h-4 shrink-0" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
                                 <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82A7.48 7.48 0 0 0 8 3c-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z" />
                             </svg>
                             <span>GitHub</span>

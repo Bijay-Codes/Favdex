@@ -23,9 +23,9 @@ export function RenderPokemon({ pokemon, setData, modalview = false, favView = f
         <div className={`${!modalview && !favView ?
             `${favdex.includes(pokemon.id) ? 'fav-pokemons' : 'cards'}
        flex flex-col items-center justify-center text-center
-       gap-6 min-h-105 h-fit rounded-2xl p-4
+       h-fit rounded-2xl p-4 gap-2
        border-2 border-(--border)
-       hover:bg-(--bg-elevated) hover:-translate-y-1.5 hover:border-(--border-white) hover:shadow-[0_4px_5px_var(--accent-hover)]
+       hover:bg-(--bg-elevated) hover:-translate-y-1 hover:border-(--border-white) hover:shadow-[0_4px_5px_var(--accent-hover)]
        transition-all ease-in-out duration-300` : modalview ? 'm-auto' : `fav-pokemons rounded-4xl p-4 mt-4`}
 ${pokemon.types.includes('psychic') ? 'psyshock' : ''}`}
             onClick={() => { if (!modalview && !favView) setData([pokemon]) }}>
@@ -35,14 +35,11 @@ ${pokemon.types.includes('psychic') ? 'psyshock' : ''}`}
                 {'#' + pokemon.id}
             </span>
 
-            <div className="relative aspect-square  w-full max-w-full m-auto flex items-center justify-center"
-                style={{ height: '280px' }}>
+            <div className="relative aspect-square min-h-1/2  w-full min-w-1/2 m-auto flex items-center justify-center">
                 {(isLoading || iserror) && (
                     <img
                         src={mewUrl}
                         alt="Mew.png"
-                        width={475}
-                        height={475}
                         loading="lazy"
                         className="mew-loading absolute inset-0 w-full h-full object-contain z-0"
                     />
@@ -51,12 +48,9 @@ ${pokemon.types.includes('psychic') ? 'psyshock' : ''}`}
 
                     <img
                         alt={`${pokemon.name} sprite`}
-                        width={475}
-                        height={475}
                         loading="lazy"
                         className={`relative z-0 w-full h-full object-contain ${imgStyle === 'pixel' ? 'w-24 h-24 [image-rendering:pixelated]' : 'w-full h-full'}
-        transition-all ease-in-out duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}
-    `}
+                        transition-all ease-in-out duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
                         onLoad={() => setLoaded(false)}
                         onError={() => { setError(true); setLoaded(false); }}
                         src={spriteUrl}

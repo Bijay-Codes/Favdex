@@ -57,7 +57,7 @@ export function RenderModal({ data, setData }) {
                     onClick={(e) => e.stopPropagation()}
                 >
                     <button
-                        className="absolute right-0 top-0 text-red-400 text-sm lg:text-3xl lg:p-2 "
+                        className="absolute right-0 top-0 text-red-400 text-sm lg:text-2xl lg:p-2 "
                         onClick={closeModal}
                     >Close <span>𝕩</span></button>
 

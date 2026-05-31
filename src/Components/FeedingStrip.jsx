@@ -29,9 +29,9 @@ export function RenderFeedingStrip({ data }) {
                     {error}
                 </div>
                 <button
-                    className="mt-2 px-2 py-1.5 lg:px-4 lg:text-xl rounded-lg border-2 lg:border-4 border-(--border) bg-(--accent-cta) 
+                    className="m-2 px-2 lg:px-4 lg:text-xl rounded-lg border-2 lg:border-4 border-(--border) bg-(--accent-cta) 
                     text-(--text-primary) hover:border-(--border-white) primary-font 
-                    transition-all duration-200 active:opacity-40 text-sm tracking-wide whitespace-nowrap"
+                    transition-all duration-200 ease-in active:opacity-40 text-sm tracking-wide whitespace-nowrap"
                     onClick={() => {
                         const updatedProg = feedBerry(pokemon, berry, setBerry, setError);
                         if (updatedProg) setProg([...updatedProg]);
