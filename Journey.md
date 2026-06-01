@@ -206,3 +206,18 @@ we can now see how many pokemon we have fetched till now in the top most section
 currently the performance of the site is stutering in mobile devices that might be due to the images sent by PokeApi is high quality images and loading them takes time... i could fix that if i was using Next.js but its just that its pointless if i do that since that will add a steep learing curve for now and add little to now ROI as for now but it will be helpfull in my journey to become a full stack developer regardless but i know myself enough if i keep doing this then i will forever keep trying to add new features.
 
 i have compressed the mewpng in public forlder so to improve the load time and the vite config is now structured so that the loading is faster (caching the non changing code/bundles and only downloads the ever changing codes)
+
+_________________________________________________________________________________________________________________________________
+
+So finally we have reached the end or have we? we will know in future when i come here to implement a light mode but as of now the project is finally completed and if you are reading this... first of all why are you reading this and how are you still alive after reading this well anyways you have reached the depths of it for now and will be seeing me on my next project.
+
+
+Today its finally time to look back and either regret or be proud of what i have built.
+So basically a whole month has passed since i started creating this site and in my opinion its finally complete (not complete if i see some more features i could add or issues but not now)
+
+So? well i know i should have created a features or experimental branch on github to keep the main branch 
+project clean and deployed all times and used the other branch to work on making features and testing before broken code goes live on the deployed page but it is what it is i cant change the past so i will change the future.
+
+So Our next destination will be My portfolio site so we will be seeing each other there now... Cant escape from me and my overthinking can we. I will be using typescript in it for the first time and the usual react and tailwind... yeah react and tailwind are the usual now instead of a hurdle that it was 1 month ago (i understand now why tailwind is used even though its ugly to look at... apparently you get used to it or ignore it after something is done lol)
+
+Till then you can rest up but i cant since i still have my assignments to complete XD i will be seeing you sooner than you think till then good luck me!

@@ -165,6 +165,7 @@ export default function RenderAbout() {
                                 "Custom tags for special Pokémon",
                                 "Fast offline experience after initial load",
                                 "Switch sprites from pixelated to modern or official sprite",
+                                "Fun to read descriptions for pokemons apart from orignal data"
                             ].map((feature, idx) => (
                                 <li key={idx} className="flex items-start gap-2
                                  secondary-font text-[clamp(0.9rem,1.6vw,1.1rem)]">

@@ -7,6 +7,11 @@ import { habitat_texts } from "../FlavourTexts/Habitat";
 import { catchrate_texts } from "../FlavourTexts/catchrate";
 import { happiness_texts } from "../FlavourTexts/happiness";
 import { gender_texts } from "../FlavourTexts/GenderRate";
+
+/* Includes components Responsible for showing modal and
+ populating it with custom data via Various functions
+ located at the very bottom bundled in RenderDetails component */
+
 export function RenderModal({ data, setData }) {
     const modalRef = useRef(null);
     const closeModal = () => setData(null);
@@ -64,8 +69,10 @@ export function RenderModal({ data, setData }) {
                     <div className="w-full p-4 rounded-2xl flex flex-col items-center justify-center">
                         {data && <RenderPokemon pokemon={data[0]} modalview={true} />}
                     </div>
+                    {/* Progress bar and feed button coming through feedingStrip.jsx */}
                     <div className="bg-(--bg-overlay) w-fit py-4 rounded-2xl">
                         {data && <RenderFeedingStrip data={data} />}
+                        {/* Local component rendering details about pokemon like gender rates ,habitat and pokedex entry */}
                         <div className="m-auto flex items-center justify-center">
                             {data && <RenderDetails pokemon={data[0]} ability={ability} />}
                         </div>

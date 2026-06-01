@@ -2,9 +2,9 @@ import { useContext, useState } from "react"
 import { capitalize } from '../Utility/util-basic.js'
 import { PokeContext } from "./Hooks/PokedexContext.jsx";
 import '../ComponentCSS/TypesCss.css'
+
 export function RenderFilterStrip({ array }) {
     const { type, setType } = useContext(PokeContext);
-
     return (
         <div className="header-part modern-scroll-x [grid-area:filter] gap-5 flex flex-nowrap overflow-auto py-2 lg:text-3xl lg:p-4">
             {array.map(data => {

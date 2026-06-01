@@ -5,7 +5,15 @@ import { genRandom } from "../Utility/util-basic";
 import { saveToStorage, getItem } from "../Utility/storagehelper";
 import { PokeContext } from "./Hooks/PokedexContext";
 import '../app.css';
-import '../ComponentCSS/Header.css'
+import '../ComponentCSS/Header.css';
+
+// This page provides components for the feeding progress bar (with feed button),
+//  component to show berry count in the navbar
+
+
+/* The functtion below get the modal data which is selected (can be taken from pokecontext too)
+it first sets state for the progress bar which it finds from localstorage then on click the progress updates
+if the progress hits 100 then a function adds that pokemon to favdex and shows milestones messages */
 export function RenderFeedingStrip({ data }) {
     const pokemon = data[0];
     const { favdexKey } = GlobalData.favdex;
@@ -22,12 +30,16 @@ export function RenderFeedingStrip({ data }) {
     return (
         <div className="w-full flex flex-col items-center justify-center">
             <div className="w-full lg:w-1/2 select-none flex flex-col items-center gap-2">
+                {/* Progress bar */}
                 <RenderFavdexElem pokemon={pokemon} progress={prog} />
+
+                {/* Message/milestone */}
                 <div className={`text-center fixed top-1/2 text-[clamp(1rem,1.2vw,1.5rem)]
                  font-bold secondary-font text-emerald-300 m-auto
                  bg-(--bg-overlay) border p-6 ${error ? 'opacity-100' : 'opacity-0'}`}>
                     {error}
                 </div>
+                {/* Feed button to show current berry and increase progress */}
                 <button
                     className="m-2 px-2 lg:px-4 lg:text-xl rounded-lg border-2 lg:border-4 border-(--border) bg-(--accent-cta) 
                     text-(--text-primary) hover:border-(--border-white) primary-font 
@@ -40,11 +52,10 @@ export function RenderFeedingStrip({ data }) {
                     Feed ({berry})
                 </button>
             </div>
-
         </div>
     )
 }
-
+// Handles berry feeding logic and deducts berry on feed/click shows milestone on message
 function feedBerry(pokemon, berry, setBerry, setError) {
     if (berry < 1) return;
 
@@ -66,7 +77,7 @@ function feedBerry(pokemon, berry, setBerry, setError) {
     saveToStorage(updated, GlobalData.favdex.favdexKey);
     return progress;
 }
-
+// checks the favdex to find if the pokemon being fed has been fed before and has progress
 function updateProgressList(pokemon, updated) {
     const { min, max } = GlobalData.favdex.randomPoints;
     const progress = updated.progress;
@@ -81,7 +92,7 @@ function updateProgressList(pokemon, updated) {
     }
     return { progress, added };
 }
-
+// checks if a certain milestone has been achieved and returns message only 1 time when the milestone was acieved per pokemon
 function checkMilestones(poke, updated, added) {
     const { milestones, favdexKey } = GlobalData.favdex;
     const entry = updated.progress.find(data => data.id === poke.id);
@@ -126,7 +137,7 @@ function checkMilestones(poke, updated, added) {
         return;
     }
 }
-
+// renders current berry on the navbar by reading state named berry (gets the state from the header)
 export function RenderBerry({ count }) {
     return (
         <div className="[grid-area:berry] items-center flex ml-auto mr-2 text-xl lg:text-2xl">
@@ -135,7 +146,7 @@ export function RenderBerry({ count }) {
         </div>
     );
 }
-
+// The actual progress bar that randomly increases per click and shows progress if pokemon already had progress
 export function RenderFavdexElem({ pokemon, progress }) {
     if (!pokemon) return null;
 
