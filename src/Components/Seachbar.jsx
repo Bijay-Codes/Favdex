@@ -143,7 +143,7 @@ function RenderSearchUtil({ text, setText, pokedex, setData, setType, setError }
     }, [text, searches]);
     return (
         <>
-            {filtered.length === 0 ? <div>Searching...</div> : ''}
+            {filtered.length === 0 ? <div>Not available Locally</div> : ''}
             {filtered.map(data => (
                 <div key={data}
                     onClick={() => {

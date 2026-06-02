@@ -1,4 +1,130 @@
 export function genKeyWords(list) {
+    const actualApiNames = [
+        // Generation 1
+        "farfetchd",
+        "mr-mime",
+        "gyarados",
+        "exeggcute",
+        "exeggutor",
+        "gastly",
+        "victreebel",
+
+        // Generation 2
+        "ho-oh",
+        "feraligatr",
+        "misdreavus",
+        "sudowoodo",
+        "unown",
+        "qwilfish",
+        "phanpy",
+
+        // Generation 3
+        "ninjask",
+        "chimecho",
+        "gorebyss",
+        "rayquaza",
+        "regice",
+        "jirachi",
+        "deoxys",
+
+        // Generation 4
+        "mime-jr",
+        "bonsly",
+        "suicune",
+        "lumineon",
+        "abomasnow",
+        "regigigas",
+
+        // Generation 5
+        "reuniclus",
+        "ferrothorn",
+        "hydreigon",
+        "alomomola",
+        "kyurem",
+        "landorus-incarnate",
+        "meloetta-aria",
+
+        // Generation 6
+        "flabebe",
+        "aegislash",
+        "slurpuff",
+        "binacle",
+        "dragalge",
+        "yveltal",
+        "zygarde-50",
+        "volcanion",
+
+        // Generation 7
+        "type-null",
+        "jangmo-o",
+        "hakamo-o",
+        "kommo-o",
+        "decidueye",
+        "togedemaru",
+        "bruxish",
+        "nihilego",
+        "buzzwole",
+        "xurkitree",
+        "celesteela",
+        "blacephalon",
+        "stakataka",
+
+        // Generation 8
+        "mr-rime",
+        "sirfetchd",
+        "runerigus",
+        "cofagrigus",
+        "basculegion-red-striped",
+        "overqwil",
+        "regieleki",
+        "regidrago",
+        "glastrier",
+        "spectrier",
+        "calyrex",
+        "enamorus-incarnate",
+
+        // Generation 9
+        "squawkabilly",
+        "scovillain",
+        "rabsca",
+        "garganacl",
+        "tinkatuff",
+        "revavroom",
+        "orthworm",
+        "cetoddle",
+        "veluza",
+        "dondozo",
+        "tatsugiri",
+        "clodsire",
+        "farigiraf",
+        "gholdengo",
+        "pecharunt",
+        "great-tusk",
+        "scream-tail",
+        "brute-bonnet",
+        "flutter-mane",
+        "slither-wing",
+        "sandy-shocks",
+        "iron-treads",
+        "iron-bundle",
+        "iron-hands",
+        "iron-jugulis",
+        "iron-moth",
+        "iron-thorns",
+        "roaring-moon",
+        "iron-valiant",
+        "walking-wake",
+        "iron-leaves",
+        "gouging-fire",
+        "raging-bolt",
+        "iron-boulder",
+        "iron-crown",
+        "wo-chien",
+        "chien-pao",
+        "ting-lu",
+        "chi-yu"
+    ];
     const keywords = list.map(poke => poke.name);
-    return keywords;
+    const allKeywords = [...new Set([...keywords, ...actualApiNames])];
+    return allKeywords;
 }

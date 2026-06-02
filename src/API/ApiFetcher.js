@@ -44,7 +44,7 @@ export async function fetchSingle(url, setError) {
 
 function formating(data) {
     return {
-        id: data.id,
+        id: data.speciesData.id,
         name: data.name,
         types: data.types.map(tArr => tArr.type.name),
         abilities: data.abilities.map(aArr => (

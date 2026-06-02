@@ -92,14 +92,16 @@ export const RenderBlank = forwardRef((props, ref) => {
     const blanks = [1, 2, 3];
     return (
         <>
-            <div ref={ref} className="cards flex flex-col items-center justify-center gap-6 min-h-105 h-fit rounded-2xl p-4 border-2 border-(--border)">
-                <img src="/mew.png" width={475} height={475} className="mew-loading w-full h-full object-contain" alt="Mew.png" />
+            <div ref={ref} className="cards flex flex-col items-center justify-center gap-6 h-fit rounded-2xl p-4 border-2 border-(--border)">
+                <img src="/mew.png"
+                    className="mew-loading w-full h-full object-contain" alt="Mew.png" />
                 <div className="skeleton h-4 w-1/3 rounded-lg" />
                 <div className="skeleton h-4 w-1/2 rounded-lg" />
             </div>
             {blanks.map(num => (
                 <div key={num} className="cards flex flex-col items-center justify-center gap-6 min-h-105 h-fit rounded-2xl p-4 border-2 border-(--border)">
-                    <img src="/mew.png" width={475} height={475} className="mew-loading w-full h-full object-contain" alt="Mew.png" />
+                    <img src="/mew.png"
+                        className="mew-loading w-full h-full object-contain" alt="Mew.png" />
                     <div className="skeleton h-4 w-1/3 rounded-lg" />
                     <div className="skeleton h-4 w-1/2 rounded-lg" />
                 </div>
