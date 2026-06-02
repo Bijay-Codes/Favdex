@@ -68,18 +68,24 @@ No hunting through components.
 ## Run Locally
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/favdex
+git clone https://github.com/Bijay-Codes/Favdex.git
 cd favdex
 npm install
 npm run dev
 ```
 
 ---
+## Screenshots
+
+![Favourites](screenshots/DesktopFavdex.png)
+![Home](screenshots/DesktopHome.png)
+![Modal](screenshots/DesktopModal.png)
+![Mobile](screenshots/MobileModal.png)
 
 ---
 
-## Devlogs
-Wanna know how this project started? take a look at /Journey.md
+## Build Log
+[Wanna know how this project started? take a look at →](./Journey.md)
 
 ## License
 
