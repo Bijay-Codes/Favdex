@@ -35,11 +35,12 @@ export const GlobalData = {
     pokedexKey: 'pokedex-scroll',
     imgStyleKey: 'img-style',
     formsStart: 10000,
+    searchSuggestions: 6,
     favdex: {
         cooldown: 1,
         expiry: 2,
         favdexKey: 'favdex-storage',
-        berryDaily: 1000,
+        berryDaily: 10,
         randomPoints: {
             min: 2,
             max: 6

@@ -1,4 +1,4 @@
-import { useRef, useContext} from "react";
+import { useRef, useContext } from "react";
 import { useInitializer } from "./Hooks/Initializer";
 import { RenderBlank, RenderPokemon } from './Renderer.jsx';
 import { RenderModal } from "./ModelHandler";
@@ -8,6 +8,7 @@ import { ErrorBox } from "./ErrorBox";
 import { RenderHeader } from '../Components/Header.jsx'
 import '../ComponentCSS/TypesCss.css';
 // Bundles the whole Pokedex grid to privide as a single component to the App.jsx to render Homepage
+
 export function RenderHome() {
     return (
         <PokedexGrid />
@@ -38,11 +39,11 @@ function PokedexGrid() {
             </div>
             <RenderModal data={modalData} setData={setData} />
             {!type && (
-                <p className="text-(--text-primary) sm:text-left sm:w-fit
-                 secondary-font bg-(--bg-overlay) rounded-xl
-                 p-4 m-4 text-sm md:text-xl tracking-wide text-center">
+                <p className="text-(--text-primary)
+                 secondary-font bg-(--bg-overlay) rounded-2xl
+                 p-2 m-4 text-sm tracking-wide text-center">
                     Pokémon fetched so far —{" "}
-                    <span className="primary-font text-(--accent) opacity-100 font-bold">
+                    <span className="primary-font text-xl text-(--accent)">
                         {pokedex.length}
                     </span>
                 </p>

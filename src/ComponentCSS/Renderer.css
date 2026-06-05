@@ -6,7 +6,9 @@
   background: linear-gradient(135deg,
       var(--bg-elevated) 40%,
       oklch(from var(--accent) l c h / 0.30) 100%);
-  border: 1px solid var(--accent);
+  border-top: 2px double var(--accent);
+  border-left: 1px solid var(--accent);
+  border-right: 1px solid var(--accent) ;
 }
 
 .fav-pokemons:hover {

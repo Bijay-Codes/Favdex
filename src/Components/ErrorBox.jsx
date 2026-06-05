@@ -7,7 +7,7 @@ export function ErrorBox() {
         error &&
         <div className="h-max min-h-[10%] p-2 w-full bg-(--bg-overlay)
          text-(--text-primary) fixed top-[20%] outline outline-(--accent)
-         z-50 text-xl lg:text:2xl text-center">
+         z-50 text-xl lg:text:2xl text-center pointer-events-none">
             {error}
         </div>
     )

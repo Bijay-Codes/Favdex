@@ -139,7 +139,7 @@ function RenderSearchUtil({ text, setText, pokedex, setData, setType, setError }
     const searches = useMemo(() => genKeyWords(pokedex), [pokedex]);
     const filtered = useMemo(() => {
         if (!text) return [];
-        return searches.filter(name => name.startsWith(text.toLowerCase())).slice(0, 4);
+        return searches.filter(name => name.includes(text.toLowerCase())).slice(0, GlobalData.searchSuggestions);
     }, [text, searches]);
     return (
         <>

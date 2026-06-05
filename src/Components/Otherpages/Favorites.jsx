@@ -20,9 +20,15 @@ export function RenderFavdex() {
         load();
     }, []);
     return (
-        <>
+        <div>
             <RenderNav />
-            <RenderRemovePane selected={selected} favdex={favdexList} setFavdex={setFavdex} setSelected={setSelected} handleRemove={handleRemove} />
+            <RenderRemovePane selected={selected} favdex={favdexList}
+                setFavdex={setFavdex} setSelected={setSelected}
+                handleRemove={handleRemove} />
+            <div className="text-(--text-secondary) primary-font bg-(--bg-overlay)
+             m-4 rounded-xl p-2 text-sm xl:text-xl text-center">
+                Pokemon in Favdex : ࠷<span className="text-(--accent) text-xl">{favdex?.length}</span>
+            </div>
             {!favdex
                 ? null
                 : favdex.length === 0
@@ -42,7 +48,7 @@ export function RenderFavdex() {
                         ))}
                     </div>
             }
-        </>
+        </div>
     )
 }
 

@@ -7,8 +7,10 @@ import { GlobalData } from "../Utility/GlobalData";
 import { favdexStorage } from "../Utility/Favdex";
 import '../app.css'
 import '../ComponentCSS/Tags.css'
-import '../ComponentCSS/Renderer.css'
-export function RenderPokemon({ pokemon, setData, modalview = false, favView = false }) {
+import '../ComponentCSS/Renderer.css';
+
+
+export function RenderPokemon({ pokemon, setData, modalview = false, favView = false}) {
     const mewUrl = "/mew.png";
     const [isShiny, setShiny] = useState(false);
     const [isLoading, setLoaded] = useState(true);
@@ -18,7 +20,6 @@ export function RenderPokemon({ pokemon, setData, modalview = false, favView = f
             pokemon.sprite.frontSprite;
     const pokeTag = analyzeNature(pokemon);
     const [favdex, setFavdex] = useState(getItem(GlobalData.favdex.favdexKey)?.pokemon || favdexStorage.pokemon);
-    const imgStyle = getItem(GlobalData.imgStyleKey);
     return (
         <div className={`${!modalview && !favView ?
             `${favdex.includes(pokemon.id) ? 'fav-pokemons' : 'cards'}
@@ -33,7 +34,7 @@ ${pokemon.types.includes('psychic') ? 'psyshock' : ''}`}
                 className="flex gap-2 text-xl justify-center items-center
                 text-(--text-primary)">
                 {'#' + pokemon.orgId}
-                {pokemon.id >= GlobalData.formsStart ? `(${pokemon.id})` : ''}
+                {pokemon.id > GlobalData.formsStart ? `(${pokemon.id})` : ''}
             </span>
 
             <div className="relative aspect-square min-h-1/2  w-full min-w-1/2 m-auto flex items-center justify-center">
@@ -50,7 +51,7 @@ ${pokemon.types.includes('psychic') ? 'psyshock' : ''}`}
                     <img
                         alt={`${pokemon.name} sprite`}
                         loading="lazy"
-                        className={`relative z-0 w-full h-full object-contain ${imgStyle === 'pixel' ? 'w-24 h-24 [image-rendering:pixelated]' : 'w-full h-full'}
+                        className={`relative z-0 w-full h-full object-contain 
                         transition-all ease-in-out duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
                         onLoad={() => setLoaded(false)}
                         onError={() => { setError(true); setLoaded(false); }}
