@@ -33,11 +33,6 @@ export function RenderModal({ data, setData }) {
                     ?.flavor_text ?? 'Still Mystery'
             }
         })).then(r => setAbility(r));
-        //     const timerId = setTimeout(() => {
-        //     if (modalRef.current && !modalRef.current.open) {
-        //         modalRef.current.showModal();
-        //     }
-        // }, 0);
         if (data) {
             modalRef.current.showModal();
         } else if (modalRef.current?.open) modalRef.current.close();
@@ -50,7 +45,7 @@ export function RenderModal({ data, setData }) {
                 autoFocus
                 id="pokemon-modal"
                 className="w-full md:w-[70%] max-h-[90vh] overflow-y-auto
-                           text-(--text-secondary) bg-(--bg-overlay)/80
+                           text-(--text-secondary) bg-(--bg-overlay)/90
                            border-2 border-(--border-white) p-3 m-auto rounded-2xl backdrop-filter-[30px]"
                 ref={modalRef}
                 onClick={closeModal}

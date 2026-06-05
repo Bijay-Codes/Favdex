@@ -32,7 +32,8 @@ ${pokemon.types.includes('psychic') ? 'psyshock' : ''}`}
             <span
                 className="flex gap-2 text-xl justify-center items-center
                 text-(--text-primary)">
-                {'#' + pokemon.id}
+                {'#' + pokemon.orgId}
+                {pokemon.id >= GlobalData.formsStart ? `(${pokemon.id})` : ''}
             </span>
 
             <div className="relative aspect-square min-h-1/2  w-full min-w-1/2 m-auto flex items-center justify-center">
@@ -92,7 +93,7 @@ export const RenderBlank = forwardRef((props, ref) => {
     const blanks = [1, 2, 3];
     return (
         <>
-            <div ref={ref} className="cards flex flex-col items-center justify-center gap-6 h-fit rounded-2xl p-4 border-2 border-(--border)">
+            <div ref={ref} className="cards flex flex-col items-center justify-center gap-6 min-h-105 h-fit rounded-2xl p-4 border-2 border-(--border)">
                 <img src="/mew.png"
                     className="mew-loading w-full h-full object-contain" alt="Mew.png" />
                 <div className="skeleton h-4 w-1/3 rounded-lg" />

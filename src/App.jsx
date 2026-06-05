@@ -1,5 +1,5 @@
 import { RenderHome } from "./Components/Home.jsx";
-import { RenderFavdex } from "./Components/Otherpages/Favouraites.jsx";
+import { RenderFavdex } from "./Components/Otherpages/Favorites.jsx";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import RenderAbout from "./Components/Otherpages/About.jsx";
 

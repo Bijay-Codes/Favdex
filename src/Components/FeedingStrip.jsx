@@ -18,7 +18,8 @@ export function RenderFeedingStrip({ data }) {
     const pokemon = data[0];
     const { favdexKey } = GlobalData.favdex;
     const { berry, setBerry, error, setError } = useContext(PokeContext);
-    const [prog, setProg] = useState(getItem(favdexKey)?.progress || favdexStorage.progress);
+    const favdex = getItem(favdexKey) || favdexStorage;
+    const [prog, setProg] = useState(favdex.progress);
 
     useEffect(() => {
         const { favdexKey } = GlobalData.favdex;
@@ -45,9 +46,12 @@ export function RenderFeedingStrip({ data }) {
                     text-(--text-primary) hover:border-(--border-white) primary-font 
                     transition-all duration-200 ease-in active:opacity-40 text-sm tracking-wide whitespace-nowrap"
                     onClick={() => {
-                        const updatedProg = feedBerry(pokemon, berry, setBerry, setError);
-                        if (updatedProg) setProg([...updatedProg]);
-                    }}
+                        if (favdex.pokemon.length <= GlobalData.favdex.favdexLimit) {
+                            const updatedProg = feedBerry(pokemon, berry, setBerry, setError);
+                            if (updatedProg) setProg([...updatedProg]);
+                        }
+                    }
+                    }
                 >
                     Feed ({berry})
                 </button>
@@ -86,9 +90,9 @@ function updateProgressList(pokemon, updated) {
     const added = genRandom(min, max);
 
     if (isFound) {
-        isFound.freindship += added;
+        isFound.friendship += added;
     } else {
-        progress.push({ id: id, name: pokemon.name, freindship: added });
+        progress.push({ id: id, friendship: added });
     }
     return { progress, added };
 }
@@ -96,12 +100,12 @@ function updateProgressList(pokemon, updated) {
 function checkMilestones(poke, updated, added) {
     const { milestones, favdexKey } = GlobalData.favdex;
     const entry = updated.progress.find(data => data.id === poke.id);
-    const freindship = entry?.freindship;
+    const friendship = entry?.friendship;
 
-    if (!freindship) return;
+    if (!friendship) return;
 
     const checkCrossed = (milestone) =>
-        freindship >= milestone && (freindship - added) < milestone;
+        friendship >= milestone && (friendship - added) < milestone;
 
     if (checkCrossed(milestones[0])) {
         return `Congratulations on Reaching 25 Friendship with your ${poke.name}`;
@@ -110,13 +114,13 @@ function checkMilestones(poke, updated, added) {
         return `Milestone Achieved: Halfway there with your Buddy ${poke.name}`;
     }
     else if (checkCrossed(milestones[2])) {
-        return `Milestone Achieved: ${freindship}% there with your Buddy ${poke.name}`;
+        return `Milestone Achieved: ${friendship}% there with your Buddy ${poke.name}`;
     }
     else if (checkCrossed(milestones[3])) {
         return `You are Almost there keep going, ${poke.name}!`;
     }
     else if (checkCrossed(milestones[4])) {
-        if (!(updated.pokemon.includes(poke.id)) && updated.pokemon.length < 60) {
+        if (!(updated.pokemon.includes(poke.id)) && updated.pokemon.length < GlobalData.favdex.favdexLimit) {
             updated.pokemon.push(poke.id);
             saveToStorage(updated, favdexKey);
         }
@@ -147,11 +151,11 @@ export function RenderBerry({ count }) {
     );
 }
 // The actual progress bar that randomly increases per click and shows progress if pokemon already had progress
-export function RenderFavdexElem({ pokemon, progress }) {
+function RenderFavdexElem({ pokemon, progress }) {
     if (!pokemon) return null;
 
-    let poke = progress.find(data => data.id === pokemon.id) || { freindship: 0 };
-    let percent = poke.freindship <= 100 ? poke.freindship : 100;
+    let poke = progress.find(data => data.id === pokemon.id) || { friendship: 0 };
+    let percent = poke.friendship <= 100 ? poke.friendship : 100;
 
     return (
         <div className="h-6 lg:h-8 w-[90%] bg-white outline lg:outline-2 outline-(--accent)
@@ -167,7 +171,7 @@ export function RenderFavdexElem({ pokemon, progress }) {
                 style={{ width: `${Math.max(percent, 1)}%` }}
             />
             <span className="text-(--bg-base) absolute inset-0 flex justify-center items-center text-sm lg:text-xl">
-                {poke.freindship <= 100 ? percent + '%' : poke.freindship + ' pts'}
+                {poke.friendship <= 100 ? percent + '%' : poke.friendship + ' pts'}
             </span>
         </div>
     );

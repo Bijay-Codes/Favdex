@@ -48,11 +48,11 @@ export function useInitializer(ref, setFunct, offset, setFunct2) {
                         });
                         offset.current = data[1];
                     }
-                    isFetching.current = false;
                 })
             }
         })
+        isFetching.current = false;
         if (ref.current) observer.observe(ref.current);
         return () => observer.disconnect();
-    }, [ref.current])
+    }, [])
 }

@@ -45,7 +45,7 @@ export function PokeProvider({ children }) {
         }
 
         favdex.progress.forEach(item => {
-            if (item.freindship >= 100 && !(favdex.pokemon.includes(item.id))) {
+            if (item.friendship >= 100 && !(favdex.pokemon.includes(item.id))) {
                 favdex.pokemon.push(item.id);
             }
         });

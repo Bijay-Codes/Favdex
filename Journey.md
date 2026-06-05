@@ -221,3 +221,9 @@ project clean and deployed all times and used the other branch to work on making
 So Our next destination will be My portfolio site so we will be seeing each other there now... Cant escape from me and my overthinking can we. I will be using typescript in it for the first time and the usual react and tailwind... yeah react and tailwind are the usual now instead of a hurdle that it was 1 month ago (i understand now why tailwind is used even though its ugly to look at... apparently you get used to it or ignore it after something is done lol)
 
 Till then you can rest up but i cant since i still have my assignments to complete XD i will be seeing you sooner than you think till then good luck me!
+
+
+_________________________________________________________________________________________________________________________________
+
+Thought we were done right? nope not still i found out more bugs to fix and... embarassing typos of filenames etc, currently im trying to find every bug in the site so i can finally fix it and work on my other project, in the morning session i have fixed most of the bugs i found but im still going to try and get a more to ensure i didnt forget any and test the site so issues.
+I should make a branch for this but i mean its almost finished anyways why even bother making a separate branch for a finished stable project, though if in future i add a feature i will make a branch and merge it that is if the things go well for now its just bug fix.

@@ -34,17 +34,16 @@ export const GlobalData = {
     },
     pokedexKey: 'pokedex-scroll',
     imgStyleKey: 'img-style',
+    formsStart: 10000,
     favdex: {
         cooldown: 1,
         expiry: 2,
         favdexKey: 'favdex-storage',
-        berryDaily: 10,
+        berryDaily: 1000,
         randomPoints: {
             min: 2,
             max: 6
         },
-        // streakBonus: 1,
-        // maxStreak: 10,
         favdexLimit: 60,
         milestones: [25, 50, 75, 90, 100]
     }

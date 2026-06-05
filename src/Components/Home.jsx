@@ -1,4 +1,4 @@
-import { useRef, useContext, useEffect } from "react";
+import { useRef, useContext} from "react";
 import { useInitializer } from "./Hooks/Initializer";
 import { RenderBlank, RenderPokemon } from './Renderer.jsx';
 import { RenderModal } from "./ModelHandler";
@@ -23,7 +23,7 @@ export function RenderHome() {
 // Renders Pokemon cards that have been fetched so far and filtered via filterData and RenderPokemon component
 // Renders the blank divs/cards which have the intersection observer to fetch more pokemon via RenderBlank component
 // Shows error messages if the filtered pokemon is empty
-export default function PokedexGrid() {
+function PokedexGrid() {
     const unloadedRef = useRef();
     const offset = useRef();
     const { pokedex, setPokemon, isComplete, setComplete, modalData, setData, type } = useContext(PokeContext);

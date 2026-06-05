@@ -33,7 +33,7 @@ export async function fetchSingle(url, setError) {
         setTimeout(() => {
             setError('');
         }, 2000);
-        setError('The Requested Pokemon Does not Exist in the Database.');
+        setError('The Requested Pokemon Data Does not Exist in the Database.');
     };
     const realData = await rawData.json();
     const species = await fetch(realData.species.url).then(response => response.json());
@@ -44,7 +44,8 @@ export async function fetchSingle(url, setError) {
 
 function formating(data) {
     return {
-        id: data.speciesData.id,
+        orgId: data.speciesData.id,
+        id : data.id,
         name: data.name,
         types: data.types.map(tArr => tArr.type.name),
         abilities: data.abilities.map(aArr => (

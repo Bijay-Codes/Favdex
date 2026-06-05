@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { PokeContext } from "../Hooks/PokedexContext";
+import { PokeContext } from "../Hooks/PokedexContext.jsx";
 import { fetchSingle } from '../../API/ApiFetcher.js';
 import { GlobalData } from "../../Utility/GlobalData.js";
 import { RenderPokemon } from "../Renderer.jsx";
@@ -13,7 +13,7 @@ export function RenderFavdex() {
     const favdexList = getItem(GlobalData.favdex.favdexKey) || favdexStorage;
     const list = favdexList.pokemon;
     useEffect(() => {
-        async function load(params) {
+        async function load() {
             const data = await getPokeData(list, pokedex);
             setFavdex(data);
         };
@@ -49,8 +49,8 @@ export function RenderFavdex() {
 function RenderRemovePane({ selected, favdex, setFavdex, setSelected, handleRemove }) {
     const dialogRef = useRef(null);
     const closePane = () => {
-        dialogRef.current.close()
         setSelected(null);
+        dialogRef.current.close()
     };
     useEffect(() => {
         if (!selected) {
@@ -66,12 +66,13 @@ function RenderRemovePane({ selected, favdex, setFavdex, setSelected, handleRemo
             ref={dialogRef}
             onClick={(e) => {
                 if (e.target === dialogRef.current) {
+                    setSelected(null)
                     closePane();
-                    !selected
                 }
             }}
             onKeyDown={(e) => {
-                if (e.key === 'Esc') {
+                if (e.key === 'Escape') {
+                    setSelected(null);
                     closePane();
                 }
             }}>
@@ -136,7 +137,7 @@ function RenderEmptyMessage() {
                 Your Favdex is Currently Empty try Feeding a Pokemon to add it here
             </h1>
             <div className="text-sm text-(--text-secondary) secondary-font">
-                It will be added here after you reach 100 Freindship Points with that Pokemon
+                It will be added here after you reach 100 friendship Points with that Pokemon
             </div>
         </div>
     )

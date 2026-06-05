@@ -1,4 +1,4 @@
-import { RenderSearchbar } from "./Seachbar.jsx"
+import { RenderSearchbar } from "./Searchbar.jsx"
 import { RenderFilterStrip } from "./FilterStrip.jsx"
 import { GlobalData } from "../Utility/GlobalData.js";
 import { RenderBerry } from "./FeedingStrip.jsx";
