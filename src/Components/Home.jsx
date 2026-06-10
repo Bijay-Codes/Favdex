@@ -61,7 +61,7 @@ function PokedexGrid() {
                 ) :
                     type && (
                         <p className="col-span-full text-center text-(--text-primary) lg:text-2xl opacity-50 py-20 primary-font text-xl">
-                            No Pokémon from your fetched list matches this type.
+                            No Pokémon from your local list matches this type scroll to fetch more pokemons to increase the search criteria.
                         </p>
                     )
                 }
