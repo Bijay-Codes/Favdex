@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { favdexStorage } from "../Utility/Favdex";
 import { GlobalData } from "../Utility/GlobalData";
 import { genRandom } from "../Utility/util-basic";
@@ -19,15 +19,10 @@ export function RenderFeedingStrip({ data }) {
     const { favdexKey } = GlobalData.favdex;
     const { berry, setBerry, error, setError } = useContext(PokeContext);
     const favdex = getItem(favdexKey) || favdexStorage;
-    const [prog, setProg] = useState(favdex.progress);
-
-    useEffect(() => {
-        const { favdexKey } = GlobalData.favdex;
+    const [prog, setProg] = useState(() => {
         const currentData = getItem(favdexKey);
-        if (currentData) {
-            setProg(currentData.progress);
-        }
-    }, []);
+        return currentData?.progress || favdex.progress;
+    });
     return (
         <div className="w-full flex flex-col items-center justify-center">
             <div className="w-full lg:w-1/2 select-none flex flex-col items-center gap-2">
@@ -42,18 +37,18 @@ export function RenderFeedingStrip({ data }) {
                 </div>
                 {/* Feed button to show current berry and increase progress */}
                 <button
-                    className="m-2 px-2 lg:px-4 lg:text-xl rounded-lg border-2 lg:border-4 border-(--border) bg-(--accent-cta) 
-                    text-(--text-primary) hover:border-(--border-white) primary-font 
-                    transition-all duration-200 ease-in active:opacity-40 text-sm tracking-wide whitespace-nowrap"
+                    className={`m-3 px-6 py-1 lg:px-10 text-lg lg:text-xl rounded-lg border-2 lg:border-4 border-(--border) bg-(--accent-cta)
+                    ${berry === 0 ? 'opacity-60' : 'opacity-100'}
+                    text-(--text-primary) hover:border-(--border-white) primary-font inline-flex justify-center items-center
+                    transition-all duration-200 ease-in active:opacity-40 tracking-wide whitespace-nowrap`}
                     onClick={() => {
                         if (favdex.pokemon.length <= GlobalData.favdex.favdexLimit) {
                             const updatedProg = feedBerry(pokemon, berry, setBerry, setError);
                             if (updatedProg) setProg([...updatedProg]);
                         }
                     }
-                    }
-                >
-                    Feed ({berry})
+                    }>
+                    {berry === 0 ? 'Feed' : `Feed [ ${berry} ]`}
                 </button>
             </div>
         </div>

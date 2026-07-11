@@ -1,8 +1,7 @@
-import { useContext, useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { RenderPokemon } from "./Renderer";
 import { RenderFeedingStrip } from "./FeedingStrip";
 import { capitalize, genRandom } from "../Utility/util-basic";
-import { PokeContext } from "./Hooks/PokedexContext";
 import { habitat_texts } from "../FlavourTexts/Habitat";
 import { catchrate_texts } from "../FlavourTexts/catchrate";
 import { happiness_texts } from "../FlavourTexts/happiness";
@@ -16,7 +15,6 @@ export function RenderModal({ data, setData }) {
     const modalRef = useRef(null);
     const closeModal = () => setData(null);
     const [ability, setAbility] = useState([]);
-    const { error, setError } = useContext(PokeContext);
 
     useEffect(() => {
         if (!data) {
@@ -80,7 +78,7 @@ export function RenderModal({ data, setData }) {
 
 function RenderDetails({ pokemon, ability }) {
     return (
-        <div className="w-fit flex flex-col justify-center items-center gap-3 px-2 pb-4">
+        <div className="w-fit flex flex-col justify-center items-center gap-10 px-2 pb-4">
             <div className="flex flex-wrap justify-center m-auto p-2
              whitespace-nowrap gap-2 lg:gap-12 lg:p-6 lg:rounded-2xl
              bg-(--bg-overlay) border border-(--border) rounded-xl">
@@ -94,7 +92,7 @@ function RenderDetails({ pokemon, ability }) {
                 </span>
             </div>
 
-            <div className="border-2 border-(--border) bg-(--bg-overlay) m-auto w-fit
+            <div className="border-2 border-(--border) bg-(--bg-overlay) m-auto w-fit gap-10
              rounded-xl px-2 text-(--text-muted) hover:text-(--text-primary) lg:p-12 lg:rounded-2xl
              transition-all duration-400 ease-in-out">
                 {[

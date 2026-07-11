@@ -7,9 +7,9 @@
 
 ## Where It Started
 
-The hardest part of this project wasn't the API, the state management, or the CSS overhauls I did twice. It was opening the editor and actually starting.
+The hardest part of this project wasn't the API, the state management, or the CSS overhauls I did twice yeah twice!. It was opening the editor and actually starting. Trying to perfect the structure and data before the project even exists wasted my efforts and time.
 
-I had mentally planned everything. Wrote it all out. Thought that was enough. It wasn't. I sat staring at the editor until I figured out the only way to move was to just dump everything — logic, rendering, all of it — into one App.jsx and stop thinking about structure entirely. It was ugly. It worked. I started moving.
+I had mentally planned everything. Wrote it all out. Thought that was enough but it wasn't. I sat staring at the editor until I figured out the only way to move was to just dump everything — logic, rendering, all of it — into one App.jsx and stop thinking about structure entirely. It was ugly. It worked. I started moving.
 
 That decision to just ship the messy version first and clean it up later is probably the most useful thing I took out of this project.
 

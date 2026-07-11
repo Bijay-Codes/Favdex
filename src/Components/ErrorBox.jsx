@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useState } from "react"
+import { useContext } from "react"
 import { PokeContext } from "./Hooks/PokedexContext";
 
 export function ErrorBox() {

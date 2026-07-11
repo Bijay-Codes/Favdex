@@ -2,7 +2,7 @@ import { forwardRef, useState } from "react";
 import { capitalize } from "../Utility/util-basic";
 import { analyzeNature } from "../PokemonTags/PokeNature";
 import { map } from "../PokemonTags/TagClass";
-import { getItem, saveToStorage } from "../Utility/storagehelper";
+import { getItem } from "../Utility/storagehelper";
 import { GlobalData } from "../Utility/GlobalData";
 import { favdexStorage } from "../Utility/Favdex";
 import '../app.css'
@@ -10,7 +10,7 @@ import '../ComponentCSS/Tags.css'
 import '../ComponentCSS/Renderer.css';
 
 
-export function RenderPokemon({ pokemon, setData, modalview = false, favView = false}) {
+export function RenderPokemon({ pokemon, setData, modalview = false, favView = false }) {
     const mewUrl = "/mew.png";
     const [isShiny, setShiny] = useState(false);
     const [isLoading, setLoaded] = useState(true);
@@ -19,7 +19,7 @@ export function RenderPokemon({ pokemon, setData, modalview = false, favView = f
         isShiny ? pokemon.sprite.shinySprite :
             pokemon.sprite.frontSprite;
     const pokeTag = analyzeNature(pokemon);
-    const [favdex, setFavdex] = useState(getItem(GlobalData.favdex.favdexKey)?.pokemon || favdexStorage.pokemon);
+    const [favdex] = useState(getItem(GlobalData.favdex.favdexKey)?.pokemon || favdexStorage.pokemon);
     return (
         <div className={`${!modalview && !favView ?
             `${favdex.includes(pokemon.id) ? 'fav-pokemons' : 'cards'}

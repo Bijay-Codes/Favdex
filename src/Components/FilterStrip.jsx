@@ -1,4 +1,4 @@
-import { useContext, useState } from "react"
+import { useContext } from "react"
 import { capitalize } from '../Utility/util-basic.js'
 import { PokeContext } from "./Hooks/PokedexContext.jsx";
 import '../ComponentCSS/TypesCss.css'
@@ -33,10 +33,4 @@ export function RenderFilterStrip({ array }) {
             })}
         </div>
     );
-}
-export function filterByType(list, type) {
-    if (!type) return list;
-    return list.filter(data => {
-        return data.types[0] === type || data.types?.[1] === type;
-    })
 }
