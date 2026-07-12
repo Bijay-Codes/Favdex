@@ -3,7 +3,7 @@ import { useInitializer } from "./Hooks/Initializer";
 import { RenderBlank, RenderPokemon } from './Renderer.jsx';
 import { RenderModal } from "./ModelHandler";
 import { PokeContext } from "./Hooks/PokedexContext";
-import { filterByType } from "./FilterStrip";
+import { filterByType } from "../Utility/util-basic.js";
 import { ErrorBox } from "./ErrorBox";
 import { RenderHeader } from '../Components/Header.jsx'
 import '../ComponentCSS/TypesCss.css';
