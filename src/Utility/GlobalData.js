@@ -1,6 +1,6 @@
 export const GlobalData = {
     apiUrl: 'https://pokeapi.co/api/v2/pokemon',
-    apiLimit: 20,
+    apiLimit: 9,
     types: [
         'normal', 'fighting', 'flying', 'poison',
         'ground', 'rock', 'bug', 'ghost',

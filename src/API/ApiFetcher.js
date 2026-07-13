@@ -13,7 +13,7 @@ export async function fetchPokeApi(limit = GlobalData.apiLimit, retry = 3, offse
         }));
         saveToStorage(fetchData.count, 'pokedex-limit');
         return [totalData, offset + GlobalData.apiLimit, fetchData.count]
-    } catch (e) {
+    } catch {
         retry--;
         if (retry > 0) {
             await new Promise(resolve => setTimeout(resolve, 2000));
@@ -45,7 +45,7 @@ export async function fetchSingle(url, setError) {
 function formating(data) {
     return {
         orgId: data.speciesData.id,
-        id : data.id,
+        id: data.id,
         name: data.name,
         types: data.types.map(tArr => tArr.type.name),
         abilities: data.abilities.map(aArr => (

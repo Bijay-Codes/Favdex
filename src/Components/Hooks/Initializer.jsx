@@ -19,56 +19,67 @@ export function useInitializer(ref, setFunct, offsetRef, setFunct2) {
                     setFunct(data[0]);
                     offsetRef.current = data[1];
                     totalPokemonEntry.current = data[2];
-
-                    setTimeout(() => {
-                        isFetching.current = false;
-                    }, 100);
                 }
+                isFetching.current = false;
             });
         } else {
             setFunct(prevData);
             offsetRef.current = prevData.length;
             totalPokemonEntry.current = getItem('pokedex-limit');
-            setTimeout(() => {
-                isFetching.current = false;
-            }, 1000);
+            isFetching.current = false;
         }
     }, [offsetRef, setFunct, setError]);
 
     useEffect(() => {
-        const observer = new IntersectionObserver((ent) => {
-            if (offsetRef.current >= totalPokemonEntry.current) {
+        function isSentinelVisible() {
+            if (!ref.current) return false;
+            const rect = ref.current.getBoundingClientRect();
+            return rect.top < window.innerHeight && rect.bottom >= 0;
+        }
+
+        function loadMore() {
+            // Guard against acting before we know the real total (0 on first render).
+            if (totalPokemonEntry.current > 0 && offsetRef.current >= totalPokemonEntry.current) {
                 setFunct2(true);
                 return;
             }
-            if (ent[0].isIntersecting && offsetRef.current && !isFetching.current) {
-                isFetching.current = true;
-                scrollAnchor.current = window.scrollY;
+            if (!offsetRef.current || isFetching.current) return;
 
-                fetchPokeApi(GlobalData.apiLimit, 3, offsetRef.current, setError).then(data => {
-                    if (data) {
-                        setFunct(previous => {
-                            const updated = [...previous, ...data[0]];
-                            saveToStorage(updated, 'pokedex-scroll');
-                            return updated;
-                        });
-                        offsetRef.current = data[1];
+            isFetching.current = true;
+            scrollAnchor.current = window.scrollY;
 
+            fetchPokeApi(GlobalData.apiLimit, 3, offsetRef.current, setError).then(data => {
+                if (data) {
+                    setFunct(previous => {
+                        const updated = [...previous, ...data[0]];
+                        saveToStorage(updated, 'pokedex-scroll');
+                        return updated;
+                    });
+                    offsetRef.current = data[1];
+
+                    requestAnimationFrame(() => {
                         requestAnimationFrame(() => {
-                            requestAnimationFrame(() => {
-                                window.scrollTo(0, scrollAnchor.current);
-                            });
+                            window.scrollTo(0, scrollAnchor.current);
                         });
-                    }
-                    isFetching.current = false;
-                    if (ref.current) {
-                        observer.unobserve(ref.current);
-                        observer.observe(ref.current);
-                    }
-                });
+                    });
+                }
+                isFetching.current = false;
+
+                // The observer won't fire again on its own if the sentinel never left
+                // the viewport (isIntersecting stayed true the whole time — no transition,
+                // no callback). Re-check manually and keep loading if it's still visible.
+                if (isSentinelVisible()) {
+                    loadMore();
+                }
+            });
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                loadMore();
             }
         });
-        console.log('this is working')
+
         if (ref.current) observer.observe(ref.current);
         return () => observer.disconnect();
     }, [ref, offsetRef, setError, setFunct, setFunct2]);
