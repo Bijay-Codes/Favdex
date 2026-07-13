@@ -4,7 +4,7 @@ import { saveToStorage, getItem } from "../../Utility/storagehelper.js";
 import { useRef, useEffect, useContext } from "react";
 import { PokeContext } from "./PokedexContext.jsx";
 
-export function useInitializer(ref, setFunct, offset, setFunct2) {
+export function useInitializer(ref, setFunct, offsetRef, setFunct2) {
     const { setError } = useContext(PokeContext);
     const isFetching = useRef(false);
     const totalPokemonEntry = useRef(0);
@@ -17,7 +17,7 @@ export function useInitializer(ref, setFunct, offset, setFunct2) {
             fetchPokeApi(GlobalData.apiLimit, 3, 0, setError).then((data) => {
                 if (data) {
                     setFunct(data[0]);
-                    offset.current = data[1];
+                    offsetRef.current = data[1];
                     totalPokemonEntry.current = data[2];
 
                     setTimeout(() => {
@@ -27,32 +27,32 @@ export function useInitializer(ref, setFunct, offset, setFunct2) {
             });
         } else {
             setFunct(prevData);
-            offset.current = prevData.length;
+            offsetRef.current = prevData.length;
             totalPokemonEntry.current = getItem('pokedex-limit');
             setTimeout(() => {
                 isFetching.current = false;
-            }, 100);
+            }, 1000);
         }
-    }, []);
+    }, [offsetRef, setFunct, setError]);
 
     useEffect(() => {
         const observer = new IntersectionObserver((ent) => {
-            if (offset.current >= totalPokemonEntry.current) {
+            if (offsetRef.current >= totalPokemonEntry.current) {
                 setFunct2(true);
                 return;
             }
-            if (ent[0].isIntersecting && offset.current && !isFetching.current) {
+            if (ent[0].isIntersecting && offsetRef.current && !isFetching.current) {
                 isFetching.current = true;
                 scrollAnchor.current = window.scrollY;
 
-                fetchPokeApi(GlobalData.apiLimit, 3, offset.current, setError).then(data => {
+                fetchPokeApi(GlobalData.apiLimit, 3, offsetRef.current, setError).then(data => {
                     if (data) {
                         setFunct(previous => {
                             const updated = [...previous, ...data[0]];
                             saveToStorage(updated, 'pokedex-scroll');
                             return updated;
                         });
-                        offset.current = data[1];
+                        offsetRef.current = data[1];
 
                         requestAnimationFrame(() => {
                             requestAnimationFrame(() => {
@@ -68,7 +68,8 @@ export function useInitializer(ref, setFunct, offset, setFunct2) {
                 });
             }
         });
+        console.log('this is working')
         if (ref.current) observer.observe(ref.current);
         return () => observer.disconnect();
-    }, []);
+    }, [ref, offsetRef, setError, setFunct, setFunct2]);
 }
