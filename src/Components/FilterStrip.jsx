@@ -5,12 +5,6 @@ import '../ComponentCSS/TypesCss.css'
 
 export function RenderFilterStrip({ array }) {
     const { type, setType } = useContext(PokeContext);
-    {
-        array.map(data => {
-            console.log("Current type:", data); // Check if it says "Grou~nd"
-            // ... rest of your code
-        })
-    }
     return (
         <div className="header-part modern-scroll-x [grid-area:filter] gap-5 flex flex-nowrap overflow-auto py-2 lg:text-3xl lg:p-4">
             {array.map(data => {
