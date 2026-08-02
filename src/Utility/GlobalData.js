@@ -19,18 +19,6 @@ export const GlobalData = {
         labrat: [151],
         manmade: [351, 386, 649, 772, 773, 100, 101, 622, 623],
         digital: [137, 233, 474, 479, 10008, 10009, 10010, 10011, 10012, 81, 82, 462],
-        legendary: [],
-        // baseStats: {
-        //     speed: { low: 50, mid: 89, high: 90 },
-        //     ATKandDEF: { low: 50, mid: 84, high: 85 },
-        //     hp: { low: 50, mid: 84, high: 85 },
-        //     total: { low: 400, mid: 499, high: 500 },
-        //     catchRate: { low: 45, mid: 149, high: 150 },
-        //     height: { low: 2.3, mid: 5.3, high: 8.2 },
-        //     weight: { low: 1, mid: 10, high: 50 },
-        //     BMI: { low: 15, mid: 30, high: 31 }
-        // }
-        // keeping this in case i need in future
     },
     pokedexKey: 'pokedex-scroll',
     imgStyleKey: 'img-style',

@@ -28,7 +28,7 @@ export function RenderPokemon({ pokemon, setData, modalview = false, favView = f
        border-2 border-(--border)
        hover:bg-(--bg-elevated) hover:-translate-y-1 hover:border-(--border-white) hover:shadow-[0_4px_5px_var(--accent-hover)]
        transition-all ease-in-out duration-300` : modalview ? 'm-auto' : `fav-pokemons rounded-4xl p-4 mt-4`}
-${pokemon.types.includes('psychic') ? 'psyshock' : ''}`}
+       ${pokemon.types.includes('psychic') ? 'psyshock' : ''}`}
             onClick={() => { if (!modalview && !favView) setData([pokemon]) }}>
             <span
                 className="flex gap-2 text-xl justify-center items-center
@@ -98,7 +98,7 @@ export const RenderBlank = forwardRef((props, ref) => {
                 <img src="/mew.png"
                     className="mew-loading w-full h-full object-contain" alt="Mew.png" />
                 <div className="skeleton h-4 w-1/3 rounded-lg" />
-                <div className="skeleton h-4 w-1/2 rounded-lg" />
+                <div className="skeleton h-20 w-1/2 rounded-lg" />
             </div>
             {blanks.map(num => (
                 <div key={num} className="cards flex flex-col items-center justify-center gap-6 min-h-105 h-fit rounded-2xl p-4 border-2 border-(--border)">

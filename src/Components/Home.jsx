@@ -66,7 +66,7 @@ function PokedexGrid() {
                     )
                 }
                 {
-                    !type && !isComplete && <RenderBlank ref={unloadedRef} />
+                    !type && !isComplete && filterData.length >= 0 && <RenderBlank ref={unloadedRef} />
                 }
             </main>
         </div>
