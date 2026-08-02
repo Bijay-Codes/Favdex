@@ -28,7 +28,7 @@ function PokedexGrid() {
     const unloadedRef = useRef();
     const offset = useRef();
     const { pokedex, setPokemon, isComplete, setComplete, modalData, setData, type } = useContext(PokeContext);
-    useInitializer(unloadedRef, setPokemon, offset, setComplete);
+    useInitializer(unloadedRef, pokedex, setPokemon, offset, setComplete);
     const filterData = filterByType(pokedex, type);
     return (
         <div className="relative">

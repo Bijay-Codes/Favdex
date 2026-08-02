@@ -1,14 +1,25 @@
+// used in home.jsx for initializing and data refetching
 import { fetchPokeApi } from "../../API/ApiFetcher.js";
 import { GlobalData } from "../../Utility/GlobalData.js";
 import { saveToStorage, getItem } from "../../Utility/storagehelper.js";
 import { useRef, useEffect, useContext } from "react";
 import { PokeContext } from "./PokedexContext.jsx";
 
-export function useInitializer(ref, setFunct, offsetRef, setFunct2) {
+export function useInitializer(ref, pokedex, setFunct, offsetRef, setFunct2) {
     const { setError } = useContext(PokeContext);
+    // this one is the function used to show the error is the internet is down or fetch fails
+
     const isFetching = useRef(false);
+    // this ref contains boolean if a fetch is already in progress or not if it is the fetch wont happen
+
     const totalPokemonEntry = useRef(0);
+    // this ref contains data of how many pokemon are there in pokeapi total. need this for rendering blank divs/intesection observers
+
     const scrollAnchor = useRef(0);
+    // contains the position of the place we have to make user scroll to after each succssfull fetch
+
+    const hasAttached = useRef(false);
+    // contains data about if the scroll anchor has already been attached 
 
     useEffect(() => {
         isFetching.current = true;
@@ -31,6 +42,10 @@ export function useInitializer(ref, setFunct, offsetRef, setFunct2) {
     }, [offsetRef, setFunct, setError]);
 
     useEffect(() => {
+        if (pokedex.length === 0) return;
+        if (hasAttached.current) return;
+        hasAttached.current = true;
+
         function isSentinelVisible() {
             if (!ref.current) return false;
             const rect = ref.current.getBoundingClientRect();
@@ -38,7 +53,6 @@ export function useInitializer(ref, setFunct, offsetRef, setFunct2) {
         }
 
         function loadMore() {
-            // Guard against acting before we know the real total (0 on first render).
             if (totalPokemonEntry.current > 0 && offsetRef.current >= totalPokemonEntry.current) {
                 setFunct2(true);
                 return;
@@ -65,9 +79,6 @@ export function useInitializer(ref, setFunct, offsetRef, setFunct2) {
                 }
                 isFetching.current = false;
 
-                // The observer won't fire again on its own if the sentinel never left
-                // the viewport (isIntersecting stayed true the whole time — no transition,
-                // no callback). Re-check manually and keep loading if it's still visible.
                 if (isSentinelVisible()) {
                     loadMore();
                 }
@@ -82,5 +93,5 @@ export function useInitializer(ref, setFunct, offsetRef, setFunct2) {
 
         if (ref.current) observer.observe(ref.current);
         return () => observer.disconnect();
-    }, [ref, offsetRef, setError, setFunct, setFunct2]);
+    }, [ref, pokedex.length, offsetRef, setError, setFunct, setFunct2]);
 }
