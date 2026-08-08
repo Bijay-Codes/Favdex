@@ -9,7 +9,6 @@ import '../app.css'
 import '../ComponentCSS/Tags.css'
 import '../ComponentCSS/Renderer.css';
 
-
 export function RenderPokemon({ pokemon, setData, modalview = false, favView = false }) {
     const mewUrl = "/mew.png";
     const [isShiny, setShiny] = useState(false);
@@ -94,11 +93,12 @@ export const RenderBlank = forwardRef((props, ref) => {
     const blanks = [1, 2, 3];
     return (
         <>
-            <div ref={ref} className="cards flex flex-col items-center justify-center gap-6 min-h-105 h-fit rounded-2xl p-4 border-2 border-(--border)">
+            <div ref={ref} className="cards flex flex-col items-center justify-center gap-6 h-fit rounded-2xl sm:p-6 p-4 border-2 border-(--border)">
                 <img src="/mew.png"
                     className="mew-loading w-full h-full object-contain" alt="Mew.png" />
                 <div className="skeleton h-4 w-1/3 rounded-lg" />
-                <div className="skeleton h-20 w-1/2 rounded-lg" />
+                <div className="skeleton h-4 w-1/3 rounded-lg" />
+                <div className="skeleton h-6 w-1/2 rounded-lg" />
             </div>
             {blanks.map(num => (
                 <div key={num} className="cards flex flex-col items-center justify-center gap-6 min-h-105 h-fit rounded-2xl p-4 border-2 border-(--border)">
@@ -106,6 +106,7 @@ export const RenderBlank = forwardRef((props, ref) => {
                         className="mew-loading w-full h-full object-contain" alt="Mew.png" />
                     <div className="skeleton h-4 w-1/3 rounded-lg" />
                     <div className="skeleton h-4 w-1/2 rounded-lg" />
+                    <div className="skeleton h-6 w-1/3 rounded-lg" />
                 </div>
             ))}
         </>

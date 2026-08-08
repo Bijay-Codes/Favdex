@@ -11,9 +11,10 @@ export function RenderSearchbar() {
     return (
         <div className='header-part [grid-area:search] relative mb-2'>
             <input
-                className='w-full pl-2 py-1 rounded-lg text-[clamp(1rem,1.5vw,1.5rem)]
+                className='w-full pl-2 py-1 sm:py-2 rounded-lg text-[clamp(1.2rem,1.5vw,1.5rem)]
                  bg-(--bg-elevated) mask-r-from-50% border-2 border-(--border-white)
-                 focus:outline-2 focus:outline-(--accent) primary-font'
+                 focus:outline-2 focus:outline-(--accent) primary-font
+                 active:bg-(--gradient-accent)'
                 placeholder='Search'
                 type="search"
                 value={text}
@@ -139,7 +140,7 @@ function RenderSearchUtil({ text, setText, pokedex, setData, setType, setError }
     const searches = useMemo(() => genKeyWords(pokedex), [pokedex]);
     const filtered = useMemo(() => {
         if (!text) return [];
-        return searches.filter(name => name.includes(text.toLowerCase())).slice(0, GlobalData.searchSuggestions);
+        return searches.filter(name => name.startsWith(text.toLowerCase())).slice(0, GlobalData.searchSuggestions);
     }, [text, searches]);
     return (
         <>

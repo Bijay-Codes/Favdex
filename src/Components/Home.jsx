@@ -8,7 +8,6 @@ import { ErrorBox } from "./ErrorBox";
 import { RenderHeader } from '../Components/Header.jsx'
 import '../ComponentCSS/TypesCss.css';
 // Bundles the whole Pokedex grid to privide as a single component to the App.jsx to render Homepage
-
 export function RenderHome() {
     return (
         <PokedexGrid />
@@ -70,9 +69,11 @@ function PokedexGrid() {
                     !type && !isComplete && filterData.length >= 0 && <RenderBlank ref={unloadedRef} />
                 }
 
-                <div onClick={() => window.scrollTo(0, 0)} className="rounded-full text-(--accent) fixed bottom-4 right-4">
+                <div onClick={() => window.scrollTo(0, 0)}
+                    className="rounded-full text-(--accent) fixed bottom-4 right-4">
                     <svg xmlns="http://www.w3.org/2000/svg"
-                        className="w-10 h-10 aspect-square rounded-full bg-(--accent) outline outline-(--accent) hover:-translate-y-0.5"
+                        className="w-10 h-10 aspect-square rounded-full bg-(--accent) outline outline-(--accent) hover:-translate-y-0.5
+                        transition-all duration-500 ease-in-out"
                         viewBox="0 0 16 16">
                         <path d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0m-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707z" />
                     </svg>

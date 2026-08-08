@@ -6,10 +6,10 @@ import { clearStorage, getItem, saveToStorage } from "../../Utility/storagehelpe
 const POKEDEX_KEY = GlobalData.pokedexKey;
 const FAVDEX_KEY = GlobalData.favdex.favdexKey;
 const imgStyle = getItem(GlobalData.imgStyleKey) || 'default';
-
 export default function RenderAbout() {
     const dialogRef = useRef(null);
     const [message, setMessage] = useState("");
+
     const greenButton = 'secondary-font bg-emerald-500 hover:bg-emerald-600 text-white font-medium px-5 rounded-lg transition-colors cursor-pointer';
     const redButton = 'secondary-font bg-rose-500 hover:bg-rose-600 text-white font-medium px-5 rounded-lg transition-colors cursor-pointer';
 
@@ -181,12 +181,14 @@ export default function RenderAbout() {
                 <section id="settings" className="scroll-mt-32 space-y-6">
                     <div className="space-y-6">
                         <div className="border border-(--border) bg-(--bg-overlay) p-6 rounded-2xl space-y-3">
-                            {/* Heading corrected to sequential h2 */}
-                            <h2 className="primary-font font-extrabold tracking-tight text-[clamp(1.375rem,3vw,2rem)]">
-                                # Image Style
+                            <h1 className="primary-font font-extrabold tracking-tight mb-1
+                             text-[clamp(1.375rem,3vw,2rem)]"># Settings</h1>
+                            <h2 className="primary-font font-extrabold tracking-tight mb-1
+                             text-[clamp(1rem,3vw,1.2rem)]">
+                                Image Style
                             </h2>
-                            <p id="img-style-desc" className="secondary-font text-[clamp(0.9rem,1.6vw,1.1rem)] opacity-75">
-                                Changing style will re-fetch Pokémon data.
+                            <p id="img-style-desc" className="secondary-font text-[clamp(0.9rem,1.4vw,1.1rem)] opacity-75">
+                                Changing style will clear Pokémon data.
                             </p>
                             <select
                                 defaultValue={imgStyle}
@@ -275,14 +277,14 @@ export default function RenderAbout() {
                         # Contact & Suggestions
                     </h2>
                     <p className="secondary-font text-[clamp(0.95rem,1.8vw,1.25rem)] opacity-80 mx-auto">
-                        Have a suggestion, feature request, or found an edge-case bug? Reach out on our community platform.
+                        Have a suggestion, feature request, or found an edge-case bug? Even if you just want to have a chat! Lets connect.
                     </p>
                     <div className="flex items-center justify-center gap-3">
-                        <a href="mailto:favdexsupport@gmail.com"
+                        <a href="mailto:bijayprojects@gmail.com"
                             className="primary-font inline-flex items-center gap-2
                         text-[clamp(0.85rem,1.4vw,1rem)]
                         bg-(--bg-overlay) text-(--text-primary) hover:border-(--accent) hover:text-(--accent)
-                        border border-(--border) font-semibold px-4 py-2 rounded-full shadow-md
+                        border border-(--border) font-semibold px-4 py-2 rounded-md shadow-md
                         transition-all hover:-translate-y-0.5">
                             <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                                 <rect width="20" height="16" x="2" y="4" rx="2" />

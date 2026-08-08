@@ -105,8 +105,9 @@ export function useInitializer(ref, pokedex, setFunct, offsetRef, setFunct2) {
                 loadMore();
             }
         });
-
-        if (ref.current) observer.observe(ref.current);
+        setTimeout(() => {
+            if (ref.current) observer.observe(ref.current);
+        }, 2000);
         return () => observer.disconnect();
     }, [ref, pokedex.length, offsetRef, setError, setFunct, setFunct2]);
 }

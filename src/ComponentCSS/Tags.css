@@ -122,7 +122,7 @@
 }
 
 .bio-tag {
-    background: linear-gradient(135deg, #0a1408, #142810, #50a030, #7cd854);
+    background: linear-gradient(135deg, #0a1408, #142810, #50a030, #93de73);
     color: #b8f0a0;
 }
 
@@ -155,13 +155,14 @@
     background: linear-gradient(135deg, #050b12, #0e1c2a, #20a890, #3cd0b8);
     color: #a0ffee;
 }
+
 .fav-tag {
     background: linear-gradient(135deg, #090610, #180f2b, #5b30a0, #dca842, #fff3c0);
     color: #ffe8b0;
     box-shadow: 0 0 0px rgba(220, 168, 66, 0);
-    transition: background-position 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), 
-                transform 0.2s ease, 
-                box-shadow 0.3s ease;
+    transition: background-position 0.5s cubic-bezier(0.25, 0.8, 0.25, 1),
+        transform 0.2s ease,
+        box-shadow 0.3s ease;
 }
 
 .fav-tag:hover {
