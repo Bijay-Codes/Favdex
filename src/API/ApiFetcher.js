@@ -1,5 +1,37 @@
 import { GlobalData } from "../Utility/GlobalData";
 import { saveToStorage, getItem } from "../Utility/storagehelper";
+
+// offset is the starting point from which pokeapi is to send us data
+// retry is the times the fetch will try again if the previous request was not successfull for any reason
+
+// basically the flow is, user or we call this function with the relavant data it fetches the url given
+//  => then it checks if the request was successfull or not if it didnt we schedule another fetch request
+//  => this repeats till either the request succeeds or just retry attempts run out
+
+// inside it, since pokeapi has layered and object nested path where the data we want lives we have to fetch 
+//  => 2 times 
+//       first time we fetch we get the name, his species endpoint (link) and total pokemon in existence in pokeapi database
+//  => we need total pokemon in existence too so that we can remove the loading cards from homepage
+//  => second time we fetch we get the relevant data like stats name species etc out of which i didnt need stats
+//  => so i have a format function that takes full pokemon object and retruns only the relevant feilds
+
+//     as the function is in its first fetch we dont need to wait for each species endpoint to respond before fetching other,
+// =>  just use promise.all to only return once all promises resolve
+
+//  the issue with my previous version, 
+// i was using promise.all which discards all the fetched data the moment 1 of the promise is not successfull
+//  then the retry happens from scratch discarding the succeeded or pending promised which is not whats optimal
+
+//  what can be changed => now using promise.allSettled this one retruns the promises that were successfull and failed separately
+//      => why im not using it? because using it means breaking the chain of fetches
+//      currently we return the offset we can use for new fetch on a successfull fetch but if we get incomplete data
+//      the offset will be inconsistent since i force the number of pokemon that can be fetched to be fixed from globalData
+
+//      what i can do but not doing => i can surely refetch only the failed ones in the same codeblock and finally retrun 
+//      the whole data using the logic but as i can see this function is doing way too many jobs
+//      i think implementing it will only add more burden in debugging this
+
+//      all this is happening due to no proper planning and edge case thinking i will make sure to remember this lesson
 export async function fetchPokeApi(limit = GlobalData.apiLimit, retry = 3, offset = 0, setError) {
     const apiUrl = GlobalData.apiUrl;
     try {

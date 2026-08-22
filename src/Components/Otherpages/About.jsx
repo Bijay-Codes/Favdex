@@ -109,7 +109,7 @@ export default function RenderAbout() {
                     <p className="secondary-font text-[clamp(1rem,2vw,1.375rem)] text-balance leading-relaxed opacity-90">
                         Favdex is a{" "}
                         <span className="primary-font font-semibold text-(--accent)">visual-first Pokédex</span>{" "}
-                        built around appreciation — not battle stats. The goal is to showcase Pokémon as creatures
+                        built for appreciation — not battle stats. The goal is to showcase Pokémon as creatures
                         worth admiring: their designs, shiny forms, and cries. There are no movesets, natures, or
                         PVP metrics here. Instead, you build a bond with your favorites through a berry-feeding system.
                     </p>
@@ -124,8 +124,8 @@ export default function RenderAbout() {
                     </h2>
                     <p className="secondary-font text-[clamp(0.95rem,1.8vw,1.25rem)] leading-relaxed opacity-80">
                         Built with <strong>React</strong> and the <strong>PokéAPI</strong>. Styled using CSS and{" "}
-                        <strong>Tailwind v4</strong> — chosen for its modern LCH color support, which ensures
-                        visually consistent colors across devices. All data is stored locally on your device
+                        <strong>Tailwind v4</strong> — chosen for its modern and helpfull syntax, enabling fast paced styling.
+                        Note-All data is stored locally on your device
                         via <code className="text-(--accent) text-[0.9em]">localStorage</code>, so avoid clearing
                         your browser cache for this site.
                     </p>
@@ -158,12 +158,12 @@ export default function RenderAbout() {
                         <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                             {[
                                 "Search Pokémon by name",
-                                "Filter by type layout",
+                                "Filter by type",
                                 "Toggle shiny forms in detail view",
                                 "Play genuine Pokémon cries",
-                                "Track and manage your favorites",
+                                "Track and manage your favorite pokemons",
                                 "Custom tags for special Pokémon",
-                                "Fast offline experience after initial load",
+                                "Fast loading time after initial load",
                                 "Switch sprites from pixelated to modern or official sprite",
                                 "Fun to read descriptions for pokemons apart from orignal data"
                             ].map((feature, idx) => (
